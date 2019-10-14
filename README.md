@@ -20,3 +20,15 @@ cd iw2019-2020-OKTO
 - mysql
 - docker
 - maven
+
+## Contributors
+
+Braza Andrades, Álvaro
+Rodríguez Pericacho, Félix
+Romero Fernández, Borja
+Sanabria Flores, Carlos Rodrigo
+
+## Links
+
+Drive:
+  https://drive.google.com/open?id=19r3ELZR9JRNUpsop1kgBUzAj22DI_3PxU4_hc8r5okc
