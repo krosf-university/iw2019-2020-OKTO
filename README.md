@@ -23,10 +23,10 @@ cd iw2019-2020-OKTO
 
 ## Contributors
 
-Braza Andrades, Álvaro
-Rodríguez Pericacho, Félix
-Romero Fernández, Borja
-Sanabria Flores, Carlos Rodrigo
+- Braza Andrades, Álvaro
+- Rodríguez Pericacho, Félix
+- Romero Fernández, Borja
+- Sanabria Flores, Carlos Rodrigo
 
 ## Links
 
