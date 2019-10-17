@@ -1,4 +1,4 @@
-package com.krosf.okto.spring;
+package es.uca.iw.okto.spring;
 
 import java.io.Serializable;
 import java.time.LocalTime;

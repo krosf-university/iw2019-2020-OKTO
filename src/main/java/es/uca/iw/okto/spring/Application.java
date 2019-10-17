@@ -1,4 +1,4 @@
-package com.krosf.okto.spring;
+package es.uca.iw.okto.spring;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

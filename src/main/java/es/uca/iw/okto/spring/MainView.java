@@ -1,4 +1,4 @@
-package com.krosf.okto.spring;
+package es.uca.iw.okto.spring;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.notification.Notification;

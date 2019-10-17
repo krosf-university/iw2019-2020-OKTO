@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "CodeLens (Launch) - Application",
+      "request": "launch",
+      "mainClass": "es.uca.iw.okto.spring.Application",
+      "projectName": "oil-kills-the-ocean"
+    },
+    {
+      "type": "java",
       "name": "(Launch) - Application",
       "request": "launch",
       "mainClass": "com.krosf.okto.spring.Application",
