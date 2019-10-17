@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "vscjava.vscode-java-pack",
+    "shengchen.vscode-checkstyle",
+    "editorconfig.editorconfig",
+    "vector-of-bool.gitflow",
+    "visualstudioexptteam.vscodeintellicode",
+    "redhat.vscode-xml",
+    "gruntfuggly.todo-tree"
+  ]
+}
