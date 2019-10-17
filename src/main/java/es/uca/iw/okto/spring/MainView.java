@@ -16,7 +16,7 @@ public class MainView extends VerticalLayout {
   private static final long serialVersionUID = 6107529168228967599L;
 
   public MainView(@Autowired MessageBean bean) {
-    Button button = new Button("Click me", e -> Notification.show(bean.getMessage()));
+    Button button = new Button("Click Here", e -> Notification.show(bean.getMessage()));
     add(button);
   }
 
