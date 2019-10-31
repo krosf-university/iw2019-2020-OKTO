@@ -1,4 +1,4 @@
-package es.uca.iw.okto.spring;
+package es.uca.iw.okto;
 
 import com.vaadin.flow.component.button.testbench.ButtonElement;
 import com.vaadin.flow.component.notification.testbench.NotificationElement;
