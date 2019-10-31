@@ -1,4 +1,4 @@
-package es.uca.iw.okto.spring;
+package es.uca.iw.okto;
 
 import com.vaadin.flow.theme.AbstractTheme;
 import com.vaadin.testbench.ScreenshotOnFailureRule;

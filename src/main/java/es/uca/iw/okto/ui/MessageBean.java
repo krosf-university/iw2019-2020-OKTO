@@ -1,4 +1,4 @@
-package es.uca.iw.okto.spring;
+package es.uca.iw.okto.ui;
 
 import java.io.Serializable;
 import java.time.LocalTime;
