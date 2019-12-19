@@ -11,27 +11,31 @@ import es.uca.iw.okto.ui.LoginView;
 @Component
 public class ConfigureUIServiceInitListener implements VaadinServiceInitListener {
 
-	@Override
-	public void serviceInit(ServiceInitEvent event) {
-		event.getSource().addUIInitListener(uiEvent -> {
-			final UI ui = uiEvent.getUI();
-			ui.addBeforeEnterListener(this::beforeEnter);
-		});
-	}
+  /**
+  *
+  */
+  private static final long serialVersionUID = 4170547485255171010L;
 
-	/**
-	 * Reroutes the user if (s)he is not authorized to access the view.
-	 *
-	 * @param event
-	 *            before navigation event with event details
-	 */
-	private void beforeEnter(BeforeEnterEvent event) {
-		if(!SecurityUtils.isAccessGranted(event.getNavigationTarget())) {
-			if(SecurityUtils.isUserLoggedIn()) {
-				event.rerouteToError(NotFoundException.class);
-			} else {
-				event.rerouteTo(LoginView.class);
-			}
-		}
-	}
+  @Override
+  public void serviceInit(ServiceInitEvent event) {
+    event.getSource().addUIInitListener(uiEvent -> {
+      final UI ui = uiEvent.getUI();
+      ui.addBeforeEnterListener(this::beforeEnter);
+    });
+  }
+
+  /**
+   * Reroutes the user if (s)he is not authorized to access the view.
+   *
+   * @param event before navigation event with event details
+   */
+  private void beforeEnter(BeforeEnterEvent event) {
+    if (!SecurityUtils.isAccessGranted(event.getNavigationTarget())) {
+      if (SecurityUtils.isUserLoggedIn()) {
+        event.rerouteToError(NotFoundException.class);
+      } else {
+        event.rerouteTo(LoginView.class);
+      }
+    }
+  }
 }

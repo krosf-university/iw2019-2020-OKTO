@@ -20,13 +20,18 @@ import org.springframework.security.core.context.SecurityContextHolder;
 /**
  * A Designer generated component for the login-view template.
  * <p>
- * Designer will add and remove fields with @Id mappings but
- * does not overwrite or otherwise change this file.
+ * Designer will add and remove fields with @Id mappings but does not overwrite
+ * or otherwise change this file.
  */
 @Tag("login-view")
 @JsModule("./login-view.js")
 @Route(value = LoginView.ROUTE)
 public class LoginView extends PolymerTemplate<LoginView.LoginViewModel> {
+  /**
+   *
+   */
+  private static final long serialVersionUID = -7374712420739416178L;
+
   public static final String ROUTE = "login";
 
   @Id("vaadinLoginForm")
@@ -53,7 +58,7 @@ public class LoginView extends PolymerTemplate<LoginView.LoginViewModel> {
     } else {
       try {
         final Authentication authentication = authenticationManager
-          .authenticate(new UsernamePasswordAuthenticationToken(e.getUsername(), e.getPassword()));
+            .authenticate(new UsernamePasswordAuthenticationToken(e.getUsername(), e.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         UI.getCurrent().navigate(customRequestCache.resolveRedirectUrl());
       } catch (AuthenticationException ex) {
