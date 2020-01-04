@@ -15,6 +15,7 @@ import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
+import es.uca.iw.okto.views.home.HomeView;
 import es.uca.iw.okto.views.login.LoginView;
 
 /**
@@ -46,6 +47,7 @@ public class MainView extends AppLayout {
   private static Tab[] getAvailableTabs() {
     final List<Tab> tabs = new ArrayList<>();
     tabs.add(createTab("Login", LoginView.class));
+    tabs.add(createTab("Home", HomeView.class));
     return tabs.toArray(new Tab[tabs.size()]);
   }
 

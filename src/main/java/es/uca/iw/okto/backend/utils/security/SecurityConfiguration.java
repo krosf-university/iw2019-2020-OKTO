@@ -2,6 +2,7 @@ package es.uca.iw.okto.backend.utils.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -29,6 +30,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Bean
   public CustomRequestCache requestCache() { //
     return new CustomRequestCache();
+  }
+
+  @Bean
+  @Override
+  public AuthenticationManager authenticationManagerBean() throws Exception {
+    return super.authenticationManager();
   }
 
   private static final String LOGIN_PROCESSING_URL = "/" + LoginView.ROUTE;
