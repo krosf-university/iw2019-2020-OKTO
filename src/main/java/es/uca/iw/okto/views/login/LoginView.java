@@ -1,86 +1,59 @@
 package es.uca.iw.okto.views.login;
 
-import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.dependency.CssImport;
-import com.vaadin.flow.component.formlayout.FormLayout;
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.orderedlayout.FlexComponent;
+import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.login.LoginForm;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
-import com.vaadin.flow.component.textfield.EmailField;
-import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.RouteAlias;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import es.uca.iw.okto.MainView;
+import es.uca.iw.okto.backend.utils.security.CustomRequestCache;
+import es.uca.iw.okto.backend.utils.security.SecurityUtils;
+import es.uca.iw.okto.views.home.HomeView;
 
 @Route(value = LoginView.ROUTE, layout = MainView.class)
-@RouteAlias(value = "", layout = MainView.class)
 @PageTitle("Login")
-@CssImport("styles/views/login/login-view.css")
-public class LoginView extends Div {
-
-  /**
-   *
-   */
+public class LoginView extends HorizontalLayout {
   private static final long serialVersionUID = -1446591496559780454L;
   public static final String ROUTE = "login";
 
-  private PasswordField passwordField = new PasswordField();
-  private EmailField emailField = new EmailField("");
+  private AuthenticationManager authenticationManager;
+  private CustomRequestCache customRequestCache;
 
-  private Button login = new Button("Login");
+  private LoginForm loginForm = new LoginForm();
 
-  public LoginView() {
-    setId("login-view");
-    VerticalLayout wrapper = createWrapper();
-    wrapper.setAlignItems(Alignment.CENTER);
-    createTitle(wrapper);
-    createFormLayout(wrapper);
-    createButtonLayout(wrapper);
 
-    add(wrapper);
+  @Autowired
+  public LoginView(AuthenticationManager authenticationManager,
+      CustomRequestCache customRequestCache) {
+    this.authenticationManager = authenticationManager;
+    this.customRequestCache = customRequestCache;
+    setJustifyContentMode(JustifyContentMode.CENTER);
+    setAlignItems(Alignment.CENTER);
+    setHeightFull();
+    loginForm.addLoginListener(this::authenticate);
+    add(loginForm);
   }
 
-  private void createTitle(VerticalLayout wrapper) {
-    H1 h1 = new H1("Login");
-    wrapper.add(h1);
+  private void authenticate(LoginForm.LoginEvent e) {
+    System.out.println(e.getUsername());
+    System.out.println(e.getPassword());
+    if (SecurityUtils.isUserLoggedIn()) {
+      UI.getCurrent().navigate(HomeView.class);
+    } else {
+      try {
+        final Authentication authentication = authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(e.getUsername(), e.getPassword()));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        UI.getCurrent().navigate(customRequestCache.resolveRedirectUrl());
+      } catch (AuthenticationException ex) {
+        loginForm.setError(true);
+      }
+    }
   }
-
-  private VerticalLayout createWrapper() {
-    VerticalLayout wrapper = new VerticalLayout();
-    wrapper.setId("wrapper");
-    wrapper.setSpacing(false);
-    return wrapper;
-  }
-
-  private void createFormLayout(VerticalLayout wrapper) {
-    FormLayout formLayout = new FormLayout();
-    addFormItem(wrapper, formLayout, emailField, "Username");
-    FormLayout formLayout2 = new FormLayout();
-    addFormItem(wrapper, formLayout2, passwordField, "Pasword");
-  }
-
-  private void createButtonLayout(VerticalLayout wrapper) {
-    HorizontalLayout buttonLayout = new HorizontalLayout();
-    buttonLayout.addClassName("button-layout");
-    buttonLayout.setWidthFull();
-    buttonLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
-    login.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-    buttonLayout.add(login);
-    wrapper.add(buttonLayout);
-  }
-
-  private FormLayout.FormItem addFormItem(VerticalLayout wrapper, FormLayout formLayout,
-      Component field, String fieldName) {
-    FormLayout.FormItem formItem = formLayout.addFormItem(field, fieldName);
-    wrapper.add(formLayout);
-    field.getElement().getClassList().add("full-width");
-    return formItem;
-  }
-
 }

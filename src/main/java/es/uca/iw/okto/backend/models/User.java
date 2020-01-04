@@ -39,7 +39,6 @@ public class User implements UserDetails, Serializable, Cloneable {
   @Column(nullable = true)
   private String phone;
 
-  @Column(length = 20)
   private String password;
 
   private boolean enabled;

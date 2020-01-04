@@ -15,6 +15,7 @@ import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
+import es.uca.iw.okto.views.home.HomeView;
 import es.uca.iw.okto.views.login.LoginView;
 import es.uca.iw.okto.views.login.consultardatos.ConsultarDatosView;
 import es.uca.iw.okto.views.login.vistasadmin.GestionarClientes;
@@ -52,6 +53,7 @@ public class MainView extends AppLayout {
     tabs.add(createTab("gerente", ConsultarDatosView.class));
     tabs.add(createTab("cliente", ConsultarViajeCrucero.class));
     tabs.add(createTab("admin", GestionarClientes.class));
+    tabs.add(createTab("Home", HomeView.class));
     return tabs.toArray(new Tab[tabs.size()]);
   }
 
