@@ -7,12 +7,12 @@ import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.TextArea;
-import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
+import com.vaadin.flow.component.textfield.EmailField;
+import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
@@ -28,35 +28,26 @@ public class LoginView extends Div {
    *
    */
   private static final long serialVersionUID = -1446591496559780454L;
-  public static final String ROUTE = "login";
+  static final String ROUTE = "route";
 
-  private TextField firstname = new TextField();
-  private TextField lastname = new TextField();
-  private TextField email = new TextField();
-  private TextArea notes = new TextArea();
+  private PasswordField passwordField = new PasswordField();
+  private EmailField emailField = new EmailField("");
 
-  private Button cancel = new Button("Cancel");
-  private Button save = new Button("Save");
+  private Button login = new Button("Login");
 
   public LoginView() {
     setId("login-view");
     VerticalLayout wrapper = createWrapper();
-
+    wrapper.setAlignItems(Alignment.CENTER);
     createTitle(wrapper);
     createFormLayout(wrapper);
     createButtonLayout(wrapper);
-
-
-
-    save.addClickListener(e -> {
-      Notification.show("Not implemented");
-    });
 
     add(wrapper);
   }
 
   private void createTitle(VerticalLayout wrapper) {
-    H1 h1 = new H1("Form");
+    H1 h1 = new H1("Login");
     wrapper.add(h1);
   }
 
@@ -69,23 +60,18 @@ public class LoginView extends Div {
 
   private void createFormLayout(VerticalLayout wrapper) {
     FormLayout formLayout = new FormLayout();
-    addFormItem(wrapper, formLayout, firstname, "First name");
-    addFormItem(wrapper, formLayout, lastname, "Last name");
-    FormLayout.FormItem emailFormItem = addFormItem(wrapper, formLayout, email, "Email");
-    formLayout.setColspan(emailFormItem, 2);
-    FormLayout.FormItem notesFormItem = addFormItem(wrapper, formLayout, notes, "Notes");
-    formLayout.setColspan(notesFormItem, 2);
+    addFormItem(wrapper, formLayout, emailField, "Username");
+    FormLayout formLayout2 = new FormLayout();
+    addFormItem(wrapper, formLayout2, passwordField, "Pasword");
   }
 
   private void createButtonLayout(VerticalLayout wrapper) {
     HorizontalLayout buttonLayout = new HorizontalLayout();
     buttonLayout.addClassName("button-layout");
     buttonLayout.setWidthFull();
-    buttonLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.END);
-    cancel.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
-    save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-    buttonLayout.add(cancel);
-    buttonLayout.add(save);
+    buttonLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
+    login.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+    buttonLayout.add(login);
     wrapper.add(buttonLayout);
   }
 
