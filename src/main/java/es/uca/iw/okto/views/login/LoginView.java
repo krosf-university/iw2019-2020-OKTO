@@ -28,7 +28,7 @@ public class LoginView extends Div {
    *
    */
   private static final long serialVersionUID = -1446591496559780454L;
-  static final String ROUTE = "route";
+  public static final String ROUTE = "route";
 
   private PasswordField passwordField = new PasswordField();
   private EmailField emailField = new EmailField("");
