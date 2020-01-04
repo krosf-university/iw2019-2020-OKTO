@@ -6,27 +6,20 @@ import java.util.Optional;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.applayout.AppLayout;
-import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.TabVariant;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.router.RouteConfiguration;
 import com.vaadin.flow.router.RouterLink;
-import com.vaadin.flow.server.PWA;
-import com.vaadin.flow.theme.Theme;
-import com.vaadin.flow.theme.lumo.Lumo;
-import es.uca.iw.okto.views.login.LoginView;
-import es.uca.iw.okto.views.login.consultardatos.ConsultarDatosView;
-import es.uca.iw.okto.views.login.vistasadmin.GestionarClientes;
+import es.uca.iw.okto.views.login.vistascliente.ConsultarGastos;
 import es.uca.iw.okto.views.login.vistascliente.ConsultarViajeCrucero;
+import es.uca.iw.okto.views.login.vistascliente.ConsultarViajeEscalas;
+import es.uca.iw.okto.views.login.vistascliente.ReservaServicio;
 
 /**
  * The main view is a top-level placeholder for other views.
  */
-@JsModule("./styles/shared-styles.js")
-@PWA(name = "OKTO", shortName = "OKTO")
-@Theme(value = Lumo.class, variant = Lumo.DARK)
-public class MainView extends AppLayout {
+public class MainViewCliente extends AppLayout {
 
   /**
    *
@@ -34,7 +27,7 @@ public class MainView extends AppLayout {
   private static final long serialVersionUID = -5266611431615679171L;
   private final Tabs menu;
 
-  public MainView() {
+  public MainViewCliente() {
     menu = createMenuTabs();
     addToNavbar(menu);
   }
@@ -48,10 +41,10 @@ public class MainView extends AppLayout {
 
   private static Tab[] getAvailableTabs() {
     final List<Tab> tabs = new ArrayList<>();
-    tabs.add(createTab("Login", LoginView.class));
-    tabs.add(createTab("gerente", ConsultarDatosView.class));
-    tabs.add(createTab("cliente", ConsultarViajeCrucero.class));
-    tabs.add(createTab("admin", GestionarClientes.class));
+    tabs.add(createTab("Consulta Datos Viaje(crucero)", ConsultarViajeCrucero.class));
+    tabs.add(createTab("Consulta Datos Viaje(escalas)", ConsultarViajeEscalas.class));
+    tabs.add(createTab("Consulta Gastos del viaje", ConsultarGastos.class));
+    tabs.add(createTab("Reserva/Compra de Servicios", ReservaServicio.class));
     return tabs.toArray(new Tab[tabs.size()]);
   }
 
