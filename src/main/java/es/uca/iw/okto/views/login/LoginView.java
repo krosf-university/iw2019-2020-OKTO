@@ -1,6 +1,5 @@
 package es.uca.iw.okto.views.login;
 
-import es.uca.iw.okto.backend.Employee;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -14,95 +13,88 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
-
 import es.uca.iw.okto.MainView;
-@Route(value = "login", layout = MainView.class)
+
+@Route(value = LoginView.ROUTE, layout = MainView.class)
 @RouteAlias(value = "", layout = MainView.class)
 @PageTitle("Login")
 @CssImport("styles/views/login/login-view.css")
 public class LoginView extends Div {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = -1446591496559780454L;
-    private TextField firstname = new TextField();
-    private TextField lastname = new TextField();
-    private TextField email = new TextField();
-    private TextArea notes = new TextArea();
+  /**
+   *
+   */
+  private static final long serialVersionUID = -1446591496559780454L;
+  public static final String ROUTE = "login";
 
-    private Button cancel = new Button("Cancel");
-    private Button save = new Button("Save");
+  private TextField firstname = new TextField();
+  private TextField lastname = new TextField();
+  private TextField email = new TextField();
+  private TextArea notes = new TextArea();
 
-    public LoginView() {
-        setId("login-view");
-        VerticalLayout wrapper = createWrapper();
+  private Button cancel = new Button("Cancel");
+  private Button save = new Button("Save");
 
-        createTitle(wrapper);
-        createFormLayout(wrapper);
-        createButtonLayout(wrapper);
+  public LoginView() {
+    setId("login-view");
+    VerticalLayout wrapper = createWrapper();
 
-        // Configure Form
-        Binder<Employee> binder = new Binder<>(Employee.class);
+    createTitle(wrapper);
+    createFormLayout(wrapper);
+    createButtonLayout(wrapper);
 
-        // Bind fields. This where you'd define e.g. validation rules
-        binder.bindInstanceFields(this);
 
-        cancel.addClickListener(e -> binder.readBean(null));
-        save.addClickListener(e -> {
-            Notification.show("Not implemented");
-        });
 
-        add(wrapper);
-    }
+    save.addClickListener(e -> {
+      Notification.show("Not implemented");
+    });
 
-    private void createTitle(VerticalLayout wrapper) {
-        H1 h1 = new H1("Form");
-        wrapper.add(h1);
-    }
+    add(wrapper);
+  }
 
-    private VerticalLayout createWrapper() {
-        VerticalLayout wrapper = new VerticalLayout();
-        wrapper.setId("wrapper");
-        wrapper.setSpacing(false);
-        return wrapper;
-    }
+  private void createTitle(VerticalLayout wrapper) {
+    H1 h1 = new H1("Form");
+    wrapper.add(h1);
+  }
 
-    private void createFormLayout(VerticalLayout wrapper) {
-        FormLayout formLayout = new FormLayout();
-        addFormItem(wrapper, formLayout, firstname, "First name");
-        addFormItem(wrapper, formLayout, lastname, "Last name");
-        FormLayout.FormItem emailFormItem = addFormItem(wrapper, formLayout,
-                email, "Email");
-        formLayout.setColspan(emailFormItem, 2);
-        FormLayout.FormItem notesFormItem = addFormItem(wrapper, formLayout,
-                notes, "Notes");
-        formLayout.setColspan(notesFormItem, 2);
-    }
+  private VerticalLayout createWrapper() {
+    VerticalLayout wrapper = new VerticalLayout();
+    wrapper.setId("wrapper");
+    wrapper.setSpacing(false);
+    return wrapper;
+  }
 
-    private void createButtonLayout(VerticalLayout wrapper) {
-        HorizontalLayout buttonLayout = new HorizontalLayout();
-        buttonLayout.addClassName("button-layout");
-        buttonLayout.setWidthFull();
-        buttonLayout
-                .setJustifyContentMode(FlexComponent.JustifyContentMode.END);
-        cancel.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
-        save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        buttonLayout.add(cancel);
-        buttonLayout.add(save);
-        wrapper.add(buttonLayout);
-    }
+  private void createFormLayout(VerticalLayout wrapper) {
+    FormLayout formLayout = new FormLayout();
+    addFormItem(wrapper, formLayout, firstname, "First name");
+    addFormItem(wrapper, formLayout, lastname, "Last name");
+    FormLayout.FormItem emailFormItem = addFormItem(wrapper, formLayout, email, "Email");
+    formLayout.setColspan(emailFormItem, 2);
+    FormLayout.FormItem notesFormItem = addFormItem(wrapper, formLayout, notes, "Notes");
+    formLayout.setColspan(notesFormItem, 2);
+  }
 
-    private FormLayout.FormItem addFormItem(VerticalLayout wrapper,
-            FormLayout formLayout, Component field, String fieldName) {
-        FormLayout.FormItem formItem = formLayout.addFormItem(field, fieldName);
-        wrapper.add(formLayout);
-        field.getElement().getClassList().add("full-width");
-        return formItem;
-    }
+  private void createButtonLayout(VerticalLayout wrapper) {
+    HorizontalLayout buttonLayout = new HorizontalLayout();
+    buttonLayout.addClassName("button-layout");
+    buttonLayout.setWidthFull();
+    buttonLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.END);
+    cancel.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
+    save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+    buttonLayout.add(cancel);
+    buttonLayout.add(save);
+    wrapper.add(buttonLayout);
+  }
+
+  private FormLayout.FormItem addFormItem(VerticalLayout wrapper, FormLayout formLayout,
+      Component field, String fieldName) {
+    FormLayout.FormItem formItem = formLayout.addFormItem(field, fieldName);
+    wrapper.add(formLayout);
+    field.getElement().getClassList().add("full-width");
+    return formItem;
+  }
 
 }
