@@ -7,6 +7,8 @@ import java.util.Optional;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.component.orderedlayout.FlexLayout;
+import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.TabVariant;
@@ -18,7 +20,6 @@ import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
 
 import es.uca.iw.okto.views.login.LoginView;
-import es.uca.iw.okto.views.masterdetail.MasterDetailView;
 
 /**
  * The main view is a top-level placeholder for other views.
@@ -49,7 +50,6 @@ public class MainView extends AppLayout {
     private static Tab[] getAvailableTabs() {
         final List<Tab> tabs = new ArrayList<>();
         tabs.add(createTab("Login", LoginView.class));
-        tabs.add(createTab("MasterDetail", MasterDetailView.class));
         return tabs.toArray(new Tab[tabs.size()]);
     }
 
