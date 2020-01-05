@@ -8,14 +8,15 @@ import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import es.uca.iw.okto.MainView;
 import es.uca.iw.okto.app.security.SecurityUtils;
-import es.uca.iw.okto.ui.views.home.HomeView;
 
-@Route
+@Route(value = "login")
 @PageTitle("Login")
 public class LoginView extends LoginOverlay
     implements AfterNavigationObserver, BeforeEnterObserver {
   private static final long serialVersionUID = 7623973319220884828L;
+
 
   public LoginView() {
     LoginI18n i18n = LoginI18n.createDefault();
@@ -35,7 +36,7 @@ public class LoginView extends LoginOverlay
   @Override
   public void beforeEnter(BeforeEnterEvent event) {
     if (SecurityUtils.isUserLoggedIn()) {
-      event.forwardTo(HomeView.class);
+      event.forwardTo(MainView.class);
     } else {
       setOpened(true);
     }

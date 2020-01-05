@@ -145,12 +145,13 @@ public class User extends AbstractEntity {
   public static class Role {
     public static final String USER = "user";
     public static final String ADMIN = "admin";
+    public static final String GERENTE = "gerente";
 
     private Role() {
     }
 
     public static String[] getAllRoles() {
-      return new String[] {ADMIN, USER};
+      return new String[] {ADMIN, USER, GERENTE};
     }
 
   }

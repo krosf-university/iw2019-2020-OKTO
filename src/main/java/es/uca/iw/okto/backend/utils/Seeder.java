@@ -24,8 +24,12 @@ public class Seeder implements ApplicationListener<ContextRefreshedEvent> {
   @Transactional
   public void onApplicationEvent(final ContextRefreshedEvent event) {
     if (!alreadySetup) {
-      createUserIfNotFound("okto@okto.com", "Test", "Test", "adminokto", "00000000O", "000000000",
+      createUserIfNotFound("admin@okto.com", "Test", "Test", "okto", "00000000O", "000000000",
           User.Role.ADMIN);
+      createUserIfNotFound("user@okto.com", "Test", "Test", "okto", "00000000O", "000000000",
+          User.Role.USER);
+      createUserIfNotFound("gerente@okto.com", "Test", "Test", "okto", "00000000O", "000000000",
+          User.Role.GERENTE);
       alreadySetup = true;
     }
   }

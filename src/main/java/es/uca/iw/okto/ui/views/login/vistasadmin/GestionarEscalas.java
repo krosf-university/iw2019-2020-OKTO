@@ -4,18 +4,19 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.RouteAlias;
-import es.uca.iw.okto.MainViewAdmin;
+import org.springframework.security.access.annotation.Secured;
+import es.uca.iw.okto.MainView;
+import es.uca.iw.okto.backend.models.User;
 
-@Route(value = GestionarEscalas.ROUTE, layout = MainViewAdmin.class)
-@RouteAlias(value = "            ", layout = MainViewAdmin.class)
+@Route(value = GestionarEscalas.ROUTE, layout = MainView.class)
 @PageTitle("GestionarEscalas")
+@Secured(User.Role.ADMIN)
 
 public class GestionarEscalas extends Div {
 
