@@ -1,4 +1,4 @@
-package es.uca.iw.okto.views.home;
+package es.uca.iw.okto.ui.views.home;
 
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;

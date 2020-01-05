@@ -1,57 +1,49 @@
 package es.uca.iw.okto.backend.models;
 
-import java.io.Serializable;
-import java.util.Collection;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import javax.persistence.JoinColumn;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import es.uca.iw.okto.backend.utils.AbstractEntity;
 
 @Entity
-public class User implements UserDetails, Serializable, Cloneable {
-  /**
-   *
-   */
-  private static final long serialVersionUID = -4475080830172587256L;
+public class User extends AbstractEntity {
 
-  @Id
-  @Column(unique = true, nullable = false)
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private Long id;
+  private static final long serialVersionUID = 4220485624755494919L;
 
+  @NotBlank
   private String firstName;
 
+  @NotBlank
   private String lastName;
 
+  @NotBlank
   private String dni;
 
+  @NotEmpty
+  @Email
   @Column(unique = true)
   private String email;
 
   @Column(nullable = true)
   private String phone;
 
+  @NotNull
+  @Size(min = 4, max = 255)
   private String password;
 
-  private boolean enabled;
+  @NotBlank
+  @Size(max = 255)
+  private String role;
 
-  @ManyToMany(fetch = FetchType.EAGER)
-  @JoinTable(name = "users_roles",
-      joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-      inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-  private Collection<Role> roles;
+  private boolean enabled = false;
 
   public User() {
-    super();
-    this.enabled = false;
   }
 
   public String getFirstName() {
@@ -102,7 +94,14 @@ public class User implements UserDetails, Serializable, Cloneable {
     this.password = password;
   }
 
-  @Override
+  public String getRole() {
+    return role;
+  }
+
+  public void setRole(String role) {
+    this.role = role;
+  }
+
   public boolean isEnabled() {
     return enabled;
   }
@@ -111,12 +110,10 @@ public class User implements UserDetails, Serializable, Cloneable {
     this.enabled = enabled;
   }
 
-  public Collection<Role> getRoles() {
-    return roles;
-  }
-
-  public void setRoles(final Collection<Role> roles) {
-    this.roles = roles;
+  @PrePersist
+  @PreUpdate
+  private void prepareData() {
+    this.email = email == null ? null : email.toLowerCase();
   }
 
   @Override
@@ -145,35 +142,16 @@ public class User implements UserDetails, Serializable, Cloneable {
     return true;
   }
 
-  @Override
-  public String toString() {
-    return "User [dni=" + dni + ", email=" + email + ", enabled=" + enabled + ", firstName="
-        + firstName + ", id=" + id + ", lastName=" + lastName + ", password=" + password
-        + ", phone=" + phone + ", roles=" + roles + "]";
-  }
+  public static class Role {
+    public static final String USER = "user";
+    public static final String ADMIN = "admin";
 
-  @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return null;
-  }
+    private Role() {
+    }
 
-  @Override
-  public String getUsername() {
-    return email;
-  }
+    public static String[] getAllRoles() {
+      return new String[] {ADMIN, USER};
+    }
 
-  @Override
-  public boolean isAccountNonExpired() {
-    return enabled;
-  }
-
-  @Override
-  public boolean isAccountNonLocked() {
-    return enabled;
-  }
-
-  @Override
-  public boolean isCredentialsNonExpired() {
-    return enabled;
   }
 }

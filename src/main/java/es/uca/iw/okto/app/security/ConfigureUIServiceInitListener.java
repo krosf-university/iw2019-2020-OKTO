@@ -1,38 +1,40 @@
-package es.uca.iw.okto.backend.utils.security;
+package es.uca.iw.okto.app.security;
 
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.router.BeforeEnterEvent;
-import com.vaadin.flow.router.NotFoundException;
 import com.vaadin.flow.server.ServiceInitEvent;
 import com.vaadin.flow.server.VaadinServiceInitListener;
-import org.springframework.stereotype.Component;
-import es.uca.iw.okto.views.login.LoginView;
+import com.vaadin.flow.spring.annotation.SpringComponent;
+import es.uca.iw.okto.ui.exceptions.AccessDeniedException;
+import es.uca.iw.okto.ui.views.login.LoginView;
 
-@Component
+/**
+ * Adds before enter listener to check access to views. Adds the Offline banner.
+ * 
+ */
+@SpringComponent
 public class ConfigureUIServiceInitListener implements VaadinServiceInitListener {
-
-  /**
-  *
-  */
-  private static final long serialVersionUID = 4170547485255171010L;
+  private static final long serialVersionUID = -3940474407617646716L;
 
   @Override
   public void serviceInit(ServiceInitEvent event) {
     event.getSource().addUIInitListener(uiEvent -> {
       final UI ui = uiEvent.getUI();
+      // ui.add(new OfflineBanner());
       ui.addBeforeEnterListener(this::beforeEnter);
     });
   }
 
   /**
-   * Reroutes the user if (s)he is not authorized to access the view.
+   * Reroutes the user if she is not authorized to access the view.
    *
    * @param event before navigation event with event details
    */
   private void beforeEnter(BeforeEnterEvent event) {
-    if (!SecurityUtils.isAccessGranted(event.getNavigationTarget())) {
+    final boolean accessGranted = SecurityUtils.isAccessGranted(event.getNavigationTarget());
+    if (!accessGranted) {
       if (SecurityUtils.isUserLoggedIn()) {
-        event.rerouteToError(NotFoundException.class);
+        event.rerouteToError(AccessDeniedException.class);
       } else {
         event.rerouteTo(LoginView.class);
       }

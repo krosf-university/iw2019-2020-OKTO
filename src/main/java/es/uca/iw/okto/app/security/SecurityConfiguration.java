@@ -1,47 +1,74 @@
-package es.uca.iw.okto.backend.utils.security;
+package es.uca.iw.okto.app.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.context.annotation.Scope;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import es.uca.iw.okto.views.login.LoginView;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+
+import es.uca.iw.okto.backend.models.User;
+import es.uca.iw.okto.backend.repositories.UserRepository;
 
 /**
  * Configures spring security, doing the following:
  * <li>Bypass security checks for static resources,</li>
  * <li>Restrict access to the application, allowing only logged in users,</li>
- * <li>Set up the login form</li>
+ * <li>Set up the login form,</li>
+ * <li>Configures the {@link UserDetailsServiceImpl}.</li>
  * 
  */
 @EnableWebSecurity
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+  private static final String LOGIN_PROCESSING_URL = "/login";
+  private static final String LOGIN_FAILURE_URL = "/login?error";
+  private static final String LOGIN_URL = "/login";
+  private static final String LOGOUT_SUCCESS_URL = "/login";
+
+  private final UserDetailsService userDetailsService;
+
+  @Autowired
+  private PasswordEncoder passwordEncoder;
+
+  @Autowired
+  public SecurityConfiguration(UserDetailsService userDetailsService) {
+    this.userDetailsService = userDetailsService;
+  }
+
+  /**
+   * The password encoder to use when encrypting passwords.
+   */
   @Bean
-  public PasswordEncoder encoder() {
+  public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder(11);
   }
 
   @Bean
-  public CustomRequestCache requestCache() { //
-    return new CustomRequestCache();
+  @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+  public CurrentUser currentUser(UserRepository userRepository) {
+    final String username = SecurityUtils.getUsername();
+    User user = username != null ? userRepository.findByEmailIgnoreCase(username) : null;
+    return () -> user;
   }
 
-  @Bean
+  /**
+   * Registers our UserDetailsService and the password encoder to be used on login attempts.
+   */
   @Override
-  public AuthenticationManager authenticationManagerBean() throws Exception {
-    return super.authenticationManager();
+  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    super.configure(auth);
+    auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
   }
-
-  private static final String LOGIN_PROCESSING_URL = "/" + LoginView.ROUTE;
-  private static final String LOGIN_FAILURE_URL = "/" + LoginView.ROUTE;
-  private static final String LOGIN_URL = "/" + LoginView.ROUTE;
-  private static final String LOGOUT_SUCCESS_URL = "/" + LoginView.ROUTE;
 
   /**
    * Require login to access internal pages and configure login form.
@@ -62,49 +89,26 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .requestMatchers(SecurityUtils::isFrameworkInternalRequest).permitAll()
 
         // Allow all requests by logged in users.
-        .anyRequest().authenticated()
+        .anyRequest().hasAnyAuthority(User.Role.getAllRoles())
 
         // Configure the login page.
         .and().formLogin().loginPage(LOGIN_URL).permitAll().loginProcessingUrl(LOGIN_PROCESSING_URL)
         .failureUrl(LOGIN_FAILURE_URL)
 
+        // Register the success handler that redirects users to the page they last tried
+        // to access
+        .successHandler(new SavedRequestAwareAuthenticationSuccessHandler())
+
         // Configure logout
         .and().logout().logoutSuccessUrl(LOGOUT_SUCCESS_URL);
   }
-
-  // @Bean
-  // @Override
-  // public UserDetailsService userDetailsService() {
-  // // typical logged in user with some privileges
-  // UserDetails normalUser =
-  // User.withUsername("user")
-  // .password("{noop}password")
-  // .roles("User")
-  // .build();
-  //
-  // // admin user with all privileges
-  // UserDetails adminUser =
-  // User.withUsername("admin")
-  // .password("{noop}password")
-  // .roles("User", "Admin")
-  // .build();
-  //
-  // // admin user with all privileges
-  // UserDetails ivan =
-  // User.withUsername("ivan")
-  // .password("ivan")
-  // .roles("User", "Admin")
-  // .build();
-  //
-  // return new InMemoryUserDetailsManager(normalUser, adminUser,ivan);
-  // }
 
   /**
    * Allows access to static resources, bypassing Spring security.
    */
   @Override
-  public void configure(WebSecurity web) throws Exception {
-    web.ignoring().antMatchers("/register",
+  public void configure(WebSecurity web) {
+    web.ignoring().antMatchers(
         // Vaadin Flow static resources
         "/VAADIN/**",
 

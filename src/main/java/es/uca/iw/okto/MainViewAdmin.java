@@ -11,20 +11,20 @@ import com.vaadin.flow.component.tabs.TabVariant;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.router.RouteConfiguration;
 import com.vaadin.flow.router.RouterLink;
-import es.uca.iw.okto.views.login.vistasadmin.GestionarClientes;
-import es.uca.iw.okto.views.login.vistasadmin.GestionarEscalas;
-import es.uca.iw.okto.views.login.vistasadmin.GestionarExcursiones;
-import es.uca.iw.okto.views.login.vistasadmin.GestionarServicios;
+import es.uca.iw.okto.ui.views.login.vistasadmin.GestionarClientes;
+import es.uca.iw.okto.ui.views.login.vistasadmin.GestionarEscalas;
+import es.uca.iw.okto.ui.views.login.vistasadmin.GestionarExcursiones;
+import es.uca.iw.okto.ui.views.login.vistasadmin.GestionarServicios;
 
 /**
  * The main view is a top-level placeholder for other views.
  */
 public class MainViewAdmin extends AppLayout {
-    /**
-     *
-     */
-    private static final long serialVersionUID = 5797271589693983183L;
-    private final Tabs menu;
+  /**
+   *
+   */
+  private static final long serialVersionUID = 5797271589693983183L;
+  private final Tabs menu;
 
   public MainViewAdmin() {
     menu = createMenuTabs();

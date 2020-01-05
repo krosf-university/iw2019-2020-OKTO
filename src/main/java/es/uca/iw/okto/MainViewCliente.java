@@ -11,10 +11,10 @@ import com.vaadin.flow.component.tabs.TabVariant;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.router.RouteConfiguration;
 import com.vaadin.flow.router.RouterLink;
-import es.uca.iw.okto.views.login.vistascliente.ConsultarGastos;
-import es.uca.iw.okto.views.login.vistascliente.ConsultarViajeCrucero;
-import es.uca.iw.okto.views.login.vistascliente.ConsultarViajeEscalas;
-import es.uca.iw.okto.views.login.vistascliente.ReservaServicio;
+import es.uca.iw.okto.ui.views.login.vistascliente.ConsultarGastos;
+import es.uca.iw.okto.ui.views.login.vistascliente.ConsultarViajeCrucero;
+import es.uca.iw.okto.ui.views.login.vistascliente.ConsultarViajeEscalas;
+import es.uca.iw.okto.ui.views.login.vistascliente.ReservaServicio;
 
 /**
  * The main view is a top-level placeholder for other views.
