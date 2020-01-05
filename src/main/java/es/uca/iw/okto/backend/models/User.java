@@ -1,55 +1,49 @@
 package es.uca.iw.okto.backend.models;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Collection;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import es.uca.iw.okto.backend.utils.AbstractEntity;
 
 @Entity
-public class User implements UserDetails, Serializable, Cloneable {
-  /**
-   *
-   */
-  private static final long serialVersionUID = -8769481576163041861L;
+public class User extends AbstractEntity {
 
-  @Id
-  @Column(unique = true, nullable = false)
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private Long id;
+  private static final long serialVersionUID = 4220485624755494919L;
 
+  @NotBlank
   private String firstName;
 
+  @NotBlank
   private String lastName;
 
-  private String DNI;
+  @NotBlank
+  private String dni;
 
+  @NotEmpty
+  @Email
+  @Column(unique = true)
   private String email;
 
-  @Column(length = 60)
-  private String password;
-
+  @Column(nullable = true)
   private String phone;
 
-  private boolean enabled;
+  @NotNull
+  @Size(min = 4, max = 255)
+  private String password;
 
-  @ManyToMany(fetch = FetchType.EAGER)
-  @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-  private Collection<Role> roles;
+  @NotBlank
+  @Size(max = 255)
+  private String role;
+
+  private boolean enabled = false;
 
   public User() {
-  }
-
-  public User(String firstName, String lastName, String DNI, String email, String password, String phone,
-      Collection<Role> roles) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.DNI = DNI;
-    this.email = email;
-    this.password = password;
-    this.phone = phone;
-    this.roles = roles;
   }
 
   public String getFirstName() {
@@ -68,12 +62,12 @@ public class User implements UserDetails, Serializable, Cloneable {
     this.lastName = lastName;
   }
 
-  public String getDNI() {
-    return DNI;
+  public String getDni() {
+    return dni;
   }
 
-  public void setDNI(String DNI) {
-    this.DNI = DNI;
+  public void setDni(String dni) {
+    this.dni = dni;
   }
 
   public String getEmail() {
@@ -92,87 +86,34 @@ public class User implements UserDetails, Serializable, Cloneable {
     this.phone = phone;
   }
 
-  /**
-   * Returns the authorities granted to the user. Cannot return <code>null</code>.
-   *
-   * @return the authorities, sorted by natural key (never <code>null</code>)
-   */
-  @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return null;
-  }
-
-  /**
-   * Returns the password used to authenticate the user.
-   *
-   * @return the password
-   */
-  @Override
   public String getPassword() {
-    return this.password;
+    return password;
   }
 
   public void setPassword(String password) {
     this.password = password;
   }
 
-  /**
-   * Returns the username used to authenticate the user. Cannot return
-   * <code>null</code>.
-   *
-   * @return the username (never <code>null</code>)
-   */
-  @Override
-  public String getUsername() {
-    return this.email;
+  public String getRole() {
+    return role;
   }
 
-  /**
-   * Indicates whether the user's account has expired. An expired account cannot
-   * be authenticated.
-   *
-   * @return <code>true</code> if the user's account is valid (ie non-expired),
-   *         <code>false</code> if no longer valid (ie expired)
-   */
-  @Override
-  public boolean isAccountNonExpired() {
-    return true;
+  public void setRole(String role) {
+    this.role = role;
   }
 
-  /**
-   * Indicates whether the user is locked or unlocked. A locked user cannot be
-   * authenticated.
-   *
-   * @return <code>true</code> if the user is not locked, <code>false</code>
-   *         otherwise
-   */
-  @Override
-  public boolean isAccountNonLocked() {
-    return true;
-  }
-
-  /**
-   * Indicates whether the user's credentials (password) has expired. Expired
-   * credentials prevent authentication.
-   *
-   * @return <code>true</code> if the user's credentials are valid (ie
-   *         non-expired), <code>false</code> if no longer valid (ie expired)
-   */
-  @Override
-  public boolean isCredentialsNonExpired() {
-    return true;
-  }
-
-  /**
-   * Indicates whether the user is enabled or disabled. A disabled user cannot be
-   * authenticated.
-   *
-   * @return <code>true</code> if the user is enabled, <code>false</code>
-   *         otherwise
-   */
-  @Override
   public boolean isEnabled() {
-    return this.enabled;
+    return enabled;
+  }
+
+  public void setEnabled(boolean enabled) {
+    this.enabled = enabled;
+  }
+
+  @PrePersist
+  @PreUpdate
+  private void prepareData() {
+    this.email = email == null ? null : email.toLowerCase();
   }
 
   @Override
@@ -195,14 +136,22 @@ public class User implements UserDetails, Serializable, Cloneable {
       return false;
     }
     final User user = (User) obj;
-    return email.equals(user.email);
+    if (!email.equals(user.email)) {
+      return false;
+    }
+    return true;
   }
 
-  public void setRoles(Collection<Role> roles) {
-    this.roles = roles;
-  }
+  public static class Role {
+    public static final String USER = "user";
+    public static final String ADMIN = "admin";
 
-  public void setEnabled(boolean b) {
-    this.enabled = b;
+    private Role() {
+    }
+
+    public static String[] getAllRoles() {
+      return new String[] {ADMIN, USER};
+    }
+
   }
 }
