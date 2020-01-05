@@ -1,4 +1,4 @@
-package es.uca.iw.okto.ui.views.login.vistascliente;
+package es.uca.iw.okto.ui.views.consultardatos;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.formlayout.FormLayout;
@@ -14,42 +14,47 @@ import org.springframework.security.access.annotation.Secured;
 import es.uca.iw.okto.MainView;
 import es.uca.iw.okto.backend.models.User;
 
-@Route(value = ConsultarGastos.ROUTE, layout = MainView.class)
-@PageTitle("ConsultarGastos")
-@Secured(User.Role.USER)
-public class ConsultarGastos extends Div {
+@Route(value = ConsultarDatosView.ROUTE, layout = MainView.class)
+@PageTitle("ConsultarDatos")
+@Secured(User.Role.GERENTE)
+
+public class ConsultarDatosView extends Div {
 
   /**
-  *
-  */
-  private static final long serialVersionUID = 3883724890328316149L;
-
-  public static final String ROUTE = "ConsultarGastos";
+   *
+   */
+  private static final long serialVersionUID = 5280515399074523767L;
+  public static final String ROUTE = "ConsultaDatos";
 
   private TextField Dato1 = new TextField();
   private TextArea Dato2 = new TextArea();
 
-  public ConsultarGastos() {
-    setId("consultarGastos-view");
+  public ConsultarDatosView() {
+    setId("consultardatos-view");
     VerticalLayout wrapper = createWrapper();
     wrapper.setAlignItems(Alignment.CENTER);
     createTitle(wrapper);
     createFormLayout(wrapper);
     createTitle2(wrapper);
     createFormLayout(wrapper);
+    createTitle3(wrapper);
+    createFormLayout(wrapper);
 
     add(wrapper);
   }
 
-  // horarios de llegada y salida,información de la ciudad, información meteorológica, consejos y
-  // excursiones programadas
   private void createTitle(VerticalLayout wrapper) {
-    H1 h1 = new H1("Gastos de Actividades");
+    H1 h1 = new H1("Datos Excursiones");
     wrapper.add(h1);
   }
 
   private void createTitle2(VerticalLayout wrapper) {
-    H1 h1 = new H1("Gastos de Servicios");
+    H1 h1 = new H1("Datos Servicios");
+    wrapper.add(h1);
+  }
+
+  private void createTitle3(VerticalLayout wrapper) {
+    H1 h1 = new H1("Datos Actividades");
     wrapper.add(h1);
   }
 
@@ -74,6 +79,4 @@ public class ConsultarGastos extends Div {
     field.getElement().getClassList().add("full-width");
     return formItem;
   }
-
 }
-

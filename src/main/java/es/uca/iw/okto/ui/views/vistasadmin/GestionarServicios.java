@@ -1,4 +1,4 @@
-package es.uca.iw.okto.ui.views.login.vistascliente;
+package es.uca.iw.okto.ui.views.vistasadmin;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.formlayout.FormLayout;
@@ -14,48 +14,37 @@ import org.springframework.security.access.annotation.Secured;
 import es.uca.iw.okto.MainView;
 import es.uca.iw.okto.backend.models.User;
 
-@Route(value = ConsultarViajeCrucero.ROUTE, layout = MainView.class)
-@PageTitle("ConsultarViajeCrucero")
-@Secured(User.Role.USER)
-public class ConsultarViajeCrucero extends Div {
+@Route(value = GestionarServicios.ROUTE, layout = MainView.class)
+@PageTitle("GestionarServicios")
+@Secured(User.Role.ADMIN)
+
+public class GestionarServicios extends Div {
+
 
   /**
-   *
-   */
-  private static final long serialVersionUID = -6778109375103792705L;
-  public static final String ROUTE = "ConsultarViajeCrucero";
+  *
+  */
+  private static final long serialVersionUID = 1L;
+
+  public static final String ROUTE = "GestionarServicios";
 
   private TextField Dato1 = new TextField();
   private TextArea Dato2 = new TextArea();
 
-  public ConsultarViajeCrucero() {
-    setId("consultarviajeCrucero-view");
+  public GestionarServicios() {
+    setId("GestionarServicios-view");
     VerticalLayout wrapper = createWrapper();
     wrapper.setAlignItems(Alignment.CENTER);
     createTitle(wrapper);
-    createFormLayout(wrapper);
-    createTitle2(wrapper);
-    createFormLayout(wrapper);
-    createTitle3(wrapper);
     createFormLayout(wrapper);
 
     add(wrapper);
   }
 
-  // consejos para los viajeros, servicios e instalaciones disponibles en el barco, planos de
-  // localización
+  // horarios de llegada y salida,información de la ciudad, información meteorológica, consejos y
+  // excursiones programadas
   private void createTitle(VerticalLayout wrapper) {
-    H1 h1 = new H1("Consejos para los Viajeros");
-    wrapper.add(h1);
-  }
-
-  private void createTitle2(VerticalLayout wrapper) {
-    H1 h1 = new H1("Datos Servicios");
-    wrapper.add(h1);
-  }
-
-  private void createTitle3(VerticalLayout wrapper) {
-    H1 h1 = new H1("instalaciones Disponibles");
+    H1 h1 = new H1("Gestion de Servicios");
     wrapper.add(h1);
   }
 

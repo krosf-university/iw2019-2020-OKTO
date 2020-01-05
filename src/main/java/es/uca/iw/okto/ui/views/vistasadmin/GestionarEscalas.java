@@ -1,11 +1,11 @@
-package es.uca.iw.okto.ui.views.login.vistasadmin;
+package es.uca.iw.okto.ui.views.vistasadmin;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
@@ -14,22 +14,24 @@ import org.springframework.security.access.annotation.Secured;
 import es.uca.iw.okto.MainView;
 import es.uca.iw.okto.backend.models.User;
 
-@Route(value = GestionarClientes.ROUTE, layout = MainView.class)
-@PageTitle("GestionarClientes")
+@Route(value = GestionarEscalas.ROUTE, layout = MainView.class)
+@PageTitle("GestionarEscalas")
 @Secured(User.Role.ADMIN)
-public class GestionarClientes extends Div {
+
+public class GestionarEscalas extends Div {
+
   /**
   *
   */
-  private static final long serialVersionUID = 8896817309959219116L;
+  private static final long serialVersionUID = 1L;
 
-  public static final String ROUTE = "GestionarClientes";
+  public static final String ROUTE = "GestionarEscalas";
 
   private TextField Dato1 = new TextField();
   private TextArea Dato2 = new TextArea();
 
-  public GestionarClientes() {
-    setId("GestionarClientes-view");
+  public GestionarEscalas() {
+    setId("GestionarEscalas-view");
     VerticalLayout wrapper = createWrapper();
     wrapper.setAlignItems(Alignment.CENTER);
     createTitle(wrapper);
@@ -41,7 +43,7 @@ public class GestionarClientes extends Div {
   // horarios de llegada y salida,información de la ciudad, información meteorológica, consejos y
   // excursiones programadas
   private void createTitle(VerticalLayout wrapper) {
-    H1 h1 = new H1("Gestion de Clientes");
+    H1 h1 = new H1("Gestion de Escalas");
     wrapper.add(h1);
   }
 

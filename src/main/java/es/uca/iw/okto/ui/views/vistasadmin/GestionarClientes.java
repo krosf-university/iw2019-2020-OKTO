@@ -1,4 +1,4 @@
-package es.uca.iw.okto.ui.views.login.vistasadmin;
+package es.uca.iw.okto.ui.views.vistasadmin;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.formlayout.FormLayout;
@@ -14,24 +14,22 @@ import org.springframework.security.access.annotation.Secured;
 import es.uca.iw.okto.MainView;
 import es.uca.iw.okto.backend.models.User;
 
-@Route(value = GestionarEscalas.ROUTE, layout = MainView.class)
-@PageTitle("GestionarEscalas")
+@Route(value = GestionarClientes.ROUTE, layout = MainView.class)
+@PageTitle("GestionarClientes")
 @Secured(User.Role.ADMIN)
-
-public class GestionarEscalas extends Div {
-
+public class GestionarClientes extends Div {
   /**
   *
   */
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 8896817309959219116L;
 
-  public static final String ROUTE = "GestionarEscalas";
+  public static final String ROUTE = "GestionarClientes";
 
   private TextField Dato1 = new TextField();
   private TextArea Dato2 = new TextArea();
 
-  public GestionarEscalas() {
-    setId("GestionarEscalas-view");
+  public GestionarClientes() {
+    setId("GestionarClientes-view");
     VerticalLayout wrapper = createWrapper();
     wrapper.setAlignItems(Alignment.CENTER);
     createTitle(wrapper);
@@ -43,7 +41,7 @@ public class GestionarEscalas extends Div {
   // horarios de llegada y salida,información de la ciudad, información meteorológica, consejos y
   // excursiones programadas
   private void createTitle(VerticalLayout wrapper) {
-    H1 h1 = new H1("Gestion de Escalas");
+    H1 h1 = new H1("Gestion de Clientes");
     wrapper.add(h1);
   }
 

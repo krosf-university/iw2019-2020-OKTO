@@ -22,15 +22,15 @@ import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
 import es.uca.iw.okto.app.security.SecurityUtils;
 import es.uca.iw.okto.ui.views.HasConfirmation;
-import es.uca.iw.okto.ui.views.login.consultardatos.ConsultarDatosView;
-import es.uca.iw.okto.ui.views.login.vistasadmin.GestionarClientes;
-import es.uca.iw.okto.ui.views.login.vistasadmin.GestionarEscalas;
-import es.uca.iw.okto.ui.views.login.vistasadmin.GestionarExcursiones;
-import es.uca.iw.okto.ui.views.login.vistasadmin.GestionarServicios;
-import es.uca.iw.okto.ui.views.login.vistascliente.ConsultarGastos;
-import es.uca.iw.okto.ui.views.login.vistascliente.ConsultarViajeCrucero;
-import es.uca.iw.okto.ui.views.login.vistascliente.ConsultarViajeEscalas;
-import es.uca.iw.okto.ui.views.login.vistascliente.ReservaServicio;
+import es.uca.iw.okto.ui.views.consultardatos.ConsultarDatosView;
+import es.uca.iw.okto.ui.views.vistasadmin.GestionarClientes;
+import es.uca.iw.okto.ui.views.vistasadmin.GestionarEscalas;
+import es.uca.iw.okto.ui.views.vistasadmin.GestionarExcursiones;
+import es.uca.iw.okto.ui.views.vistasadmin.GestionarServicios;
+import es.uca.iw.okto.ui.views.vistascliente.ConsultarGastos;
+import es.uca.iw.okto.ui.views.vistascliente.ConsultarViajeCrucero;
+import es.uca.iw.okto.ui.views.vistascliente.ConsultarViajeEscalas;
+import es.uca.iw.okto.ui.views.vistascliente.ReservaServicio;
 
 @JsModule("./styles/shared-styles.js")
 @PWA(name = "OKTO", shortName = "OKTO", startPath = "login")

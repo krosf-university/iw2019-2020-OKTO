@@ -1,4 +1,4 @@
-package es.uca.iw.okto.ui.views.login.consultardatos;
+package es.uca.iw.okto.ui.views.vistascliente;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.formlayout.FormLayout;
@@ -14,23 +14,22 @@ import org.springframework.security.access.annotation.Secured;
 import es.uca.iw.okto.MainView;
 import es.uca.iw.okto.backend.models.User;
 
-@Route(value = ConsultarDatosView.ROUTE, layout = MainView.class)
-@PageTitle("ConsultarDatos")
-@Secured(User.Role.GERENTE)
-
-public class ConsultarDatosView extends Div {
+@Route(value = ConsultarViajeCrucero.ROUTE, layout = MainView.class)
+@PageTitle("ConsultarViajeCrucero")
+@Secured(User.Role.USER)
+public class ConsultarViajeCrucero extends Div {
 
   /**
    *
    */
-  private static final long serialVersionUID = 5280515399074523767L;
-  public static final String ROUTE = "ConsultaDatos";
+  private static final long serialVersionUID = -6778109375103792705L;
+  public static final String ROUTE = "ConsultarViajeCrucero";
 
   private TextField Dato1 = new TextField();
   private TextArea Dato2 = new TextArea();
 
-  public ConsultarDatosView() {
-    setId("consultardatos-view");
+  public ConsultarViajeCrucero() {
+    setId("consultarviajeCrucero-view");
     VerticalLayout wrapper = createWrapper();
     wrapper.setAlignItems(Alignment.CENTER);
     createTitle(wrapper);
@@ -43,8 +42,10 @@ public class ConsultarDatosView extends Div {
     add(wrapper);
   }
 
+  // consejos para los viajeros, servicios e instalaciones disponibles en el barco, planos de
+  // localización
   private void createTitle(VerticalLayout wrapper) {
-    H1 h1 = new H1("Datos Excursiones");
+    H1 h1 = new H1("Consejos para los Viajeros");
     wrapper.add(h1);
   }
 
@@ -54,7 +55,7 @@ public class ConsultarDatosView extends Div {
   }
 
   private void createTitle3(VerticalLayout wrapper) {
-    H1 h1 = new H1("Datos Actividades");
+    H1 h1 = new H1("instalaciones Disponibles");
     wrapper.add(h1);
   }
 
@@ -79,4 +80,6 @@ public class ConsultarDatosView extends Div {
     field.getElement().getClassList().add("full-width");
     return formItem;
   }
+
 }
+
