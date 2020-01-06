@@ -16,3 +16,4 @@ drivers/
 error-screenshots/
 webpack.generated.js
 .sts4-cache
+!.settings/org.eclipse.jdt.core.prefs
