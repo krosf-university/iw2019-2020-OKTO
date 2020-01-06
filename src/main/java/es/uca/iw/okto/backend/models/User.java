@@ -1,7 +1,10 @@
 package es.uca.iw.okto.backend.models;
 
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.validation.constraints.Email;
@@ -9,11 +12,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
 import es.uca.iw.okto.backend.utils.AbstractEntity;
 
 @Entity
 public class User extends AbstractEntity {
-
   private static final long serialVersionUID = 4220485624755494919L;
 
   @NotBlank
@@ -40,6 +43,9 @@ public class User extends AbstractEntity {
   @NotBlank
   @Size(max = 255)
   private String role;
+
+  @OneToMany(mappedBy = "user")
+  private Collection<UserTrip> trips;
 
   private boolean enabled = false;
 
@@ -110,48 +116,30 @@ public class User extends AbstractEntity {
     this.enabled = enabled;
   }
 
+  public Collection<UserTrip> getTrips() {
+    return trips;
+  }
+
+  public void setTrips(Collection<UserTrip> trips) {
+    this.trips = trips;
+  }
+
   @PrePersist
   @PreUpdate
   private void prepareData() {
     this.email = email == null ? null : email.toLowerCase();
   }
 
-  @Override
-  public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = (prime * result) + ((email == null) ? 0 : email.hashCode());
-    return result;
-  }
-
-  @Override
-  public boolean equals(final Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    final User user = (User) obj;
-    if (!email.equals(user.email)) {
-      return false;
-    }
-    return true;
-  }
-
   public static class Role {
     public static final String USER = "user";
     public static final String ADMIN = "admin";
+    public static final String GERENTE = "gerente";
 
     private Role() {
     }
 
     public static String[] getAllRoles() {
-      return new String[] {ADMIN, USER};
+      return new String[] {ADMIN, USER, GERENTE};
     }
-
   }
 }

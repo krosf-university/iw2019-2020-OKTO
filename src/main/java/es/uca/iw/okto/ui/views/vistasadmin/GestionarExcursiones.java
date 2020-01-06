@@ -1,42 +1,40 @@
-package es.uca.iw.okto.ui.views.login.vistascliente;
+package es.uca.iw.okto.ui.views.vistasadmin;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.RouteAlias;
-import es.uca.iw.okto.MainViewCliente;
+import org.springframework.security.access.annotation.Secured;
+import es.uca.iw.okto.MainView;
+import es.uca.iw.okto.backend.models.User;
 
-@Route(value = ConsultarViajeEscalas.ROUTE, layout = MainViewCliente.class)
-@RouteAlias(value = "   ", layout = MainViewCliente.class)
-@PageTitle("ConsultarViajeEscalas")
+@Route(value = GestionarExcursiones.ROUTE, layout = MainView.class)
+@PageTitle("GestionarExcursiones")
+@Secured(User.Role.ADMIN)
 
-public class ConsultarViajeEscalas extends Div {
+public class GestionarExcursiones extends Div {
 
   /**
-   *
-   */
-  private static final long serialVersionUID = -6778109375103792705L;
-  public static final String ROUTE = "ConsultarViajeEscalas";
+  *
+  */
+  private static final long serialVersionUID = 3953623731124759118L;
+
+  public static final String ROUTE = "GestionarExcursiones";
 
   private TextField Dato1 = new TextField();
   private TextArea Dato2 = new TextArea();
 
-  public ConsultarViajeEscalas() {
-    setId("consultarviajeEscalas-view");
+  public GestionarExcursiones() {
+    setId("GestionarExcursiones-view");
     VerticalLayout wrapper = createWrapper();
     wrapper.setAlignItems(Alignment.CENTER);
     createTitle(wrapper);
-    createFormLayout(wrapper);
-    createTitle2(wrapper);
-    createFormLayout(wrapper);
-    createTitle3(wrapper);
     createFormLayout(wrapper);
 
     add(wrapper);
@@ -45,17 +43,7 @@ public class ConsultarViajeEscalas extends Div {
   // horarios de llegada y salida,información de la ciudad, información meteorológica, consejos y
   // excursiones programadas
   private void createTitle(VerticalLayout wrapper) {
-    H1 h1 = new H1("horarios llegada y salida");
-    wrapper.add(h1);
-  }
-
-  private void createTitle2(VerticalLayout wrapper) {
-    H1 h1 = new H1("informacion de la ciudad");
-    wrapper.add(h1);
-  }
-
-  private void createTitle3(VerticalLayout wrapper) {
-    H1 h1 = new H1("informacion meteorologica");
+    H1 h1 = new H1("Gestion de Excursiones");
     wrapper.add(h1);
   }
 

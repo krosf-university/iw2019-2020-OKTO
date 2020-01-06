@@ -1,47 +1,60 @@
-package es.uca.iw.okto.ui.views.login.vistasadmin;
+package es.uca.iw.okto.ui.views.consultardatos;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.RouteAlias;
-import es.uca.iw.okto.MainViewAdmin;
+import org.springframework.security.access.annotation.Secured;
+import es.uca.iw.okto.MainView;
+import es.uca.iw.okto.backend.models.User;
 
-@Route(value = GestionarClientes.ROUTE, layout = MainViewAdmin.class)
-@RouteAlias(value = "       ", layout = MainViewAdmin.class)
-@PageTitle("GestionarClientes")
+@Route(value = ConsultarDatosView.ROUTE, layout = MainView.class)
+@PageTitle("ConsultarDatos")
+@Secured(User.Role.GERENTE)
 
-public class GestionarClientes extends Div {
+public class ConsultarDatosView extends Div {
+
   /**
-  *
-  */
-  private static final long serialVersionUID = 8896817309959219116L;
-
-  public static final String ROUTE = "GestionarClientes";
+   *
+   */
+  private static final long serialVersionUID = 5280515399074523767L;
+  public static final String ROUTE = "ConsultaDatos";
 
   private TextField Dato1 = new TextField();
   private TextArea Dato2 = new TextArea();
 
-  public GestionarClientes() {
-    setId("GestionarClientes-view");
+  public ConsultarDatosView() {
+    setId("consultardatos-view");
     VerticalLayout wrapper = createWrapper();
     wrapper.setAlignItems(Alignment.CENTER);
     createTitle(wrapper);
+    createFormLayout(wrapper);
+    createTitle2(wrapper);
+    createFormLayout(wrapper);
+    createTitle3(wrapper);
     createFormLayout(wrapper);
 
     add(wrapper);
   }
 
-  // horarios de llegada y salida,información de la ciudad, información meteorológica, consejos y
-  // excursiones programadas
   private void createTitle(VerticalLayout wrapper) {
-    H1 h1 = new H1("Gestion de Clientes");
+    H1 h1 = new H1("Datos Excursiones");
+    wrapper.add(h1);
+  }
+
+  private void createTitle2(VerticalLayout wrapper) {
+    H1 h1 = new H1("Datos Servicios");
+    wrapper.add(h1);
+  }
+
+  private void createTitle3(VerticalLayout wrapper) {
+    H1 h1 = new H1("Datos Actividades");
     wrapper.add(h1);
   }
 
@@ -66,6 +79,4 @@ public class GestionarClientes extends Div {
     field.getElement().getClassList().add("full-width");
     return formItem;
   }
-
 }
-

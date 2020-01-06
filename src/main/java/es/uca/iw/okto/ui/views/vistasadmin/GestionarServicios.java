@@ -1,36 +1,38 @@
-package es.uca.iw.okto.ui.views.login.vistasadmin;
+package es.uca.iw.okto.ui.views.vistasadmin;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.RouteAlias;
-import es.uca.iw.okto.MainViewAdmin;
+import org.springframework.security.access.annotation.Secured;
+import es.uca.iw.okto.MainView;
+import es.uca.iw.okto.backend.models.User;
 
-@Route(value = GestionarEscalas.ROUTE, layout = MainViewAdmin.class)
-@RouteAlias(value = "            ", layout = MainViewAdmin.class)
-@PageTitle("GestionarEscalas")
+@Route(value = GestionarServicios.ROUTE, layout = MainView.class)
+@PageTitle("GestionarServicios")
+@Secured(User.Role.ADMIN)
 
-public class GestionarEscalas extends Div {
+public class GestionarServicios extends Div {
+
 
   /**
   *
   */
   private static final long serialVersionUID = 1L;
 
-  public static final String ROUTE = "GestionarEscalas";
+  public static final String ROUTE = "GestionarServicios";
 
   private TextField Dato1 = new TextField();
   private TextArea Dato2 = new TextArea();
 
-  public GestionarEscalas() {
-    setId("GestionarEscalas-view");
+  public GestionarServicios() {
+    setId("GestionarServicios-view");
     VerticalLayout wrapper = createWrapper();
     wrapper.setAlignItems(Alignment.CENTER);
     createTitle(wrapper);
@@ -42,7 +44,7 @@ public class GestionarEscalas extends Div {
   // horarios de llegada y salida,información de la ciudad, información meteorológica, consejos y
   // excursiones programadas
   private void createTitle(VerticalLayout wrapper) {
-    H1 h1 = new H1("Gestion de Escalas");
+    H1 h1 = new H1("Gestion de Servicios");
     wrapper.add(h1);
   }
 

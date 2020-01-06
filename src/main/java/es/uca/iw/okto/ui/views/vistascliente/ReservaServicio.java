@@ -1,36 +1,36 @@
-package es.uca.iw.okto.ui.views.login.vistasadmin;
+package es.uca.iw.okto.ui.views.vistascliente;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.RouteAlias;
-import es.uca.iw.okto.MainViewAdmin;
+import org.springframework.security.access.annotation.Secured;
+import es.uca.iw.okto.MainView;
+import es.uca.iw.okto.backend.models.User;
 
-@Route(value = GestionarExcursiones.ROUTE, layout = MainViewAdmin.class)
-@RouteAlias(value = "          ", layout = MainViewAdmin.class)
-@PageTitle("GestionarExcursiones")
+@Route(value = ReservaServicio.ROUTE, layout = MainView.class)
+@PageTitle("ReservaServicio")
+@Secured(User.Role.USER)
 
-public class GestionarExcursiones extends Div {
-
+public class ReservaServicio extends Div {
   /**
   *
   */
-  private static final long serialVersionUID = 3953623731124759118L;
+  private static final long serialVersionUID = -2879645305999430450L;
 
-  public static final String ROUTE = "GestionarExcursiones";
+  public static final String ROUTE = "ReservaServicio";
 
   private TextField Dato1 = new TextField();
   private TextArea Dato2 = new TextArea();
 
-  public GestionarExcursiones() {
-    setId("GestionarExcursiones-view");
+  public ReservaServicio() {
+    setId("ReservaServicio-view");
     VerticalLayout wrapper = createWrapper();
     wrapper.setAlignItems(Alignment.CENTER);
     createTitle(wrapper);
@@ -39,10 +39,10 @@ public class GestionarExcursiones extends Div {
     add(wrapper);
   }
 
-  // horarios de llegada y salida,información de la ciudad, información meteorológica, consejos y
-  // excursiones programadas
+  // consejos para los viajeros, servicios e instalaciones disponibles en el barco, planos de
+  // localización
   private void createTitle(VerticalLayout wrapper) {
-    H1 h1 = new H1("Gestion de Excursiones");
+    H1 h1 = new H1("Estos son los servicios disponibles");
     wrapper.add(h1);
   }
 
