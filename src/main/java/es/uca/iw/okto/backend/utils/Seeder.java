@@ -1,11 +1,14 @@
 package es.uca.iw.okto.backend.utils;
 
+import com.github.javafaker.Faker;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
 import es.uca.iw.okto.backend.models.User;
 import es.uca.iw.okto.backend.repositories.UserRepository;
 
@@ -20,6 +23,8 @@ public class Seeder implements ApplicationListener<ContextRefreshedEvent> {
   @Autowired
   private PasswordEncoder passwordEncoder;
 
+  private Faker faker = new Faker();
+
   @Override
   @Transactional
   public void onApplicationEvent(final ContextRefreshedEvent event) {
@@ -31,6 +36,18 @@ public class Seeder implements ApplicationListener<ContextRefreshedEvent> {
       createUserIfNotFound("gerente@okto.com", "Test", "Test", "okto", "00000000O", "000000000",
           User.Role.GERENTE);
       alreadySetup = true;
+
+      for (int i = 0; i < 10; ++i) {
+        createUserIfNotFound(
+          faker.internet().safeEmailAddress(),
+          faker.name().firstName(),
+          faker.name().lastName(),
+          faker.internet().password(),
+          faker.bothify("########?"),
+          faker.numerify("6########"),
+          User.Role.USER
+        );
+      }
     }
   }
 
