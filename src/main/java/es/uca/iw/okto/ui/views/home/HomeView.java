@@ -4,7 +4,8 @@ import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import es.uca.iw.okto.MainView;
+
+import es.uca.iw.okto.ui.views.MainView;
 
 @Route(value = HomeView.ROUTE, layout = MainView.class)
 @PageTitle("Home")
