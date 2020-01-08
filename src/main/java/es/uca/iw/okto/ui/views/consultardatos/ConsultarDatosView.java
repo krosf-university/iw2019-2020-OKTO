@@ -1,12 +1,9 @@
 package es.uca.iw.okto.ui.views.consultardatos;
 
-import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -27,36 +24,49 @@ public class ConsultarDatosView extends Div {
   public static final String ROUTE = "ConsultaDatos";
 
   private TextField Dato1 = new TextField();
-  private TextArea Dato2 = new TextArea();
+  private TextField Dato2 = new TextField();
 
   public ConsultarDatosView() {
     setId("consultardatos-view");
     VerticalLayout wrapper = createWrapper();
     wrapper.setAlignItems(Alignment.CENTER);
-    createTitle(wrapper);
-    createFormLayout(wrapper);
-    createTitle2(wrapper);
-    createFormLayout(wrapper);
-    createTitle3(wrapper);
-    createFormLayout(wrapper);
+
+    H1 titulo1 = new H1("Servicios");
+    wrapper.add(titulo1);
+    //createTitle(wrapper);
+    
+    H1 titulo2 = new H1("Actividades");
+    wrapper.add(titulo2);
+    //createTitle2(wrapper);
+
+    H1 titulo3 = new H1("Excursiones");
+    wrapper.add(titulo3);
+    //createTitle3(wrapper);
 
     add(wrapper);
   }
 
-  private void createTitle(VerticalLayout wrapper) {
-    H1 h1 = new H1("Datos Excursiones");
-    wrapper.add(h1);
-  }
+  // private void createTitle(VerticalLayout wrapper) {
+  //   Grid<Person> grid = new Grid<>();
+  //   grid.addColumn(Person::getFirstName).setHeader("Nombre");
+  //   grid.addColumn(Person::getLastName).setHeader("Precio");
 
-  private void createTitle2(VerticalLayout wrapper) {
-    H1 h1 = new H1("Datos Servicios");
-    wrapper.add(h1);
-  }
+  //   wrapper.add(grid);
+  // }
 
-  private void createTitle3(VerticalLayout wrapper) {
-    H1 h1 = new H1("Datos Actividades");
-    wrapper.add(h1);
-  }
+  // private void createTitle2(VerticalLayout wrapper) {
+  //   Grid<Person> grid = new Grid<>();
+  //   grid.addColumn(Person::getFirstName).setHeader("Nombre");
+  //   grid.addColumn(Person::getLastName).setHeader("Precio");
+  //   wrapper.add(grid);
+  // }
+
+  // private void createTitle3(VerticalLayout wrapper) {
+  //   Grid<Person> grid = new Grid<>();
+  //   grid.addColumn(Person::getFirstName).setHeader("Nombre");
+  //   grid.addColumn(Person::getLastName).setHeader("Precio");
+  //   wrapper.add(grid);
+  // }
 
   private VerticalLayout createWrapper() {
     VerticalLayout wrapper = new VerticalLayout();
@@ -65,18 +75,26 @@ public class ConsultarDatosView extends Div {
     return wrapper;
   }
 
-  private void createFormLayout(VerticalLayout wrapper) {
-    FormLayout formLayout = new FormLayout();
-    addFormItem(wrapper, formLayout, Dato1, "Username");
-    FormLayout formLayout2 = new FormLayout();
-    addFormItem(wrapper, formLayout2, Dato2, "excursiones");
-  }
+  // private void createFormLayout1(VerticalLayout wrapper) {
+  //   FormLayout formLayout = new FormLayout();
+  //   addFormItem(wrapper, formLayout, Dato1, "Servicios");
+  // }
 
-  private FormLayout.FormItem addFormItem(VerticalLayout wrapper, FormLayout formLayout,
-      Component field, String fieldName) {
-    FormLayout.FormItem formItem = formLayout.addFormItem(field, fieldName);
-    wrapper.add(formLayout);
-    field.getElement().getClassList().add("full-width");
-    return formItem;
-  }
+  // private void createFormLayout2(VerticalLayout wrapper) {
+  //   FormLayout formLayout = new FormLayout();
+  //   addFormItem(wrapper, formLayout, Dato1, "Actividades");
+  // }
+
+  // private void createFormLayout3(VerticalLayout wrapper) {
+  //   FormLayout formLayout2 = new FormLayout();
+  //   addFormItem(wrapper, formLayout2, Dato2, "Excursiones");
+  // }
+
+  // private FormLayout.FormItem addFormItem(VerticalLayout wrapper, FormLayout formLayout,
+  //     Component field, String fieldName) {
+  //   FormLayout.FormItem formItem = formLayout.addFormItem(field, fieldName);
+  //   wrapper.add(formLayout);
+  //   field.getElement().getClassList().add("full-width");
+  //   return formItem;
+  // }
 }
