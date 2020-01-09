@@ -1,10 +1,10 @@
 package es.uca.iw.okto.ui.views.consultardatos;
 
+import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import org.springframework.security.access.annotation.Secured;
@@ -14,7 +14,6 @@ import es.uca.iw.okto.backend.models.User;
 @Route(value = ConsultarDatosView.ROUTE, layout = MainView.class)
 @PageTitle("ConsultarDatos")
 @Secured(User.Role.GERENTE)
-
 public class ConsultarDatosView extends Div {
 
   /**
@@ -23,9 +22,6 @@ public class ConsultarDatosView extends Div {
   private static final long serialVersionUID = 5280515399074523767L;
   public static final String ROUTE = "ConsultaDatos";
 
-  private TextField Dato1 = new TextField();
-  private TextField Dato2 = new TextField();
-
   public ConsultarDatosView() {
     setId("consultardatos-view");
     VerticalLayout wrapper = createWrapper();
@@ -33,7 +29,7 @@ public class ConsultarDatosView extends Div {
 
     H1 titulo1 = new H1("Servicios");
     wrapper.add(titulo1);
-    //createTitle(wrapper);
+    createTitle(wrapper);
     
     H1 titulo2 = new H1("Actividades");
     wrapper.add(titulo2);
@@ -46,13 +42,13 @@ public class ConsultarDatosView extends Div {
     add(wrapper);
   }
 
-  // private void createTitle(VerticalLayout wrapper) {
-  //   Grid<Person> grid = new Grid<>();
-  //   grid.addColumn(Person::getFirstName).setHeader("Nombre");
-  //   grid.addColumn(Person::getLastName).setHeader("Precio");
-
-  //   wrapper.add(grid);
-  // }
+  private void createTitle(VerticalLayout wrapper) {
+    Grid<User> grid = new Grid<>();
+    grid.addColumn(User::getEmail).setWidth("270px").setHeader("Email").setFlexGrow(5);
+		grid.addColumn(u -> u.getFirstName() + " " + u.getLastName()).setHeader("Name").setWidth("200px").setFlexGrow(5);
+    grid.addColumn(User::getRole).setHeader("Role").setWidth("150px");
+    wrapper.add(grid);
+  }
 
   // private void createTitle2(VerticalLayout wrapper) {
   //   Grid<Person> grid = new Grid<>();
