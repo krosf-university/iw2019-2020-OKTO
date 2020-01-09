@@ -1,4 +1,4 @@
-package es.uca.iw.okto.ui.views.vistascliente;
+package es.uca.iw.okto.ui.views.admin;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.formlayout.FormLayout;
@@ -10,32 +10,33 @@ import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import org.springframework.security.access.annotation.Secured;
-import es.uca.iw.okto.MainView;
-import es.uca.iw.okto.backend.models.User;
 
-@Route(value = ConsultarGastos.ROUTE, layout = MainView.class)
-@PageTitle("ConsultarGastos")
-@Secured(User.Role.USER)
-public class ConsultarGastos extends Div {
+import org.springframework.security.access.annotation.Secured;
+
+import es.uca.iw.okto.backend.models.User;
+import es.uca.iw.okto.ui.views.MainView;
+
+@Route(value = ServicesView.ROUTE, layout = MainView.class)
+@PageTitle("GestionarServicios")
+@Secured(User.Role.ADMIN)
+public class ServicesView extends Div {
+
 
   /**
   *
   */
-  private static final long serialVersionUID = 3883724890328316149L;
+  private static final long serialVersionUID = 1L;
 
-  public static final String ROUTE = "ConsultarGastos";
+  public static final String ROUTE = "GestionarServicios";
 
   private TextField Dato1 = new TextField();
   private TextArea Dato2 = new TextArea();
 
-  public ConsultarGastos() {
-    setId("consultarGastos-view");
+  public ServicesView() {
+    setId("GestionarServicios-view");
     VerticalLayout wrapper = createWrapper();
     wrapper.setAlignItems(Alignment.CENTER);
     createTitle(wrapper);
-    createFormLayout(wrapper);
-    createTitle2(wrapper);
     createFormLayout(wrapper);
 
     add(wrapper);
@@ -44,12 +45,7 @@ public class ConsultarGastos extends Div {
   // horarios de llegada y salida,información de la ciudad, información meteorológica, consejos y
   // excursiones programadas
   private void createTitle(VerticalLayout wrapper) {
-    H1 h1 = new H1("Gastos de Actividades");
-    wrapper.add(h1);
-  }
-
-  private void createTitle2(VerticalLayout wrapper) {
-    H1 h1 = new H1("Gastos de Servicios");
+    H1 h1 = new H1("Gestion de Servicios");
     wrapper.add(h1);
   }
 

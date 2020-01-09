@@ -1,4 +1,4 @@
-package es.uca.iw.okto.ui.views.vistasadmin;
+package es.uca.iw.okto.ui.views.client;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.formlayout.FormLayout;
@@ -10,29 +10,29 @@ import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+
 import org.springframework.security.access.annotation.Secured;
-import es.uca.iw.okto.MainView;
+
 import es.uca.iw.okto.backend.models.User;
+import es.uca.iw.okto.ui.views.MainView;
 
-@Route(value = GestionarServicios.ROUTE, layout = MainView.class)
-@PageTitle("GestionarServicios")
-@Secured(User.Role.ADMIN)
+@Route(value = ReservationServiceView.ROUTE, layout = MainView.class)
+@PageTitle("ReservaServicio")
+@Secured(User.Role.USER)
 
-public class GestionarServicios extends Div {
-
-
+public class ReservationServiceView extends Div {
   /**
   *
   */
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = -2879645305999430450L;
 
-  public static final String ROUTE = "GestionarServicios";
+  public static final String ROUTE = "ReservaServicio";
 
   private TextField Dato1 = new TextField();
   private TextArea Dato2 = new TextArea();
 
-  public GestionarServicios() {
-    setId("GestionarServicios-view");
+  public ReservationServiceView() {
+    setId("ReservaServicio-view");
     VerticalLayout wrapper = createWrapper();
     wrapper.setAlignItems(Alignment.CENTER);
     createTitle(wrapper);
@@ -41,10 +41,10 @@ public class GestionarServicios extends Div {
     add(wrapper);
   }
 
-  // horarios de llegada y salida,información de la ciudad, información meteorológica, consejos y
-  // excursiones programadas
+  // consejos para los viajeros, servicios e instalaciones disponibles en el barco, planos de
+  // localización
   private void createTitle(VerticalLayout wrapper) {
-    H1 h1 = new H1("Gestion de Servicios");
+    H1 h1 = new H1("Estos son los servicios disponibles");
     wrapper.add(h1);
   }
 
