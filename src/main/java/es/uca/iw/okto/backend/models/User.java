@@ -1,7 +1,6 @@
 package es.uca.iw.okto.backend.models;
 
 import java.util.Collection;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -12,7 +11,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
 import es.uca.iw.okto.backend.utils.AbstractEntity;
 
 @Entity
