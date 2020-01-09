@@ -1,4 +1,4 @@
-package es.uca.iw.okto.ui.views.vistascliente;
+package es.uca.iw.okto.ui.views.client;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.formlayout.FormLayout;
@@ -10,39 +10,54 @@ import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+
 import org.springframework.security.access.annotation.Secured;
-import es.uca.iw.okto.MainView;
+
 import es.uca.iw.okto.backend.models.User;
+import es.uca.iw.okto.ui.views.MainView;
 
-@Route(value = ReservaServicio.ROUTE, layout = MainView.class)
-@PageTitle("ReservaServicio")
+@Route(value = TripScalesView.ROUTE, layout = MainView.class)
+@PageTitle("ConsultarViajeEscalas")
 @Secured(User.Role.USER)
+public class TripScalesView extends Div {
 
-public class ReservaServicio extends Div {
   /**
-  *
-  */
-  private static final long serialVersionUID = -2879645305999430450L;
-
-  public static final String ROUTE = "ReservaServicio";
+   *
+   */
+  private static final long serialVersionUID = -6778109375103792705L;
+  public static final String ROUTE = "ConsultarViajeEscalas";
 
   private TextField Dato1 = new TextField();
   private TextArea Dato2 = new TextArea();
 
-  public ReservaServicio() {
-    setId("ReservaServicio-view");
+  public TripScalesView() {
+    setId("consultarviajeEscalas-view");
     VerticalLayout wrapper = createWrapper();
     wrapper.setAlignItems(Alignment.CENTER);
     createTitle(wrapper);
+    createFormLayout(wrapper);
+    createTitle2(wrapper);
+    createFormLayout(wrapper);
+    createTitle3(wrapper);
     createFormLayout(wrapper);
 
     add(wrapper);
   }
 
-  // consejos para los viajeros, servicios e instalaciones disponibles en el barco, planos de
-  // localización
+  // horarios de llegada y salida,información de la ciudad, información meteorológica, consejos y
+  // excursiones programadas
   private void createTitle(VerticalLayout wrapper) {
-    H1 h1 = new H1("Estos son los servicios disponibles");
+    H1 h1 = new H1("horarios llegada y salida");
+    wrapper.add(h1);
+  }
+
+  private void createTitle2(VerticalLayout wrapper) {
+    H1 h1 = new H1("informacion de la ciudad");
+    wrapper.add(h1);
+  }
+
+  private void createTitle3(VerticalLayout wrapper) {
+    H1 h1 = new H1("informacion meteorologica");
     wrapper.add(h1);
   }
 

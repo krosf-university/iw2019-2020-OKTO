@@ -1,4 +1,4 @@
-package es.uca.iw.okto.ui.views.vistascliente;
+package es.uca.iw.okto.ui.views.admin;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.formlayout.FormLayout;
@@ -10,33 +10,32 @@ import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import org.springframework.security.access.annotation.Secured;
-import es.uca.iw.okto.MainView;
-import es.uca.iw.okto.backend.models.User;
 
-@Route(value = ConsultarViajeEscalas.ROUTE, layout = MainView.class)
-@PageTitle("ConsultarViajeEscalas")
-@Secured(User.Role.USER)
-public class ConsultarViajeEscalas extends Div {
+import org.springframework.security.access.annotation.Secured;
+
+import es.uca.iw.okto.backend.models.User;
+import es.uca.iw.okto.ui.views.MainView;
+
+@Route(value = ScalesView.ROUTE, layout = MainView.class)
+@PageTitle("GestionarEscalas")
+@Secured(User.Role.ADMIN)
+public class ScalesView extends Div {
 
   /**
-   *
-   */
-  private static final long serialVersionUID = -6778109375103792705L;
-  public static final String ROUTE = "ConsultarViajeEscalas";
+  *
+  */
+  private static final long serialVersionUID = 1L;
+
+  public static final String ROUTE = "GestionarEscalas";
 
   private TextField Dato1 = new TextField();
   private TextArea Dato2 = new TextArea();
 
-  public ConsultarViajeEscalas() {
-    setId("consultarviajeEscalas-view");
+  public ScalesView() {
+    setId("GestionarEscalas-view");
     VerticalLayout wrapper = createWrapper();
     wrapper.setAlignItems(Alignment.CENTER);
     createTitle(wrapper);
-    createFormLayout(wrapper);
-    createTitle2(wrapper);
-    createFormLayout(wrapper);
-    createTitle3(wrapper);
     createFormLayout(wrapper);
 
     add(wrapper);
@@ -45,17 +44,7 @@ public class ConsultarViajeEscalas extends Div {
   // horarios de llegada y salida,información de la ciudad, información meteorológica, consejos y
   // excursiones programadas
   private void createTitle(VerticalLayout wrapper) {
-    H1 h1 = new H1("horarios llegada y salida");
-    wrapper.add(h1);
-  }
-
-  private void createTitle2(VerticalLayout wrapper) {
-    H1 h1 = new H1("informacion de la ciudad");
-    wrapper.add(h1);
-  }
-
-  private void createTitle3(VerticalLayout wrapper) {
-    H1 h1 = new H1("informacion meteorologica");
+    H1 h1 = new H1("Gestion de Escalas");
     wrapper.add(h1);
   }
 
