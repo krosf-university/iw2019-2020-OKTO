@@ -1,4 +1,4 @@
-package es.uca.iw.okto.ui.views.vistascliente;
+package es.uca.iw.okto.ui.views.client;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.formlayout.FormLayout;
@@ -16,11 +16,11 @@ import org.springframework.security.access.annotation.Secured;
 import es.uca.iw.okto.backend.models.User;
 import es.uca.iw.okto.ui.views.MainView;
 
-@Route(value = ReservaServicio.ROUTE, layout = MainView.class)
+@Route(value = ReservationServiceView.ROUTE, layout = MainView.class)
 @PageTitle("ReservaServicio")
 @Secured(User.Role.USER)
 
-public class ReservaServicio extends Div {
+public class ReservationServiceView extends Div {
   /**
   *
   */
@@ -31,7 +31,7 @@ public class ReservaServicio extends Div {
   private TextField Dato1 = new TextField();
   private TextArea Dato2 = new TextArea();
 
-  public ReservaServicio() {
+  public ReservationServiceView() {
     setId("ReservaServicio-view");
     VerticalLayout wrapper = createWrapper();
     wrapper.setAlignItems(Alignment.CENTER);

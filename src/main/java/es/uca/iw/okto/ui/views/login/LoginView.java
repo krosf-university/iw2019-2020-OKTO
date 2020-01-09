@@ -12,7 +12,7 @@ import com.vaadin.flow.router.Route;
 import es.uca.iw.okto.app.security.SecurityUtils;
 import es.uca.iw.okto.ui.views.MainView;
 
-@Route(value = "login")
+@Route(value = "login", layout = MainView.class)
 @PageTitle("Login")
 public class LoginView extends LoginOverlay
     implements AfterNavigationObserver, BeforeEnterObserver {

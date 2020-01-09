@@ -3,6 +3,7 @@ package es.uca.iw.okto.ui.views;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
@@ -14,6 +15,7 @@ import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
+import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteConfiguration;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.PWA;
@@ -23,16 +25,15 @@ import com.vaadin.flow.theme.lumo.Lumo;
 
 import es.uca.iw.okto.app.security.SecurityUtils;
 import es.uca.iw.okto.ui.components.CreateTab;
+import es.uca.iw.okto.ui.components.TabView;
 import es.uca.iw.okto.ui.views.admin.AdminViews;
-import es.uca.iw.okto.ui.views.consultardatos.ConsultarDatosView;
-import es.uca.iw.okto.ui.views.vistascliente.ConsultarGastos;
-import es.uca.iw.okto.ui.views.vistascliente.ConsultarViajeCrucero;
-import es.uca.iw.okto.ui.views.vistascliente.ConsultarViajeEscalas;
-import es.uca.iw.okto.ui.views.vistascliente.ReservaServicio;
+import es.uca.iw.okto.ui.views.client.ClientViews;
+import es.uca.iw.okto.ui.views.manager.ManagerViews;
 
 @JsModule("./styles/shared-styles.js")
 @PWA(name = "OKTO", shortName = "OKTO", startPath = "login")
 @Theme(value = Lumo.class, variant = Lumo.DARK)
+@Route
 public class MainView extends AppLayout {
   private static final long serialVersionUID = 3890567471058738207L;
   private final ConfirmDialog confirmDialog = new ConfirmDialog();
@@ -87,30 +88,23 @@ public class MainView extends AppLayout {
 
   private static Tab[] getAvailableTabs() {
     final List<Tab> tabs = new ArrayList<>(4);
-    AdminViews.getViews().forEach( tab -> {
-      if (SecurityUtils.isAccessGranted(tab.view)) {
-        tabs.add(CreateTab.fromTabView(tab));
-      }
-    });
-    if (SecurityUtils.isAccessGranted(ConsultarDatosView.class)) {
-      tabs.add(CreateTab.fromParams(VaadinIcon.USER, "Consultar Datos", ConsultarDatosView.class));
-    }
-    if (SecurityUtils.isAccessGranted(ConsultarGastos.class)) {
-      tabs.add(CreateTab.fromParams(VaadinIcon.USER, "Gastos", ConsultarGastos.class));
-    }
-    if (SecurityUtils.isAccessGranted(ConsultarViajeCrucero.class)) {
-      tabs.add(CreateTab.fromParams(VaadinIcon.USER, "Crucero", ConsultarViajeCrucero.class));
-    }
-    if (SecurityUtils.isAccessGranted(ConsultarViajeEscalas.class)) {
-      tabs.add(CreateTab.fromParams(VaadinIcon.USER, "Escalas", ConsultarViajeEscalas.class));
-    }
-    if (SecurityUtils.isAccessGranted(ReservaServicio.class)) {
-      tabs.add(CreateTab.fromParams(VaadinIcon.USER, "Reserva/Compra Servicios", ReservaServicio.class));
-    }
+
+    AdminViews.getViews().forEach(addToTabs(tabs));
+    ClientViews.getViews().forEach(addToTabs(tabs));
+    ManagerViews.getViews().forEach(addToTabs(tabs));
+    
     final String contextPath = VaadinServlet.getCurrent().getServletContext().getContextPath();
     final Tab logoutTab = CreateTab.fromComponent(createLogoutLink(contextPath));
     tabs.add(logoutTab);
     return tabs.toArray(new Tab[tabs.size()]);
+  }
+
+  private static Consumer<? super TabView> addToTabs(final List<Tab> tabs) {
+    return tab -> {
+      if (SecurityUtils.isAccessGranted(tab.view)) {
+        tabs.add(CreateTab.fromTabView(tab));
+      }
+    };
   }
 
   private static Anchor createLogoutLink(String contextPath) {

@@ -1,4 +1,4 @@
-package es.uca.iw.okto.ui.views.vistascliente;
+package es.uca.iw.okto.ui.views.manager;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.formlayout.FormLayout;
@@ -16,22 +16,22 @@ import org.springframework.security.access.annotation.Secured;
 import es.uca.iw.okto.backend.models.User;
 import es.uca.iw.okto.ui.views.MainView;
 
-@Route(value = ConsultarViajeCrucero.ROUTE, layout = MainView.class)
-@PageTitle("ConsultarViajeCrucero")
-@Secured(User.Role.USER)
-public class ConsultarViajeCrucero extends Div {
+@Route(value = DataView.ROUTE, layout = MainView.class)
+@PageTitle("ConsultarDatos")
+@Secured(User.Role.GERENTE)
+public class DataView extends Div {
 
   /**
    *
    */
-  private static final long serialVersionUID = -6778109375103792705L;
-  public static final String ROUTE = "ConsultarViajeCrucero";
+  private static final long serialVersionUID = 5280515399074523767L;
+  public static final String ROUTE = "ConsultaDatos";
 
   private TextField Dato1 = new TextField();
   private TextArea Dato2 = new TextArea();
 
-  public ConsultarViajeCrucero() {
-    setId("consultarviajeCrucero-view");
+  public DataView() {
+    setId("consultardatos-view");
     VerticalLayout wrapper = createWrapper();
     wrapper.setAlignItems(Alignment.CENTER);
     createTitle(wrapper);
@@ -44,10 +44,8 @@ public class ConsultarViajeCrucero extends Div {
     add(wrapper);
   }
 
-  // consejos para los viajeros, servicios e instalaciones disponibles en el barco, planos de
-  // localización
   private void createTitle(VerticalLayout wrapper) {
-    H1 h1 = new H1("Consejos para los Viajeros");
+    H1 h1 = new H1("Datos Excursiones");
     wrapper.add(h1);
   }
 
@@ -57,7 +55,7 @@ public class ConsultarViajeCrucero extends Div {
   }
 
   private void createTitle3(VerticalLayout wrapper) {
-    H1 h1 = new H1("instalaciones Disponibles");
+    H1 h1 = new H1("Datos Actividades");
     wrapper.add(h1);
   }
 
@@ -82,6 +80,4 @@ public class ConsultarViajeCrucero extends Div {
     field.getElement().getClassList().add("full-width");
     return formItem;
   }
-
 }
-
