@@ -15,7 +15,6 @@ import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
-import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteConfiguration;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.PWA;
@@ -25,6 +24,7 @@ import com.vaadin.flow.theme.lumo.Lumo;
 
 import es.uca.iw.okto.app.security.SecurityUtils;
 import es.uca.iw.okto.ui.components.CreateTab;
+import es.uca.iw.okto.ui.components.HasConfirmation;
 import es.uca.iw.okto.ui.components.TabView;
 import es.uca.iw.okto.ui.views.admin.AdminViews;
 import es.uca.iw.okto.ui.views.client.ClientViews;
@@ -33,7 +33,6 @@ import es.uca.iw.okto.ui.views.manager.ManagerViews;
 @JsModule("./styles/shared-styles.js")
 @PWA(name = "OKTO", shortName = "OKTO", startPath = "login")
 @Theme(value = Lumo.class, variant = Lumo.DARK)
-@Route
 public class MainView extends AppLayout {
   private static final long serialVersionUID = 3890567471058738207L;
   private final ConfirmDialog confirmDialog = new ConfirmDialog();

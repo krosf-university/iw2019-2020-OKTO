@@ -1,73 +1,80 @@
 package es.uca.iw.okto.ui.views.admin;
 
-import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.combobox.ComboBox;
+import com.vaadin.flow.component.crud.BinderCrudEditor;
 import com.vaadin.flow.component.formlayout.FormLayout;
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.TextArea;
+import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.textfield.EmailField;
+import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.binder.BeanValidationBinder;
+import com.vaadin.flow.data.provider.DataProvider;
+import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouteAlias;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 
+import es.uca.iw.okto.app.security.CurrentUser;
 import es.uca.iw.okto.backend.models.User;
+import es.uca.iw.okto.backend.models.User.Role;
+import es.uca.iw.okto.backend.services.UserService;
+import es.uca.iw.okto.ui.components.crud.AbstractCrudView;
 import es.uca.iw.okto.ui.views.MainView;
 
 @Route(value = ClientsView.ROUTE, layout = MainView.class)
-@PageTitle("GestionarClientes")
+@RouteAlias(value = "",layout = MainView.class)
+@PageTitle("Clients")
 @Secured(User.Role.ADMIN)
-public class ClientsView extends Div {
-  /**
-  *
-  */
+public class ClientsView extends AbstractCrudView<User> {
   private static final long serialVersionUID = 8896817309959219116L;
 
-  public static final String ROUTE = "GestionarClientes";
+  public static final String ROUTE = "admin/client";
+  public static final String PAGE_TITLE = "Manage Clients";
 
-  private TextField Dato1 = new TextField();
-  private TextArea Dato2 = new TextArea();
-
-  public ClientsView() {
-    setId("GestionarClientes-view");
-    VerticalLayout wrapper = createWrapper();
-    wrapper.setAlignItems(Alignment.CENTER);
-    createTitle(wrapper);
-    createFormLayout(wrapper);
-
-    add(wrapper);
+  @Autowired
+  public ClientsView(UserService service, CurrentUser currentUser) {
+    super(User.class, service, new Grid<>(), createForm(), currentUser);
   }
 
-  // horarios de llegada y salida,información de la ciudad, información meteorológica, consejos y
-  // excursiones programadas
-  private void createTitle(VerticalLayout wrapper) {
-    H1 h1 = new H1("Gestion de Clientes");
-    wrapper.add(h1);
+  @Override
+  public void setupGrid(Grid<User> grid) {
+    grid.addColumn(User::getEmail).setWidth("270px").setHeader("Email").setFlexGrow(5);
+    grid.addColumn(u -> u.getFirstName() + " " + u.getLastName()).setHeader("Name").setWidth("200px").setFlexGrow(5);
+    grid.addColumn(User::getRole).setHeader("Role").setWidth("150px");
   }
 
-  private VerticalLayout createWrapper() {
-    VerticalLayout wrapper = new VerticalLayout();
-    wrapper.setId("wrapper");
-    wrapper.setSpacing(false);
-    return wrapper;
+  @Override
+  protected String getBasePage() {
+    return ROUTE;
   }
 
-  private void createFormLayout(VerticalLayout wrapper) {
-    FormLayout formLayout = new FormLayout();
-    addFormItem(wrapper, formLayout, Dato1, "Username");
-    FormLayout formLayout2 = new FormLayout();
-    addFormItem(wrapper, formLayout2, Dato2, "excursiones");
-  }
+  private static BinderCrudEditor<User> createForm() {
+    EmailField email = new EmailField("Email (login)");
+    email.getElement().setAttribute("colspan", "2");
+    TextField first = new TextField("First name");
+    TextField last = new TextField("Last name");
+    PasswordField password = new PasswordField("Password");
+    password.getElement().setAttribute("colspan", "2");
+    ComboBox<String> role = new ComboBox<>();
+    role.getElement().setAttribute("colspan", "2");
+    role.setLabel("Role");
 
-  private FormLayout.FormItem addFormItem(VerticalLayout wrapper, FormLayout formLayout,
-      Component field, String fieldName) {
-    FormLayout.FormItem formItem = formLayout.addFormItem(field, fieldName);
-    wrapper.add(formLayout);
-    field.getElement().getClassList().add("full-width");
-    return formItem;
-  }
+    FormLayout form = new FormLayout(email, first, last, password, role);
 
+    BeanValidationBinder<User> binder = new BeanValidationBinder<>(User.class);
+
+    ListDataProvider<String> roleProvider = DataProvider.ofItems(Role.getAllRoles());
+    role.setItemLabelGenerator(s -> s != null ? s : "");
+    role.setDataProvider(roleProvider);
+
+    binder.bind(first, "firstName");
+    binder.bind(last, "lastName");
+    binder.bind(email, "email");
+    binder.bind(role, "role");
+
+    return new BinderCrudEditor<User>(binder, form);
+  }
 }
-
