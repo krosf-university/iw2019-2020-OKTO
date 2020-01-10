@@ -8,7 +8,6 @@ import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-
 import es.uca.iw.okto.app.security.SecurityUtils;
 import es.uca.iw.okto.ui.views.MainView;
 

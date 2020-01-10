@@ -2,14 +2,12 @@ package es.uca.iw.okto.backend.models;
 
 import java.util.Collection;
 import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
 import es.uca.iw.okto.backend.utils.AbstractEntity;
 
 /**
