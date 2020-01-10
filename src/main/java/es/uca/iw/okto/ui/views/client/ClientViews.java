@@ -13,10 +13,10 @@ public class ClientViews {
   private final static List<TabView> views = new ArrayList<TabView>(4){
     private static final long serialVersionUID = 3650578607109584561L;
     {
-    add(new TabView(ExpensesView.class,VaadinIcon.USER, "Gastos"));
-    add(new TabView(ReservationServiceView.class,VaadinIcon.USER,"Reservar / Servicios"));
-    add(new TabView(TripScalesView.class,VaadinIcon.USER,"Escalas"));
-    add(new TabView(TripShipView.class,VaadinIcon.USER,"Crucero"));
+    add(new TabView(ExpensesView.class,VaadinIcon.USER, "Purchases"));
+    add(new TabView(ReservationServiceView.class,VaadinIcon.USER,"Book Services"));
+    add(new TabView(TripScalesView.class,VaadinIcon.USER,"Stopovers"));
+    add(new TabView(TripShipView.class,VaadinIcon.USER,"Cruise"));
   }
 };
 

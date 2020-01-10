@@ -1,20 +1,17 @@
 package es.uca.iw.okto.backend.models;
 
 import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import es.uca.iw.okto.backend.utils.AbstractEntity;
-
 /**
  * Tour
  */
 @Entity
-public class Tour extends AbstractEntity {
+public class Tour extends Service {
   private static final long serialVersionUID = -6774086899975203008L;
 
   @Temporal(TemporalType.DATE)
@@ -22,8 +19,6 @@ public class Tour extends AbstractEntity {
 
   @Temporal(TemporalType.DATE)
   private Date end;
-
-  private String description;
 
   @ManyToOne
   @JoinColumn(name="scale_id", nullable=false)
@@ -34,7 +29,7 @@ public class Tour extends AbstractEntity {
 
   @Override
   public String toString() {
-    return "Tour [description=" + description + ", end=" + end + ", scale=" + scale.getId() + ", start=" + start + "]";
+    return "Tour [description=" + getDescription() + ", end=" + end + ", scale=" + scale.getId() + ", start=" + start + "]";
   }
 
   public Date getStart() {
@@ -51,14 +46,6 @@ public class Tour extends AbstractEntity {
 
   public void setEnd(Date end) {
     this.end = end;
-  }
-
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
   }
 
   public Scale getScale() {

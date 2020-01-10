@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
 import es.uca.iw.okto.backend.utils.AbstractEntity;
 
 /**
@@ -29,6 +28,12 @@ public class UserTrip extends AbstractEntity {
   @JoinColumn
   private Room room;
 
+  @Id
+  @ManyToOne
+  @JoinColumn
+  private Purchases purchases;
+
+
   public User getUser() {
     return user;
   }
@@ -51,5 +56,13 @@ public class UserTrip extends AbstractEntity {
 
   public void setRoom(Room room) {
     this.room = room;
+  }
+
+  public Purchases getPurchases() {
+    return purchases;
+  }
+
+  public void setPurchases(Purchases purchases) {
+    this.purchases = purchases;
   }
 }
