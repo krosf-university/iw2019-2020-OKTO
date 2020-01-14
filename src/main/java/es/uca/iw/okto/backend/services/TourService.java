@@ -6,27 +6,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import es.uca.iw.okto.backend.models.Trip;
+import es.uca.iw.okto.backend.models.Tour;
 import es.uca.iw.okto.backend.models.User;
-import es.uca.iw.okto.backend.repositories.TripRepository;
+import es.uca.iw.okto.backend.repositories.TourRepository;
 
 @Service
-public class TripService implements FilterableCrudService<Trip> {
+public class TourService implements FilterableCrudService<Tour> {
 
-  private final TripRepository tripRepository;
+  private final TourRepository tourRepository;
 
   @Autowired
-  public TripService(TripRepository tripRepository) {
-    this.tripRepository = tripRepository;
+  public TourService(TourRepository tourRepository) {
+    this.tourRepository = tourRepository;
   }
 
-  public Page<Trip> findAnyMatching(Optional<LocalDate> filter,Optional<String> filter2, Pageable pageable) {
-    if (filter.isPresent()) {
-      return getRepository().findByStartAfterOrEndAfterOrShipNameContainingIgnoreCase(
-          filter.get(), filter.get(), filter2.get(), pageable);
-    } else {
-      return find(pageable);
-    }
+  public Page<Tour> findAnyMatching(Optional<LocalDate> filter,Optional<String> filter2, Pageable pageable) {
+    // if (filter.isPresent()) {
+    //   return getRepository().findByStartAfterOrEndAfterOrNameOrIgnoreCase(
+    //       filter.get(), filter.get(), filter2.get(), pageable);
+    // } else {
+    //   return find(pageable);
+    // }
+    return find(pageable); 
   }
 
   @Override
@@ -41,11 +42,11 @@ public class TripService implements FilterableCrudService<Trip> {
   }
 
   @Override
-  public TripRepository getRepository() {
-    return tripRepository;
+  public TourRepository getRepository() {
+    return tourRepository;
   }
 
-  public Page<Trip> find(Pageable pageable) {
+  public Page<Tour> find(Pageable pageable) {
     return getRepository().findBy(pageable);
   }
 
@@ -69,12 +70,12 @@ public class TripService implements FilterableCrudService<Trip> {
   // }
 
   @Override
-  public Trip createNew(User currentUser) {
-    return new Trip();
+  public Tour createNew(User currentUser) {
+    return new Tour();
   }
 
   @Override
-  public Page<Trip> findAnyMatching(Optional<String> filter, Pageable pageable) {
+  public Page<Tour> findAnyMatching(Optional<String> filter, Pageable pageable) {
     return find(pageable);
   }
 }

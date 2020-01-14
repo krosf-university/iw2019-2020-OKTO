@@ -1,11 +1,9 @@
 package es.uca.iw.okto.backend.models;
 
-import java.util.Date;
+import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  * Tour
@@ -14,14 +12,12 @@ import javax.persistence.TemporalType;
 public class Tour extends Service {
   private static final long serialVersionUID = -6774086899975203008L;
 
-  @Temporal(TemporalType.DATE)
-  private Date start;
+  private LocalDate start;
 
-  @Temporal(TemporalType.DATE)
-  private Date end;
+  private LocalDate end;
 
-  @ManyToOne
-  @JoinColumn(name="scale_id", nullable=false)
+  @ManyToOne()
+  @JoinColumn(name="scale_id")
   private Scale scale;
 
   public Tour() {
@@ -32,19 +28,19 @@ public class Tour extends Service {
     return "Tour [description=" + getDescription() + ", end=" + end + ", scale=" + scale.getId() + ", start=" + start + "]";
   }
 
-  public Date getStart() {
+  public LocalDate getStart() {
     return start;
   }
 
-  public void setStart(Date start) {
+  public void setStart(LocalDate start) {
     this.start = start;
   }
 
-  public Date getEnd() {
+  public LocalDate getEnd() {
     return end;
   }
 
-  public void setEnd(Date end) {
+  public void setEnd(LocalDate end) {
     this.end = end;
   }
 

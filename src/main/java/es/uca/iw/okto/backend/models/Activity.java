@@ -19,7 +19,17 @@ public class Activity extends Service {
     @Temporal(TemporalType.DATE)
     private Date end;
 
+    private String name;
+
     public Activity() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void Name(String name) {
+        this.name = name;
     }
 
     public Date getStart() {

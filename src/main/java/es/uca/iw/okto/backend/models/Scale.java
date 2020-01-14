@@ -1,15 +1,11 @@
 package es.uca.iw.okto.backend.models;
 
+import java.time.LocalDate;
 import java.util.Collection;
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 import es.uca.iw.okto.backend.utils.AbstractEntity;
 
 /**
@@ -21,14 +17,12 @@ public class Scale extends AbstractEntity {
   private static final long serialVersionUID = -5873780733709877895L;
 
   @ManyToOne
-  @JoinColumn(name="trip_id", nullable=false)
+  @JoinColumn(name="trip_id")
   private Trip trip;
 
-  @Temporal(TemporalType.DATE)
-  private Date start;
+  private LocalDate start;
 
-  @Temporal(TemporalType.DATE)
-  private Date end;
+  private LocalDate end;
 
   @OneToMany(mappedBy = "scale")
   private Collection<Tour> tours;
@@ -48,19 +42,19 @@ public class Scale extends AbstractEntity {
     this.trip = trip;
   }
 
-  public Date getStart() {
+  public LocalDate getStart() {
     return start;
   }
 
-  public void setStart(Date start) {
+  public void setStart(LocalDate start) {
     this.start = start;
   }
 
-  public Date getEnd() {
+  public LocalDate getEnd() {
     return end;
   }
 
-  public void setEnd(Date end) {
+  public void setEnd(LocalDate end) {
     this.end = end;
   }
 
