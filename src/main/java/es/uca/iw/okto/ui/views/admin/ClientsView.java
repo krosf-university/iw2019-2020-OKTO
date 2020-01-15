@@ -13,10 +13,8 @@ import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
-
 import es.uca.iw.okto.app.security.CurrentUser;
 import es.uca.iw.okto.backend.models.User;
 import es.uca.iw.okto.backend.models.User.Role;
@@ -44,6 +42,7 @@ public class ClientsView extends AbstractCrudView<User> {
     grid.addColumn(User::getEmail).setWidth("270px").setHeader("Email").setFlexGrow(5);
     grid.addColumn(u -> u.getFirstName() + " " + u.getLastName()).setHeader("Name").setWidth("200px").setFlexGrow(5);
     grid.addColumn(User::getRole).setHeader("Role").setWidth("150px");
+    setHeightFull();
   }
 
   @Override

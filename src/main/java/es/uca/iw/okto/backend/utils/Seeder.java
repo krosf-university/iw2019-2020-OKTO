@@ -56,6 +56,15 @@ public class Seeder implements ApplicationListener<ContextRefreshedEvent> {
   @Override
   @Transactional
   public void onApplicationEvent(final ContextRefreshedEvent event) {
+    fakeData();
+  }
+
+  void realData(){
+    
+  }
+
+  
+  void fakeData(){
     if (!alreadySetup) {
       createUserIfNotFound("admin@okto.com", "Test", "Test", "okto", "00000000O", "000000000",
           User.Role.ADMIN);
@@ -71,7 +80,7 @@ public class Seeder implements ApplicationListener<ContextRefreshedEvent> {
           faker.name().firstName(),
           faker.name().lastName(),
           faker.internet().password(),
-          faker.bothify("########?"), // Hacer un drop table del campo email.
+          faker.bothify("########?"), 
           faker.numerify("6########"),
           User.Role.USER
         );
@@ -80,7 +89,8 @@ public class Seeder implements ApplicationListener<ContextRefreshedEvent> {
         createTripIfNotFound(
           LocalDate.now(),
           LocalDate.now(),
-          ship1
+          ship1,
+          faker.name().name()
         );
         
         createActivityIfNotFound(
@@ -103,7 +113,7 @@ public class Seeder implements ApplicationListener<ContextRefreshedEvent> {
         );
 
         Ship ship3 = createShipIfNotFound(faker.name().name());
-        Trip trip = createTripIfNotFound(LocalDate.now(),LocalDate.now(), ship3);
+        Trip trip = createTripIfNotFound(LocalDate.now(),LocalDate.now(), ship3, faker.name().name());
         City city = createCityIfNotFound(faker.name().name(),faker.name().name());
         createScaleIfNotFound(
           trip,
@@ -119,7 +129,6 @@ public class Seeder implements ApplicationListener<ContextRefreshedEvent> {
       }
     }
   }
-
 
   @Transactional
   void createUserIfNotFound(final String email, final String firstName, final String lastName,
@@ -140,13 +149,14 @@ public class Seeder implements ApplicationListener<ContextRefreshedEvent> {
   }
 
   @Transactional
-  Trip createTripIfNotFound(final LocalDate start, final LocalDate end, Ship ship) {
+  Trip createTripIfNotFound(final LocalDate start, final LocalDate end, Ship ship,final String name) {
     Trip trip = tripRepository.findByStartAfter(start);
     if (trip == null) {
       trip = new Trip();
       trip.setStart(start);
       trip.setEnd(end);
       trip.setShip(ship);
+      trip.setName(name);
       tripRepository.save(trip);
     }
     return trip;

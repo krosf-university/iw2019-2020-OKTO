@@ -36,6 +36,7 @@ import es.uca.iw.okto.ui.views.manager.ManagerViews;
 @JsModule("./styles/shared-styles.js")
 @PWA(name = "OKTO", shortName = "OKTO", startPath = "login")
 @Theme(value = Lumo.class, variant = Lumo.DARK)
+
 @RouteAlias(value = ClientsView.ROUTE)
 @RouteAlias(value = ExpensesView.ROUTE)
 @RouteAlias(value = DataView.ROUTE)

@@ -19,6 +19,8 @@ public class Trip extends AbstractEntity {
 
   private LocalDate end;
 
+  private String name;
+
   @ManyToOne
   @JoinColumn(name = "ship_id")
   private Ship ship;
@@ -30,6 +32,14 @@ public class Trip extends AbstractEntity {
   private Collection<Scale> scales;
 
   public Trip() {
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 
   public LocalDate getStart() {

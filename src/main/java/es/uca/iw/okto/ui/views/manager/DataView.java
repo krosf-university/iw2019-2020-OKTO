@@ -83,7 +83,8 @@ public class DataView extends Div {
     grid.setDataProvider(dataProvider);
     grid.addColumn(Trip::getStart).setWidth("270px").setHeader("Start").setFlexGrow(5);
     grid.addColumn(u -> u.getEnd()).setHeader("End").setWidth("200px").setFlexGrow(5);
-    grid.addColumn(Trip::getShip).setHeader("Role").setWidth("150px");
+    grid.addColumn(Trip::getShip).setHeader("Ship Name").setWidth("150px");
+    grid.addColumn(Trip::getName).setHeader("Trip Name").setWidth("150px");
     wrapper.add(grid);
   }
 

@@ -8,7 +8,10 @@ import es.uca.iw.okto.ui.components.TabView;
 /**
  * AdminTabs
  */
+
 public class ClientViews {
+  public static final String ROUTE = "ConsultarViajeCrucero";
+
 
   private final static List<TabView> views = new ArrayList<TabView>(4){
     private static final long serialVersionUID = 3650578607109584561L;

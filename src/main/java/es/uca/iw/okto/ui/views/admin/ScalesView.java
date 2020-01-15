@@ -1,74 +1,74 @@
 package es.uca.iw.okto.ui.views.admin;
 
-import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.combobox.ComboBox;
+import com.vaadin.flow.component.crud.BinderCrudEditor;
+import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.formlayout.FormLayout;
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.TextArea;
-import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.data.binder.BeanValidationBinder;
+import com.vaadin.flow.data.provider.DataProvider;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
-
+import es.uca.iw.okto.app.security.CurrentUser;
+import es.uca.iw.okto.backend.models.Scale;
+import es.uca.iw.okto.backend.models.Trip;
 import es.uca.iw.okto.backend.models.User;
+import es.uca.iw.okto.backend.services.ScaleService;
+import es.uca.iw.okto.backend.services.TripService;
+import es.uca.iw.okto.ui.components.crud.AbstractCrudView;
+import es.uca.iw.okto.ui.components.crud.CrudEntityDataProvider;
 import es.uca.iw.okto.ui.views.MainView;
 
 @Route(value = ScalesView.ROUTE, layout = MainView.class)
 @PageTitle("GestionarEscalas")
 @Secured(User.Role.ADMIN)
-public class ScalesView extends Div {
+public class ScalesView extends AbstractCrudView<Scale> {
 
   /**
   *
   */
   private static final long serialVersionUID = 1L;
-
+  
   public static final String ROUTE = "GestionarEscalas";
-
-  private TextField Dato1 = new TextField();
-  private TextArea Dato2 = new TextArea();
-
-  public ScalesView() {
-    setId("GestionarEscalas-view");
-    VerticalLayout wrapper = createWrapper();
-    wrapper.setAlignItems(Alignment.CENTER);
-    createTitle(wrapper);
-    createFormLayout(wrapper);
-
-    add(wrapper);
+  
+  @Autowired
+  public ScalesView(ScaleService service, CurrentUser currentUser, TripService tripService) {
+    super(Scale.class, service, new Grid<>(Scale.class), createForm(new CrudEntityDataProvider<>(tripService)), currentUser);
   }
 
-  // horarios de llegada y salida,información de la ciudad, información meteorológica, consejos y
-  // excursiones programadas
-  private void createTitle(VerticalLayout wrapper) {
-    H1 h1 = new H1("Gestion de Escalas");
-    wrapper.add(h1);
+  @Override
+  public void setupGrid(Grid<Scale> grid) {
+    grid.setColumns("city.name","start","end");
+    grid.getColumnByKey("city.name").setHeader("City");
+    setHeightFull();
   }
 
-  private VerticalLayout createWrapper() {
-    VerticalLayout wrapper = new VerticalLayout();
-    wrapper.setId("wrapper");
-    wrapper.setSpacing(false);
-    return wrapper;
+  @Override
+  protected String getBasePage() {
+    return ROUTE;
   }
 
-  private void createFormLayout(VerticalLayout wrapper) {
-    FormLayout formLayout = new FormLayout();
-    addFormItem(wrapper, formLayout, Dato1, "Username");
-    FormLayout formLayout2 = new FormLayout();
-    addFormItem(wrapper, formLayout2, Dato2, "excursiones");
-  }
+  private static BinderCrudEditor<Scale> createForm(DataProvider<Trip,String> tripProvider) {
+    ComboBox<Trip> trip = new ComboBox<>();
+    trip.getElement().setAttribute("colspan", "2");
+    trip.setLabel("trip");
 
-  private FormLayout.FormItem addFormItem(VerticalLayout wrapper, FormLayout formLayout,
-      Component field, String fieldName) {
-    FormLayout.FormItem formItem = formLayout.addFormItem(field, fieldName);
-    wrapper.add(formLayout);
-    field.getElement().getClassList().add("full-width");
-    return formItem;
-  }
+    DatePicker start = new DatePicker("Date Start");
+    DatePicker end = new DatePicker("Date End");
+    
+    FormLayout form = new FormLayout(start, end, trip);
 
+    BeanValidationBinder<Scale> binder = new BeanValidationBinder<>(Scale.class);
+    trip.setDataProvider(tripProvider);
+
+    binder.bind(start, "start");
+    binder.bind(end, "end");
+    binder.bind(trip,"trip");
+
+
+    return new BinderCrudEditor<Scale>(binder, form);
+  }
 }
 
