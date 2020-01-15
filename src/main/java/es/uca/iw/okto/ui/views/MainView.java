@@ -11,7 +11,7 @@ import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.confirmdialog.ConfirmDialog;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.Anchor;
-import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
@@ -33,7 +33,7 @@ import es.uca.iw.okto.ui.views.manager.ManagerViews;
 
 @JsModule("./styles/shared-styles.js")
 @PWA(name = "OKTO", shortName = "OKTO", startPath = "login")
-@Theme(value = Lumo.class, variant = Lumo.DARK)
+@Theme(value = Lumo.class, variant = Lumo.LIGHT)
 @Route
 public class MainView extends AppLayout {
   private static final long serialVersionUID = 3890567471058738207L;
@@ -46,12 +46,12 @@ public class MainView extends AppLayout {
     confirmDialog.setCancelButtonTheme("raised tertiary");
 
     this.setDrawerOpened(false);
-    Span appName = new Span("My Starter Project");
-    appName.addClassName("hide-on-mobile");
+    Image logo = new Image("https://i.imgur.com/rZH51w9.png", "Logo");
+    logo.setHeight("50px");
 
     menu = createMenuTabs();
 
-    this.addToNavbar(appName);
+    this.addToNavbar(logo);
     this.addToNavbar(true, menu);
     this.getElement().appendChild(confirmDialog.getElement());
 
