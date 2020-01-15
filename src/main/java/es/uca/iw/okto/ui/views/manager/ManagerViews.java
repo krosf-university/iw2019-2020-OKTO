@@ -2,9 +2,7 @@ package es.uca.iw.okto.ui.views.manager;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.vaadin.flow.component.icon.VaadinIcon;
-
 import es.uca.iw.okto.ui.components.TabView;
 
 /**

@@ -16,7 +16,7 @@ public class Service extends AbstractEntity {
     private static final long serialVersionUID = -8104609640892884129L;
 
     @ManyToOne
-    @JoinColumn(name = "ship_id", nullable = false)
+    @JoinColumn(name = "ship_id", nullable=true) 
     private Ship ship;
 
     private Double price;

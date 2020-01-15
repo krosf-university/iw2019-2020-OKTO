@@ -3,9 +3,9 @@ package es.uca.iw.okto.app.security;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
-
 import javax.servlet.http.HttpServletRequest;
-
+import com.vaadin.flow.server.ServletHelper.RequestType;
+import com.vaadin.flow.shared.ApplicationConstants;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -14,9 +14,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import com.vaadin.flow.server.ServletHelper.RequestType;
-import com.vaadin.flow.shared.ApplicationConstants;
 import es.uca.iw.okto.ui.views.login.LoginView;
 
 /**
