@@ -22,17 +22,17 @@ import es.uca.iw.okto.backend.services.UserService;
 import es.uca.iw.okto.ui.components.crud.AbstractCrudView;
 import es.uca.iw.okto.ui.views.MainView;
 
-@Route(value = ClientsView.ROUTE, layout = MainView.class)
-@PageTitle("Clients")
+@Route(value = UsersView.ROUTE, layout = MainView.class)
+@PageTitle(value = UsersView.PAGE_TITLE)
 @Secured(User.Role.ADMIN)
-public class ClientsView extends AbstractCrudView<User> {
+public class UsersView extends AbstractCrudView<User> {
   private static final long serialVersionUID = 8896817309959219116L;
 
-  public static final String ROUTE = "admin/client";
-  public static final String PAGE_TITLE = "Manage Clients";
+  public static final String ROUTE = "admin/users";
+  public static final String PAGE_TITLE = "Manage Users";
 
   @Autowired
-  public ClientsView(UserService service, CurrentUser currentUser) {
+  public UsersView(UserService service, CurrentUser currentUser) {
     super(User.class, service, new Grid<>(), createForm(), currentUser);
     setHeightFull();
   }

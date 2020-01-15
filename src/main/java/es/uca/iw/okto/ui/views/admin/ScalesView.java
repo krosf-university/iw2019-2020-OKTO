@@ -9,8 +9,10 @@ import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.provider.DataProvider;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+
 import es.uca.iw.okto.app.security.CurrentUser;
 import es.uca.iw.okto.backend.models.Scale;
 import es.uca.iw.okto.backend.models.Trip;
@@ -22,7 +24,7 @@ import es.uca.iw.okto.ui.components.crud.CrudEntityDataProvider;
 import es.uca.iw.okto.ui.views.MainView;
 
 @Route(value = ScalesView.ROUTE, layout = MainView.class)
-@PageTitle("GestionarEscalas")
+@PageTitle("Manage Scales")
 @Secured(User.Role.ADMIN)
 public class ScalesView extends AbstractCrudView<Scale> {
 
@@ -31,7 +33,7 @@ public class ScalesView extends AbstractCrudView<Scale> {
   */
   private static final long serialVersionUID = 1L;
   
-  public static final String ROUTE = "GestionarEscalas";
+  public static final String ROUTE = "admin/scales";
   
   @Autowired
   public ScalesView(ScaleService service, CurrentUser currentUser, TripService tripService) {

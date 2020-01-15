@@ -10,8 +10,10 @@ import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.provider.DataProvider;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+
 import es.uca.iw.okto.app.security.CurrentUser;
 import es.uca.iw.okto.backend.models.Service;
 import es.uca.iw.okto.backend.models.Ship;
@@ -23,7 +25,7 @@ import es.uca.iw.okto.ui.components.crud.CrudEntityDataProvider;
 import es.uca.iw.okto.ui.views.MainView;
 
 @Route(value = ServicesView.ROUTE, layout = MainView.class)
-@PageTitle("GestionarServicios")
+@PageTitle("Manage Services")
 @Secured(User.Role.ADMIN)
 public class ServicesView extends AbstractCrudView<Service> {
 
@@ -32,7 +34,7 @@ public class ServicesView extends AbstractCrudView<Service> {
   */
   private static final long serialVersionUID = 1L;
 
-  public static final String ROUTE = "GestionarServicios";
+  public static final String ROUTE = "admin/services";
   
   @Autowired
   public ServicesView(ServiceService service, CurrentUser currentUser, ShipService shipService) {

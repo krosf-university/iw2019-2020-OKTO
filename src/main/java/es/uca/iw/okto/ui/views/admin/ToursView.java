@@ -9,7 +9,9 @@ import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.provider.DataProvider;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+
 import org.springframework.security.access.annotation.Secured;
+
 import es.uca.iw.okto.app.security.CurrentUser;
 import es.uca.iw.okto.backend.models.Scale;
 import es.uca.iw.okto.backend.models.Tour;
@@ -21,7 +23,7 @@ import es.uca.iw.okto.ui.components.crud.CrudEntityDataProvider;
 import es.uca.iw.okto.ui.views.MainView;
 
 @Route(value = ToursView.ROUTE, layout = MainView.class)
-@PageTitle("GestionarExcursiones")
+@PageTitle("Manage Tours")
 @Secured(User.Role.ADMIN)
 public class ToursView extends AbstractCrudView<Tour> {
 
@@ -30,7 +32,7 @@ public class ToursView extends AbstractCrudView<Tour> {
   */
   private static final long serialVersionUID = 3953623731124759118L;
 
-  public static final String ROUTE = "GestionarExcursiones";
+  public static final String ROUTE = "admin/tours";
 
   public ToursView(TourService service, CurrentUser currentUser, ScaleService scaleService) {
     super(Tour.class, service, new Grid<>(), createForm(new CrudEntityDataProvider<>(scaleService)), currentUser);
