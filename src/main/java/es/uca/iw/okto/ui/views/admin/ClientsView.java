@@ -37,6 +37,7 @@ public class ClientsView extends AbstractCrudView<User> {
   @Autowired
   public ClientsView(UserService service, CurrentUser currentUser) {
     super(User.class, service, new Grid<>(), createForm(), currentUser);
+    setHeightFull();
   }
 
   @Override
