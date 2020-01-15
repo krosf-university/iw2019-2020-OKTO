@@ -59,7 +59,7 @@ public class UserService implements FilterableCrudService<User> {
 
   @Override
   public User save(User currentUser, User entity) {
-    throwIfUserDisabled(entity);
+    throwIfUserDisabled(currentUser);
     return getRepository().saveAndFlush(entity);
   }
 
@@ -67,7 +67,7 @@ public class UserService implements FilterableCrudService<User> {
   @Transactional
   public void delete(User currentUser, User userToDelete) {
     throwIfDeletingSelf(currentUser, userToDelete);
-    throwIfUserDisabled(userToDelete);
+    throwIfUserDisabled(currentUser);
     FilterableCrudService.super.delete(currentUser, userToDelete);
   }
 

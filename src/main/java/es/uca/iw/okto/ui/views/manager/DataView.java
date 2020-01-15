@@ -23,7 +23,7 @@ import es.uca.iw.okto.ui.views.MainView;
 
 @Route(value = DataView.ROUTE, layout = MainView.class)
 @PageTitle("ConsultarDatos")
-@Secured(User.Role.GERENTE)
+@Secured(User.Role.MANAGER)
 public class DataView extends Div {
   private static final long serialVersionUID = 5280515399074523767L;
   public static final String ROUTE = "ConsultaDatos";

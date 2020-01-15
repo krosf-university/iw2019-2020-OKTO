@@ -1,6 +1,7 @@
 package es.uca.iw.okto.backend.models;
 
 import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -9,9 +10,10 @@ import javax.persistence.PreUpdate;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
 import es.uca.iw.okto.backend.utils.AbstractEntity;
+import es.uca.iw.okto.backend.utils.PasswordGenerator;
 
 @Entity
 public class User extends AbstractEntity {
@@ -34,8 +36,6 @@ public class User extends AbstractEntity {
   @Column(nullable = true)
   private String phone;
 
-  @NotNull
-  @Size(min = 4, max = 255)
   private String password;
 
   @NotBlank
@@ -122,22 +122,59 @@ public class User extends AbstractEntity {
     this.trips = trips;
   }
 
-  @PrePersist
   @PreUpdate
-  private void prepareData() {
+  private void preUpdate() {
     this.email = email == null ? null : email.toLowerCase();
   }
+
+  @PrePersist
+  public void prePersist() {
+    this.email = email == null ? null : email.toLowerCase();
+    this.password = password == null ? PasswordGenerator.getPassword() : password;
+  }
+  
 
   public static class Role {
     public static final String USER = "user";
     public static final String ADMIN = "admin";
-    public static final String GERENTE = "gerente";
+    public static final String MANAGER = "manager";
 
     private Role() {
     }
 
     public static String[] getAllRoles() {
-      return new String[] {ADMIN, USER, GERENTE};
+      return new String[] { ADMIN, USER, MANAGER };
     }
+  }
+
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = super.hashCode();
+    result = prime * result + ((dni == null) ? 0 : dni.hashCode());
+    result = prime * result + ((email == null) ? 0 : email.hashCode());
+    return result;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (!super.equals(obj))
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    User other = (User) obj;
+    if (dni == null) {
+      if (other.dni != null)
+        return false;
+    } else if (!dni.equals(other.dni))
+      return false;
+    if (email == null) {
+      if (other.email != null)
+        return false;
+    } else if (!email.equals(other.email))
+      return false;
+    return true;
   }
 }

@@ -70,8 +70,8 @@ public class Seeder implements ApplicationListener<ContextRefreshedEvent> {
           User.Role.ADMIN);
       createUserIfNotFound("user@okto.com", "Test", "Test", "okto", "00000000O", "000000000",
           User.Role.USER);
-      createUserIfNotFound("gerente@okto.com", "Test", "Test", "okto", "00000000O", "000000000",
-          User.Role.GERENTE);
+      createUserIfNotFound("manager@okto.com", "Test", "Test", "okto", "00000000O", "000000000",
+          User.Role.MANAGER);
       alreadySetup = true;
 
       for (int i = 0; i < 10; ++i) {
