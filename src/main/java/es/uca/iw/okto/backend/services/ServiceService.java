@@ -10,7 +10,7 @@ import es.uca.iw.okto.backend.models.User;
 import es.uca.iw.okto.backend.repositories.ServiceRepository;
 
 @org.springframework.stereotype.Service
-public class ServiceService implements FilterableCrudService<Service> {             //DA ERROR PORQUE COLISIONA CON EL @SERVICE
+public class ServiceService implements FilterableCrudService<Service> {            
 
     private final ServiceRepository serviceRepository;
 
@@ -21,23 +21,11 @@ public class ServiceService implements FilterableCrudService<Service> {         
 
     public Page<Service> findAnyMatching(Optional<Date> filter, Optional<String> filter2,
             Pageable pageable) {
-        // if (filter.isPresent()) {
-        // return getRepository().findByStartAfterOrEndAfterOrNameOrIgnoreCase(
-        // filter.get(), filter.get(), filter2.get(), pageable);
-        // } else {
-        // return find(pageable);
-        // }
         return find(pageable);
     }
 
     @Override
     public long countAnyMatching(Optional<String> filter) {
-        // if (filter.isPresent()) {
-        // return tripRepository.countfindByStartAfterOrEndAfterOrShipNameContainigIgnoreCase(
-        // filter.get(), filter.get(),);
-        // } else {
-        // return count();
-        // }
         return count();
     }
 
@@ -49,25 +37,6 @@ public class ServiceService implements FilterableCrudService<Service> {         
     public Page<Service> find(Pageable pageable) {
         return getRepository().findBy(pageable);
     }
-
-    // @Override
-    // public Trip save(User currentUser, Trip entity) {
-    // throwIfTripDisabled(currentUser);
-    // return getRepository().saveAndFlush(entity);
-    // }
-
-    // @Override
-    // @Transactional
-    // public void delete(User currentUser, Trip userToDelete) {
-    // throwIfTripDisabled(currentUser);
-    // FilterableCrudService.super.delete(currentUser, userToDelete);
-    // }
-
-    // private void throwIfTripDisabled(User entity) {
-    // if (entity != null && entity.isEnabled()) {
-    // throw new UserFriendlyDataException(MODIFY_DISABLED_USER_NOT_PERMITTED);
-    // }
-    // }
 
     @Override
     public Service createNew(User currentUser) {

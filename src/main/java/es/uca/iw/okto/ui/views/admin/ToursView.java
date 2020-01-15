@@ -1,25 +1,29 @@
 package es.uca.iw.okto.ui.views.admin;
 
-import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.combobox.ComboBox;
+import com.vaadin.flow.component.crud.BinderCrudEditor;
+import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.formlayout.FormLayout;
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.TextArea;
-import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.data.binder.BeanValidationBinder;
+import com.vaadin.flow.data.provider.DataProvider;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-
 import org.springframework.security.access.annotation.Secured;
-
+import es.uca.iw.okto.app.security.CurrentUser;
+import es.uca.iw.okto.backend.models.Scale;
+import es.uca.iw.okto.backend.models.Tour;
 import es.uca.iw.okto.backend.models.User;
+import es.uca.iw.okto.backend.services.ScaleService;
+import es.uca.iw.okto.backend.services.TourService;
+import es.uca.iw.okto.ui.components.crud.AbstractCrudView;
+import es.uca.iw.okto.ui.components.crud.CrudEntityDataProvider;
 import es.uca.iw.okto.ui.views.MainView;
 
 @Route(value = ToursView.ROUTE, layout = MainView.class)
 @PageTitle("GestionarExcursiones")
 @Secured(User.Role.ADMIN)
-public class ToursView extends Div {
+public class ToursView extends AbstractCrudView<Tour> {
 
   /**
   *
@@ -28,47 +32,40 @@ public class ToursView extends Div {
 
   public static final String ROUTE = "GestionarExcursiones";
 
-  private TextField Dato1 = new TextField();
-  private TextArea Dato2 = new TextArea();
-
-  public ToursView() {
-    setId("GestionarExcursiones-view");
-    VerticalLayout wrapper = createWrapper();
-    wrapper.setAlignItems(Alignment.CENTER);
-    createTitle(wrapper);
-    createFormLayout(wrapper);
-
-    add(wrapper);
+  public ToursView(TourService service, CurrentUser currentUser, ScaleService scaleService) {
+    super(Tour.class, service, new Grid<>(), createForm(new CrudEntityDataProvider<>(scaleService)), currentUser);
   }
 
-  // horarios de llegada y salida,información de la ciudad, información meteorológica, consejos y
-  // excursiones programadas
-  private void createTitle(VerticalLayout wrapper) {
-    H1 h1 = new H1("Gestion de Excursiones");
-    wrapper.add(h1);
+  @Override
+  public void setupGrid(Grid<Tour> grid) {
+    grid.setColumns("scale.city.name","start","end");
+    grid.getColumnByKey("scale.city.name").setHeader("Scale");
+    setHeightFull();
   }
 
-  private VerticalLayout createWrapper() {
-    VerticalLayout wrapper = new VerticalLayout();
-    wrapper.setId("wrapper");
-    wrapper.setSpacing(false);
-    return wrapper;
+  @Override
+  protected String getBasePage() {
+    return ROUTE;
   }
 
-  private void createFormLayout(VerticalLayout wrapper) {
-    FormLayout formLayout = new FormLayout();
-    addFormItem(wrapper, formLayout, Dato1, "Username");
-    FormLayout formLayout2 = new FormLayout();
-    addFormItem(wrapper, formLayout2, Dato2, "excursiones");
-  }
+  private static BinderCrudEditor<Tour> createForm(DataProvider<Scale,String> scaleProvider) {
+    ComboBox<Scale> scale = new ComboBox<>();
+    scale.getElement().setAttribute("colspan", "2");
+    scale.setLabel("scale");
 
-  private FormLayout.FormItem addFormItem(VerticalLayout wrapper, FormLayout formLayout,
-      Component field, String fieldName) {
-    FormLayout.FormItem formItem = formLayout.addFormItem(field, fieldName);
-    wrapper.add(formLayout);
-    field.getElement().getClassList().add("full-width");
-    return formItem;
-  }
+    DatePicker start = new DatePicker("Date Start");
+    DatePicker end = new DatePicker("Date End");
 
+    FormLayout form = new FormLayout(start, end, scale);
+
+    BeanValidationBinder<Tour> binder = new BeanValidationBinder<>(Tour.class);
+    scale.setDataProvider(scaleProvider);
+
+    binder.bind(start, "start");
+    binder.bind(end, "end");
+    binder.bind(scale, "scale");
+
+    return new BinderCrudEditor<Tour>(binder, form);
+  }
 }
 

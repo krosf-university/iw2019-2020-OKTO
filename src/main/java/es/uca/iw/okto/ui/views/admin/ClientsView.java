@@ -43,6 +43,7 @@ public class ClientsView extends AbstractCrudView<User> {
     grid.addColumn(User::getDni).setWidth("270px").setHeader("DNI").setFlexGrow(5);
     grid.addColumn(u -> u.getFirstName() + " " + u.getLastName()).setHeader("Name").setWidth("200px").setFlexGrow(5);
     grid.addColumn(User::getRole).setHeader("Role").setWidth("150px");
+    setHeightFull();
   }
 
   @Override
