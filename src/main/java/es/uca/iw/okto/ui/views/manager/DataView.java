@@ -7,8 +7,10 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+
 import es.uca.iw.okto.backend.models.Activity;
 import es.uca.iw.okto.backend.models.Service;
 import es.uca.iw.okto.backend.models.Trip;
@@ -16,10 +18,8 @@ import es.uca.iw.okto.backend.models.User;
 import es.uca.iw.okto.backend.services.ActivityService;
 import es.uca.iw.okto.backend.services.ServiceService;
 import es.uca.iw.okto.backend.services.TripService;
-import es.uca.iw.okto.backend.services.UserService;
 import es.uca.iw.okto.ui.components.crud.CrudEntityDataProvider;
 import es.uca.iw.okto.ui.views.MainView;
-
 
 @Route(value = DataView.ROUTE, layout = MainView.class)
 @PageTitle("ConsultarDatos")
@@ -27,14 +27,12 @@ import es.uca.iw.okto.ui.views.MainView;
 public class DataView extends Div {
   private static final long serialVersionUID = 5280515399074523767L;
   public static final String ROUTE = "ConsultaDatos";
-  private UserService userService;
   private ServiceService serviceService;
   private ActivityService actService;
   private TripService tripService;
 
   @Autowired
-  public DataView(UserService userService,ServiceService serviceService,ActivityService actService,TripService tripService) {
-    this.userService = userService;
+  public DataView(ServiceService serviceService, ActivityService actService, TripService tripService) {
     this.serviceService = serviceService;
     this.actService = actService;
     this.tripService = tripService;

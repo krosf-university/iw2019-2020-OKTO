@@ -5,14 +5,12 @@ import com.vaadin.flow.component.crud.BinderCrudEditor;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.textfield.EmailField;
-import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.provider.DataProvider;
 import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.RouteAlias;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -25,7 +23,6 @@ import es.uca.iw.okto.ui.components.crud.AbstractCrudView;
 import es.uca.iw.okto.ui.views.MainView;
 
 @Route(value = ClientsView.ROUTE, layout = MainView.class)
-@RouteAlias(value = "",layout = MainView.class)
 @PageTitle("Clients")
 @Secured(User.Role.ADMIN)
 public class ClientsView extends AbstractCrudView<User> {
@@ -43,6 +40,7 @@ public class ClientsView extends AbstractCrudView<User> {
   @Override
   public void setupGrid(Grid<User> grid) {
     grid.addColumn(User::getEmail).setWidth("270px").setHeader("Email").setFlexGrow(5);
+    grid.addColumn(User::getDni).setWidth("270px").setHeader("DNI").setFlexGrow(5);
     grid.addColumn(u -> u.getFirstName() + " " + u.getLastName()).setHeader("Name").setWidth("200px").setFlexGrow(5);
     grid.addColumn(User::getRole).setHeader("Role").setWidth("150px");
   }
@@ -53,17 +51,16 @@ public class ClientsView extends AbstractCrudView<User> {
   }
 
   private static BinderCrudEditor<User> createForm() {
-    EmailField email = new EmailField("Email (login)");
-    email.getElement().setAttribute("colspan", "2");
+    EmailField email = new EmailField("Email");
     TextField first = new TextField("First name");
     TextField last = new TextField("Last name");
-    PasswordField password = new PasswordField("Password");
-    password.getElement().setAttribute("colspan", "2");
+    TextField dni = new TextField("DNI");
+    TextField phone = new TextField("Phone");
     ComboBox<String> role = new ComboBox<>();
-    role.getElement().setAttribute("colspan", "2");
+    // role.getElement().setAttribute("colspan", "2");
     role.setLabel("Role");
 
-    FormLayout form = new FormLayout(email, first, last, password, role);
+    FormLayout form = new FormLayout(email,dni, first, last,phone, role);
 
     BeanValidationBinder<User> binder = new BeanValidationBinder<>(User.class);
 
@@ -74,6 +71,8 @@ public class ClientsView extends AbstractCrudView<User> {
     binder.bind(first, "firstName");
     binder.bind(last, "lastName");
     binder.bind(email, "email");
+    binder.bind(dni, "dni");
+    binder.bind(phone, "phone");
     binder.bind(role, "role");
 
     return new BinderCrudEditor<User>(binder, form);
