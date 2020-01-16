@@ -13,7 +13,6 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import es.uca.iw.okto.backend.utils.AbstractEntity;
-import es.uca.iw.okto.backend.utils.PasswordGenerator;
 
 @Entity
 public class User extends AbstractEntity {
@@ -123,16 +122,10 @@ public class User extends AbstractEntity {
   }
 
   @PreUpdate
-  private void preUpdate() {
-    this.email = email == null ? null : email.toLowerCase();
-  }
-
   @PrePersist
-  public void prePersist() {
+  private void prepareData() {
     this.email = email == null ? null : email.toLowerCase();
-    this.password = password == null ? PasswordGenerator.getPassword() : password;
   }
-  
 
   public static class Role {
     public static final String USER = "user";

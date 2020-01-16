@@ -67,7 +67,7 @@ public class Seeder implements ApplicationListener<ContextRefreshedEvent> {
   void realData() {
     createUserIfNotFound("admin@okto.com", "Admin", "Okto", "okto", "00000000U", "000000000", User.Role.ADMIN);
     createUserIfNotFound("user@okto.com", "User", "Okto", "okto", "00000000V", "000000001", User.Role.USER);
-    createUserIfNotFound("manager@okto.com", "Manager", "Okto", "okto", "00000000W", "000000002", User.Role.GERENTE);
+    createUserIfNotFound("manager@okto.com", "Manager", "Okto", "okto", "00000000W", "000000002", User.Role.MANAGER);
     createUserIfNotFound("user1@okto.com", "Carlos Rodrigo", "Sanabria Flores", "krosf", "12345678A", "111111111", User.Role.USER);
     createUserIfNotFound("user2@okto.com", "Félix", "Rodríguez Pericacho", "frpericacho", "12345678B", "222222222", User.Role.USER);
     createUserIfNotFound("user3@okto.com", "Álvaro", "Braza Andrades", "albran", "12345678C", "333333333", User.Role.USER);

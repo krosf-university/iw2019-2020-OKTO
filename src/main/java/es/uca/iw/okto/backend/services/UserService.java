@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import es.uca.iw.okto.backend.models.User;
 import es.uca.iw.okto.backend.repositories.UserRepository;
+import es.uca.iw.okto.backend.utils.PasswordGenerator;
 
 @Service
 public class UserService implements FilterableCrudService<User> {
@@ -18,9 +19,11 @@ public class UserService implements FilterableCrudService<User> {
   public static final String MODIFY_DISABLED_USER_NOT_PERMITTED = "User is disable and cannot be modified or deleted";
   private static final String DELETING_SELF_NOT_PERMITTED = "You cannot delete your own account";
   private final UserRepository userRepository;
+  private final MailService mailService;
 
   @Autowired
-  public UserService(UserRepository userRepository) {
+  public UserService(UserRepository userRepository, MailService mailService) {
+    this.mailService = mailService;
     this.userRepository = userRepository;
   }
 
@@ -55,6 +58,13 @@ public class UserService implements FilterableCrudService<User> {
   @Override
   public User save(User currentUser, User entity) {
     throwIfUserDisabled(currentUser);
+    if (currentUser.getRole().equals(User.Role.ADMIN) && entity.getPassword() != null) {
+      String password = PasswordGenerator.getPassword();
+      String content = String.format("Your password is %s",password);
+
+      mailService.sendEmail(entity.getEmail(), "User was created", content);
+      return getRepository().saveAndFlush(entity);
+    }
     return getRepository().saveAndFlush(entity);
   }
 
