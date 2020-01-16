@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import es.uca.iw.okto.backend.models.User;
@@ -20,11 +21,13 @@ public class UserService implements FilterableCrudService<User> {
   private static final String DELETING_SELF_NOT_PERMITTED = "You cannot delete your own account";
   private final UserRepository userRepository;
   private final MailService mailService;
+  private final PasswordEncoder passwordEncoder;
 
   @Autowired
-  public UserService(UserRepository userRepository, MailService mailService) {
+  public UserService(UserRepository userRepository, MailService mailService,PasswordEncoder passwordEncoder) {
     this.mailService = mailService;
     this.userRepository = userRepository;
+    this.passwordEncoder = passwordEncoder;
   }
 
   public Page<User> findAnyMatching(Optional<String> filter, Pageable pageable) {
@@ -58,10 +61,11 @@ public class UserService implements FilterableCrudService<User> {
   @Override
   public User save(User currentUser, User entity) {
     throwIfUserDisabled(currentUser);
-    if (currentUser.getRole().equals(User.Role.ADMIN) && entity.getPassword() != null) {
+    if (currentUser.getRole().equals(User.Role.ADMIN) && entity.getPassword() == null) {
       String password = PasswordGenerator.getPassword();
       String content = String.format("Your password is %s",password);
-
+      entity.setPassword(passwordEncoder.encode(password));
+      entity.setEnabled(true);
       mailService.sendEmail(entity.getEmail(), "User was created", content);
       return getRepository().saveAndFlush(entity);
     }
