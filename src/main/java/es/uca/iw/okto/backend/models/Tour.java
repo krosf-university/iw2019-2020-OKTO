@@ -1,7 +1,6 @@
 package es.uca.iw.okto.backend.models;
 
 import java.time.LocalDate;
-
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -18,7 +17,7 @@ public class Tour extends Service {
   private LocalDate end;
 
   @ManyToOne
-  @JoinColumn(name="scale_id", nullable = false)
+  @JoinColumn(name = "scale_ids")
   private Scale scale;
 
   public Tour() {
@@ -26,7 +25,8 @@ public class Tour extends Service {
 
   @Override
   public String toString() {
-    return "Tour [description=" + getDescription() + ", end=" + end + ", scale=" + scale.getId() + ", start=" + start + "]";
+    return "Tour [description=" + getDescription() + ", end=" + end + ", scale=" + scale.getId()
+        + ", start=" + start + "]";
   }
 
   public LocalDate getStart() {
