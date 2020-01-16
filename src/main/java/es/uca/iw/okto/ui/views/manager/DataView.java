@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import es.uca.iw.okto.backend.models.Activity;
 import es.uca.iw.okto.backend.models.Service;
+import es.uca.iw.okto.backend.models.Trip;
 import es.uca.iw.okto.backend.models.User;
 import es.uca.iw.okto.backend.services.ActivityService;
 import es.uca.iw.okto.backend.services.ServiceService;
@@ -29,7 +30,8 @@ public class DataView extends Div {
   private TripService tripService;
 
   @Autowired
-  public DataView(ServiceService serviceService, ActivityService actService, TripService tripService) {
+  public DataView(ServiceService serviceService, ActivityService actService,
+      TripService tripService) {
     this.serviceService = serviceService;
     this.actService = actService;
     this.tripService = tripService;
@@ -56,9 +58,9 @@ public class DataView extends Div {
     Grid<Service> grid = new Grid<>();
     CrudEntityDataProvider<Service> dataProvider = new CrudEntityDataProvider<>(serviceService);
     grid.setDataProvider(dataProvider);
-    grid.addColumn(Service::getName).setWidth("270px").setHeader("Name").setFlexGrow(5);
-    grid.addColumn(s -> s.getDescription()).setHeader("Description").setWidth("200px").setFlexGrow(5);
-    grid.addColumn(Service::getPrice).setHeader("Price").setWidth("150px");
+    grid.addColumn(Service::getName).setWidth("15%").setHeader("Name").setFlexGrow(5);
+    grid.addColumn(s -> s.getDescription()).setHeader("Description").setWidth("30%").setFlexGrow(5);
+    grid.addColumn(Service::getPrice).setHeader("Price").setWidth("10%");
     wrapper.add(grid);
   }
 
@@ -78,7 +80,7 @@ public class DataView extends Div {
     grid.setDataProvider(dataProvider);
     grid.addColumn(Trip::getStart).setWidth("270px").setHeader("Start").setFlexGrow(5);
     grid.addColumn(u -> u.getEnd()).setHeader("End").setWidth("200px").setFlexGrow(5);
-    grid.addColumn(Trip::getShip->getName).setHeader("Ship Name").setWidth("150px");
+    grid.addColumn(u -> u.getShip().getName()).setHeader("Ship Name").setWidth("150px");
     grid.addColumn(Trip::getName).setHeader("Trip Name").setWidth("150px");
     wrapper.add(grid);
   }
