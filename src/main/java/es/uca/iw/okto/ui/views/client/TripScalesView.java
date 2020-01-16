@@ -136,7 +136,7 @@ public class TripScalesView extends Div {
     CrudEntityDataProvider<City> dataProvider = new CrudEntityDataProvider<>(cityService);
     grid.setDataProvider(dataProvider);
     grid.addColumn(City::getName).setWidth("270px").setHeader("City").setFlexGrow(5);
-    // grid.addColumn(City::getTips).setHeader("Tips").setWidth("200px").setFlexGrow(5);
+    grid.addColumn(City::getTips).setHeader("Tips").setWidth("200px").setFlexGrow(5);
     wrapper.add(grid);
   }
 
