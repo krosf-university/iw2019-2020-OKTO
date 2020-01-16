@@ -21,6 +21,9 @@ public class City extends AbstractEntity {
   @OneToMany(mappedBy = "city")
   private Collection<Tip> tips;
 
+  @OneToMany(mappedBy = "city")
+  private Collection<Scale> scales;
+
   public City() {
   }
 

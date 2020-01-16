@@ -7,5 +7,5 @@ import es.uca.iw.okto.backend.models.Tip;
 /**
  * TipRepository
  */
-public interface TipRepository extends JpaRepository<Tip,Long> {
+public interface TipRepository extends JpaRepository<Tip, Long> {
 }

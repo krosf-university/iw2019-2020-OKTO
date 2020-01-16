@@ -1,62 +1,62 @@
 package es.uca.iw.okto.backend.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
 import es.uca.iw.okto.backend.utils.AbstractEntity;
 
 @Entity
 public class ShopLine extends AbstractEntity {
+  private static final long serialVersionUID = -4047702656737581607L;
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = -4047702656737581607L;
+  @Column(nullable = false)
+  private Integer amount;
 
-    private Integer amount;
+  @Column(nullable = false)
+  private Double price;
 
-    private Double temporaryImport;
+  @ManyToOne
+  @JoinColumn(name = "shopline_id", insertable = false, updatable = false, nullable = false)
+  private Service service;
 
-    @ManyToOne
-    @JoinColumn(name = "service_id", nullable = false)
-    private Service service;
+  @ManyToOne
+  @JoinColumn(name = "shopline_id", nullable = false)
+  private Purchase purchase;
 
-    @ManyToOne
-    @JoinColumn(name = "purchases_id", nullable = false)
-    private Purchases purchases;
+  public ShopLine() {
+  }
 
-    public ShopLine() {
-    }
+  public Integer getAmount() {
+    return amount;
+  }
 
-    public Integer getAmount() {
-        return amount;
-    }
+  public void setAmount(Integer amount) {
+    this.amount = amount;
+  }
 
-    public void setAmount(Integer amount) {
-        this.amount = amount;
-    }
+  public Double getPrice() {
+    return price;
+  }
 
-    public Double getTemporaryImport() {
-        return temporaryImport;
-    }
+  public void setPrice(Double price) {
+    this.price = price;
+  }
 
-    public void setTemporaryImport(Double temporaryImport) {
-        this.temporaryImport = temporaryImport;
-    }
+  public Service getService() {
+    return service;
+  }
 
-    public Service getService() {
-        return service;
-    }
+  public void setService(Service service) {
+    this.service = service;
+  }
 
-    public void setService(Service service) {
-        this.service = service;
-    }
+  public Purchase getPurchase() {
+    return purchase;
+  }
 
-    public Purchases getPurchases() {
-        return purchases;
-    }
-
-    public void setPurchases(Purchases purchases) {
-        this.purchases = purchases;
-    }
+  public void setPurchase(Purchase purchase) {
+    this.purchase = purchase;
+  }
 }

@@ -1,73 +1,82 @@
 package es.uca.iw.okto.backend.models;
 
 import java.util.Collection;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
+
 import es.uca.iw.okto.backend.utils.AbstractEntity;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Service extends AbstractEntity {
+  private static final long serialVersionUID = -8104609640892884129L;
 
-    /**
-    *
-    */
-    private static final long serialVersionUID = -8104609640892884129L;
+  @ManyToOne
+  @JoinColumn(name = "ship_id", nullable = false)
+  private Ship ship;
 
-    @ManyToOne
-    @JoinColumn(name = "ship_id", nullable=true) 
-    private Ship ship;
+  @NotBlank
+  @Column(nullable = false)
+  private String name;
 
-    private Double price;
+  @NotBlank
+  @Column(nullable = false)
+  private String description;
 
-    private String name;
+  @Column(nullable = false)
+  private Double price;
 
-    private String description;
+  @OneToMany(mappedBy = "service")
+  private Collection<ShopLine> shopLine;
 
-    @OneToMany(mappedBy = "service")
-    private Collection<ShopLine> shopLine;
+  public Service() {
+  }
 
-    public Service() {
-    }
+  public Ship getShip() {
+    return ship;
+  }
 
-    public Ship getShip() {
-        return ship;
-    }
+  public void setShip(Ship ship) {
+    this.ship = ship;
+  }
 
-    public void setShip(Ship ship) {
-        this.ship = ship;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public Double getPrice() {
-        return price;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setPrice(Double price) {
-        this.price = price;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public Double getPrice() {
+    return price;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public void setPrice(Double price) {
+    this.price = price;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public Collection<ShopLine> getShopLine() {
+    return shopLine;
+  }
 
-    public Collection<ShopLine> getShopLine() {
-        return shopLine;
-    }
-
-    public void setShopLine(Collection<ShopLine> shopLine) {
-        this.shopLine = shopLine;
-    }
+  public void setShopLine(Collection<ShopLine> shopLine) {
+    this.shopLine = shopLine;
+  }
+  
 }

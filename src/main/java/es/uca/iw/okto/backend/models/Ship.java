@@ -1,8 +1,10 @@
 package es.uca.iw.okto.backend.models;
 
 import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+
 import es.uca.iw.okto.backend.utils.AbstractEntity;
 
 /**
@@ -21,7 +23,7 @@ public class Ship extends AbstractEntity {
   private Collection<Trip> trips;
 
   @OneToMany(mappedBy = "ship")
-  private Collection<Service> service;
+  private Collection<Service> services;
 
   public Ship() {
   }
@@ -38,13 +40,8 @@ public class Ship extends AbstractEntity {
     return rooms;
   }
 
-  public void setRooms(final Collection<Room> rooms) {
+  public void setRooms(Collection<Room> rooms) {
     this.rooms = rooms;
-  }
-
-  @Override
-  public String toString() {
-    return "Ship [name=" + name + "]";
   }
 
   public Collection<Trip> getTrips() {
@@ -55,11 +52,11 @@ public class Ship extends AbstractEntity {
     this.trips = trips;
   }
 
-  public Collection<Service> getService() {
-    return service;
+  public Collection<Service> getServices() {
+    return services;
   }
 
-  public void setService(Collection<Service> service) {
-    this.service = service;
+  public void setServices(Collection<Service> services) {
+    this.services = services;
   }
 }

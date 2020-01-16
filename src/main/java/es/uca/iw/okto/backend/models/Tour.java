@@ -1,6 +1,7 @@
 package es.uca.iw.okto.backend.models;
 
 import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,8 +17,8 @@ public class Tour extends Service {
 
   private LocalDate end;
 
-  @ManyToOne()
-  @JoinColumn(name="scale_id")
+  @ManyToOne
+  @JoinColumn(name="scale_id", nullable = false)
   private Scale scale;
 
   public Tour() {

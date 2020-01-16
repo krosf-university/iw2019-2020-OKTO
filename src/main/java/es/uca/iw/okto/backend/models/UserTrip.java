@@ -1,9 +1,12 @@
 package es.uca.iw.okto.backend.models;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 import es.uca.iw.okto.backend.utils.AbstractEntity;
 
 /**
@@ -13,26 +16,23 @@ import es.uca.iw.okto.backend.utils.AbstractEntity;
 public class UserTrip extends AbstractEntity {
   private static final long serialVersionUID = -1873290553852736669L;
 
-  @Id
   @ManyToOne
-  @JoinColumn
+  @JoinColumn(name = "user_id", nullable = false)
   private User user;
 
-  @Id
   @ManyToOne
-  @JoinColumn
+  @JoinColumn(name = "trip_id", nullable = false)
   private Trip trip;
 
-  @Id
   @ManyToOne
-  @JoinColumn
+  @JoinColumn(name = "room_id", nullable = false)
   private Room room;
 
-  @Id
-  @ManyToOne
-  @JoinColumn
-  private Purchases purchases;
+  @OneToMany(mappedBy = "userTrip")
+  private Collection<Purchase> purchases;
 
+  public UserTrip() {
+  }
 
   public User getUser() {
     return user;
@@ -58,11 +58,11 @@ public class UserTrip extends AbstractEntity {
     this.room = room;
   }
 
-  public Purchases getPurchases() {
+  public Collection<Purchase> getPurchases() {
     return purchases;
   }
 
-  public void setPurchases(Purchases purchases) {
+  public void setPurchases(Collection<Purchase> purchases) {
     this.purchases = purchases;
   }
 }

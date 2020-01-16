@@ -10,14 +10,15 @@ import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+
 import org.springframework.security.access.annotation.Secured;
+
 import es.uca.iw.okto.backend.models.User;
 import es.uca.iw.okto.ui.views.MainView;
 
 @Route(value = ReservationServiceView.ROUTE, layout = MainView.class)
 @PageTitle("Book Services")
 @Secured(User.Role.USER)
-
 public class ReservationServiceView extends Div {
   /**
   *

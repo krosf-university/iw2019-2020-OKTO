@@ -2,10 +2,12 @@ package es.uca.iw.okto.backend.models;
 
 import java.time.LocalDate;
 import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
 import es.uca.iw.okto.backend.utils.AbstractEntity;
 
 /**
@@ -17,7 +19,7 @@ public class Scale extends AbstractEntity {
   private static final long serialVersionUID = -5873780733709877895L;
 
   @ManyToOne
-  @JoinColumn(name="trip_id")
+  @JoinColumn(name="trip_id", nullable = false)
   private Trip trip;
 
   private LocalDate start;

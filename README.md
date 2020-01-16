@@ -5,7 +5,7 @@
 This is an university project. In this proyect we are going to develop a web application about a cruise line company, named OKTO (Oil Kills The Ocean). The proyect is separated in four main objectives, which are:
 
  1. Provide a contextual information point for the clients.
- 2. Ease the reservation and purchases on board.
+ 2. Ease the reservation and purchase on board.
  3. Provide a back-office for the management of system information.
  4. Monitor the activity of the shipping company.
  

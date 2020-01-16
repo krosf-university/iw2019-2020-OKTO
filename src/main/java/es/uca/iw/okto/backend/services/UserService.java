@@ -15,8 +15,7 @@ import es.uca.iw.okto.backend.repositories.UserRepository;
 @Service
 public class UserService implements FilterableCrudService<User> {
 
-  public static final String MODIFY_DISABLED_USER_NOT_PERMITTED =
-      "User is disable and cannot be modified or deleted";
+  public static final String MODIFY_DISABLED_USER_NOT_PERMITTED = "User is disable and cannot be modified or deleted";
   private static final String DELETING_SELF_NOT_PERMITTED = "You cannot delete your own account";
   private final UserRepository userRepository;
 
@@ -28,9 +27,7 @@ public class UserService implements FilterableCrudService<User> {
   public Page<User> findAnyMatching(Optional<String> filter, Pageable pageable) {
     if (filter.isPresent()) {
       String repositoryFilter = "%" + filter.get() + "%";
-      return getRepository()
-          .findByEmailLikeIgnoreCaseOrFirstNameLikeIgnoreCaseOrLastNameLikeIgnoreCaseOrRoleLikeIgnoreCase(
-              repositoryFilter, repositoryFilter, repositoryFilter, repositoryFilter, pageable);
+      return getRepository().findByEmailLikeIgnoreCaseOrFirstNameLikeIgnoreCaseOrLastNameLikeIgnoreCaseOrRoleLikeIgnoreCase(repositoryFilter, repositoryFilter, repositoryFilter, repositoryFilter, pageable);
     } else {
       return find(pageable);
     }
@@ -40,9 +37,7 @@ public class UserService implements FilterableCrudService<User> {
   public long countAnyMatching(Optional<String> filter) {
     if (filter.isPresent()) {
       String repositoryFilter = "%" + filter.get() + "%";
-      return userRepository
-          .countByEmailLikeIgnoreCaseOrFirstNameLikeIgnoreCaseOrLastNameLikeIgnoreCaseOrRoleLikeIgnoreCase(
-              repositoryFilter, repositoryFilter, repositoryFilter, repositoryFilter);
+      return userRepository.countByEmailLikeIgnoreCaseOrFirstNameLikeIgnoreCaseOrLastNameLikeIgnoreCaseOrRoleLikeIgnoreCase(repositoryFilter, repositoryFilter, repositoryFilter, repositoryFilter);
     } else {
       return count();
     }

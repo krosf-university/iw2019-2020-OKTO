@@ -4,8 +4,8 @@ import javax.persistence.EntityNotFoundException;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import es.uca.iw.okto.backend.utils.AbstractEntity;
 import es.uca.iw.okto.backend.models.User;
+import es.uca.iw.okto.backend.utils.AbstractEntity;
 
 public interface CrudService<T extends AbstractEntity> {
 

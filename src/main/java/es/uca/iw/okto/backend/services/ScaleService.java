@@ -1,11 +1,12 @@
 package es.uca.iw.okto.backend.services;
 
-import java.time.LocalDate;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 import es.uca.iw.okto.backend.models.Scale;
 import es.uca.iw.okto.backend.models.User;
 import es.uca.iw.okto.backend.repositories.ScaleRepository;
@@ -18,10 +19,6 @@ public class ScaleService implements FilterableCrudService<Scale> {
   @Autowired
   public ScaleService(ScaleRepository scaleRepository) {
     this.scaleRepository = scaleRepository;
-  }
-
-  public Page<Scale> findAnyMatching(Optional<LocalDate> filter,Optional<String> filter2, Pageable pageable) {
-    return find(pageable); 
   }
 
   @Override
