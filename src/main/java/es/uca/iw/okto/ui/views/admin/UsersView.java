@@ -11,10 +11,8 @@ import com.vaadin.flow.data.provider.DataProvider;
 import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
-
 import es.uca.iw.okto.app.security.CurrentUser;
 import es.uca.iw.okto.backend.models.User;
 import es.uca.iw.okto.backend.models.User.Role;
@@ -39,10 +37,12 @@ public class UsersView extends AbstractCrudView<User> {
 
   @Override
   public void setupGrid(Grid<User> grid) {
-    grid.addColumn(User::getEmail).setWidth("270px").setHeader("Email").setFlexGrow(5);
-    grid.addColumn(User::getDni).setWidth("270px").setHeader("DNI").setFlexGrow(5);
-    grid.addColumn(u -> u.getFirstName() + " " + u.getLastName()).setHeader("Name").setWidth("200px").setFlexGrow(5);
-    grid.addColumn(User::getRole).setHeader("Role").setWidth("150px");
+    grid.addColumn(User::getEmail).setWidth("10%").setHeader("Email").setFlexGrow(5);
+    grid.addColumn(User::getDni).setWidth("10%").setHeader("DNI").setFlexGrow(5);
+    grid.addColumn(u -> u.getFirstName() + " " + u.getLastName()).setHeader("Name").setWidth("20%").setFlexGrow(5);
+    grid.addColumn(User::getPhone).setWidth("10%").setHeader("Phone").setFlexGrow(5);
+    grid.addColumn(User::getRole).setHeader("Role").setWidth("10%");
+    
     setHeightFull();
   }
 

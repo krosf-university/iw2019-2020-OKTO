@@ -9,10 +9,8 @@ import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.provider.DataProvider;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
-
 import es.uca.iw.okto.app.security.CurrentUser;
 import es.uca.iw.okto.backend.models.Scale;
 import es.uca.iw.okto.backend.models.Trip;
