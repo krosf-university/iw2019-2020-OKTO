@@ -3,6 +3,8 @@ package es.uca.iw.okto.backend.models;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import es.uca.iw.okto.backend.utils.AbstractEntity;
 
 /**
@@ -12,6 +14,8 @@ import es.uca.iw.okto.backend.utils.AbstractEntity;
 public class Tip extends AbstractEntity {
   private static final long serialVersionUID = 4394291262804331237L;
 
+  @NotBlank
+  @NotEmpty
   private String description;
 
   @ManyToOne

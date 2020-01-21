@@ -1,10 +1,10 @@
 package es.uca.iw.okto.backend.models;
 
 import java.util.Collection;
-
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import es.uca.iw.okto.backend.utils.AbstractEntity;
 
 /**
@@ -14,8 +14,12 @@ import es.uca.iw.okto.backend.utils.AbstractEntity;
 public class City extends AbstractEntity {
   private static final long serialVersionUID = -6743878952544679659L;
 
+  @NotBlank
+  @NotEmpty
   private String name;
 
+  @NotBlank
+  @NotEmpty
   private String description;
 
   @OneToMany(mappedBy = "city")

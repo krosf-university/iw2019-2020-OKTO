@@ -19,6 +19,8 @@ public class AdminViews {
       add(new TabView(ServicesView.class, VaadinIcon.BOOK_DOLLAR, "Services"));
       add(new TabView(ToursView.class, VaadinIcon.BUSS, "Tours"));
       add(new TabView(TipViews.class, VaadinIcon.BOOK, "Tips"));
+      add(new TabView(CityViews.class, VaadinIcon.BUILDING, "Cities"));
+      add(new TabView(ShipViews.class, VaadinIcon.BOAT, "Ships"));
     }
   };
 
