@@ -3,7 +3,6 @@ package es.uca.iw.okto.backend.models;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
 import es.uca.iw.okto.backend.utils.AbstractEntity;
 
 /**
