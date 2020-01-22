@@ -11,8 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
-import es.uca.iw.okto.backend.utils.AbstractEntity;
-
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Service extends AbstractEntity {
@@ -78,5 +76,5 @@ public class Service extends AbstractEntity {
   public void setShopLine(Collection<ShopLine> shopLine) {
     this.shopLine = shopLine;
   }
-  
+
 }

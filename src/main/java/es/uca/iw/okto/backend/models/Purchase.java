@@ -8,8 +8,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import es.uca.iw.okto.backend.utils.AbstractEntity;
-
 @Entity
 public class Purchase extends AbstractEntity {
   private static final long serialVersionUID = 49272672233553808L;

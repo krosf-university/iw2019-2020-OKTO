@@ -4,8 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import es.uca.iw.okto.backend.utils.AbstractEntity;
-
 /**
  * Tip
  */
@@ -16,7 +14,7 @@ public class Tip extends AbstractEntity {
   private String description;
 
   @ManyToOne
-  @JoinColumn(name="city_id", nullable=false)
+  @JoinColumn(name = "city_id", nullable = false)
   private City city;
 
   public Tip() {

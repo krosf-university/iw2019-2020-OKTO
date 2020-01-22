@@ -5,8 +5,6 @@ import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
-import es.uca.iw.okto.backend.utils.AbstractEntity;
-
 /**
  * Ship
  */

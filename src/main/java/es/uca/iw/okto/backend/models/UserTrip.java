@@ -7,8 +7,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import es.uca.iw.okto.backend.utils.AbstractEntity;
-
 /**
  * UserTrip
  */

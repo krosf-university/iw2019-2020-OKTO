@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import es.uca.iw.okto.backend.utils.AbstractEntity;
-
 @Entity
 public class ShopLine extends AbstractEntity {
   private static final long serialVersionUID = -4047702656737581607L;

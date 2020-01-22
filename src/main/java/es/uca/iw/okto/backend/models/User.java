@@ -12,24 +12,25 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-import es.uca.iw.okto.backend.utils.AbstractEntity;
-
 @Entity
 public class User extends AbstractEntity {
   private static final long serialVersionUID = 4220485624755494919L;
 
   @NotBlank
+  @NotEmpty
   private String firstName;
 
   @NotBlank
+  @NotEmpty
   private String lastName;
 
   @NotBlank
+  @NotEmpty
   private String dni;
 
   @NotEmpty
   @Email
-  @Column(unique = false)
+  @Column(unique = true)
   private String email;
 
   @Column(nullable = true)

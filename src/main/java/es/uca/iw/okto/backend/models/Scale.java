@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import es.uca.iw.okto.backend.utils.AbstractEntity;
 
 /**
  * Scale
@@ -17,7 +16,7 @@ public class Scale extends AbstractEntity {
   private static final long serialVersionUID = -5873780733709877895L;
 
   @ManyToOne
-  @JoinColumn(name="trip_id")
+  @JoinColumn(name = "trip_id")
   private Trip trip;
 
   private LocalDate start;
@@ -28,7 +27,7 @@ public class Scale extends AbstractEntity {
   private Collection<Tour> tours;
 
   @ManyToOne
-  @JoinColumn(name="city_id", nullable=false)
+  @JoinColumn(name = "city_id", nullable = false)
   private City city;
 
   public Scale() {
