@@ -25,6 +25,7 @@ import es.uca.iw.okto.backend.HasLogger;
 import es.uca.iw.okto.backend.models.User;
 import es.uca.iw.okto.backend.security.SecurityUtils;
 import es.uca.iw.okto.views.admin.cities.CitiesView;
+import es.uca.iw.okto.views.admin.scales.ScalesView;
 import es.uca.iw.okto.views.admin.services.ServicesView;
 import es.uca.iw.okto.views.admin.ships.ShipsView;
 import es.uca.iw.okto.views.admin.tours.ToursView;
@@ -71,6 +72,7 @@ public class MainView extends AppLayout implements HasLogger {
       tabs.add(createTab("Ships", ShipsView.class));
       tabs.add(createTab("Cities", CitiesView.class));
       tabs.add(createTab("Tours", ToursView.class));
+      tabs.add(createTab("Scales", ScalesView.class));
     }
 
     return tabs.toArray(new Tab[tabs.size()]);
