@@ -13,6 +13,8 @@ import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.TabVariant;
 import com.vaadin.flow.component.tabs.Tabs;
+import com.vaadin.flow.router.BeforeEnterEvent;
+import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteConfiguration;
 import com.vaadin.flow.router.RouterLink;
@@ -37,7 +39,7 @@ import es.uca.iw.okto.views.manager.dashboard.DashboardView;
 @PWA(name = "OKTO", shortName = "OKTO")
 @Theme(value = Lumo.class, variant = Lumo.LIGHT)
 @Route
-public class MainView extends AppLayout implements HasLogger {
+public class MainView extends AppLayout implements HasLogger, BeforeEnterObserver {
   private static final long serialVersionUID = -4764580068380788514L;
 
   private final Tabs menu;
@@ -100,15 +102,18 @@ public class MainView extends AppLayout implements HasLogger {
 
   private void selectTab() {
     String target = RouteConfiguration.forSessionScope().getUrl(getContent().getClass());
-    getLogger().debug("Target: " + target);
+    Optional<Component> tabToSelect = menu.getChildren().filter(tab -> {
+      Component child = tab.getChildren().findFirst().get();
+      return child instanceof RouterLink && ((RouterLink) child).getHref().equals(target);
+    }).findFirst();
+    tabToSelect.ifPresent(tab -> menu.setSelectedTab((Tab) tab));
+  }
+
+  @Override
+  public void beforeEnter(BeforeEnterEvent event) {
+    String target = event.getLocation().getPath();
     if (target.isEmpty()) {
       menu.getChildren().findFirst().ifPresent(tab -> menu.setSelectedTab((Tab) tab));
-    } else {
-      Optional<Component> tabToSelect = menu.getChildren().filter(tab -> {
-        Component child = tab.getChildren().findFirst().get();
-        return child instanceof RouterLink && ((RouterLink) child).getHref().equals(target);
-      }).findFirst();
-      tabToSelect.ifPresent(tab -> menu.setSelectedTab((Tab) tab));
     }
   }
 }
