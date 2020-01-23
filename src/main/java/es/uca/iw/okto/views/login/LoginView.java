@@ -28,10 +28,7 @@ import es.uca.iw.okto.views.manager.dashboard.DashboardView;
 public class LoginView extends LoginOverlay implements AfterNavigationObserver, BeforeEnterObserver {
   private static final long serialVersionUID = 7623973319220884828L;
 
-  private AuthenticationManager authenticationManager;
-
   public LoginView(AuthenticationManager authenticationManager) {
-    this.authenticationManager = authenticationManager;
     LoginI18n i18n = LoginI18n.createDefault();
     i18n.setHeader(new LoginI18n.Header());
     i18n.getHeader().setTitle("OKTO");
