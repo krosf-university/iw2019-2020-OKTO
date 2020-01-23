@@ -13,9 +13,6 @@ import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.TabVariant;
 import com.vaadin.flow.component.tabs.Tabs;
-import com.vaadin.flow.router.BeforeEnterEvent;
-import com.vaadin.flow.router.BeforeEnterObserver;
-import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteConfiguration;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.PWA;
@@ -39,8 +36,7 @@ import es.uca.iw.okto.views.manager.dashboard.DashboardView;
 @JsModule("./styles/shared-styles.js")
 @PWA(name = "OKTO", shortName = "OKTO")
 @Theme(value = Lumo.class, variant = Lumo.LIGHT)
-@Route
-public class MainView extends AppLayout implements HasLogger, BeforeEnterObserver {
+public class MainView extends AppLayout implements HasLogger {
   private static final long serialVersionUID = -4764580068380788514L;
 
   private final Tabs menu;
@@ -109,13 +105,5 @@ public class MainView extends AppLayout implements HasLogger, BeforeEnterObserve
       return child instanceof RouterLink && ((RouterLink) child).getHref().equals(target);
     }).findFirst();
     tabToSelect.ifPresent(tab -> menu.setSelectedTab((Tab) tab));
-  }
-
-  @Override
-  public void beforeEnter(BeforeEnterEvent event) {
-    String target = event.getLocation().getPath();
-    if (target.isEmpty()) {
-      menu.getChildren().findFirst().ifPresent(tab -> menu.setSelectedTab((Tab) tab));
-    }
   }
 }

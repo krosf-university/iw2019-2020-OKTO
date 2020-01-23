@@ -1,5 +1,6 @@
 package es.uca.iw.okto.views.login;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.login.LoginI18n;
 import com.vaadin.flow.component.login.LoginOverlay;
 import com.vaadin.flow.router.AfterNavigationEvent;
@@ -8,6 +9,11 @@ import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import es.uca.iw.okto.backend.models.User;
 import es.uca.iw.okto.backend.security.SecurityUtils;
@@ -22,7 +28,10 @@ import es.uca.iw.okto.views.manager.dashboard.DashboardView;
 public class LoginView extends LoginOverlay implements AfterNavigationObserver, BeforeEnterObserver {
   private static final long serialVersionUID = 7623973319220884828L;
 
-  public LoginView() {
+  private AuthenticationManager authenticationManager;
+
+  public LoginView(AuthenticationManager authenticationManager) {
+    this.authenticationManager = authenticationManager;
     LoginI18n i18n = LoginI18n.createDefault();
     i18n.setHeader(new LoginI18n.Header());
     i18n.getHeader().setTitle("OKTO");
@@ -34,7 +43,16 @@ public class LoginView extends LoginOverlay implements AfterNavigationObserver, 
     i18n.getForm().setPassword("Password");
     setI18n(i18n);
     setForgotPasswordButtonVisible(false);
-    setAction("login");
+    addLoginListener(e -> {
+      Authentication token = authenticationManager
+          .authenticate(new UsernamePasswordAuthenticationToken(e.getUsername(), e.getPassword()));
+      SecurityContextHolder.getContext().setAuthentication(token);
+      if (SecurityUtils.hasRole(User.Role.ADMIN)) {
+        UI.getCurrent().navigate(UsersView.class);
+      } else if (SecurityUtils.hasRole(User.Role.MANAGER)) {
+        UI.getCurrent().navigate(DashboardView.class);
+      }
+    });
   }
 
   @Override
@@ -43,7 +61,7 @@ public class LoginView extends LoginOverlay implements AfterNavigationObserver, 
       event.forwardTo(UsersView.class);
     } else if (SecurityUtils.hasRole(User.Role.MANAGER)) {
       event.forwardTo(DashboardView.class);
-    } else{
+    } else {
       setOpened(true);
     }
   }

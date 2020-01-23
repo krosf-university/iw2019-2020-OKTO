@@ -26,12 +26,12 @@ import com.vaadin.flow.router.AfterNavigationEvent;
 import com.vaadin.flow.router.AfterNavigationObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.RouteAlias;
 
+import es.uca.iw.okto.backend.services.TripService;
+import es.uca.iw.okto.backend.services.UserService;
 import es.uca.iw.okto.views.MainView;
 
 @Route(value = "manager/dashboard", layout = MainView.class)
-@RouteAlias(value = "manager", layout = MainView.class)
 @PageTitle("Dashboard")
 @CssImport(value = "styles/views/dashboard/dashboard-view.css", include = "lumo-badge")
 @JsModule("@vaadin/vaadin-lumo-styles/badge.js")
@@ -44,14 +44,18 @@ public class DashboardView extends Div implements AfterNavigationObserver {
   private Chart monthlyVisitors = new Chart();
   private Chart responseTimes = new Chart();
   private final H2 usersH2 = new H2();
-  private final H2 eventsH2 = new H2();
+  private final H2 tripsH2 = new H2();
   private final H2 conversionH2 = new H2();
+  private UserService userService;
+  private TripService tripService;
 
-  public DashboardView() {
+  public DashboardView(UserService userService, TripService tripService) {
+    this.userService = userService;
+    this.tripService = tripService;
     setId("dashboard-view");
     Board board = new Board();
     board.addRow(createBadge("Users", usersH2, "primary-text", "Current users in the app", "badge"),
-        createBadge("Events", eventsH2, "success-text", "Events from the views", "badge success"),
+        createBadge("Trips", tripsH2, "success-text", "Trips", "badge success"),
         createBadge("Conversion", conversionH2, "error-text", "User conversion rate", "badge error"));
 
     monthlyVisitors.getConfiguration().setTitle("Monthly visitors per city");
@@ -94,8 +98,8 @@ public class DashboardView extends Div implements AfterNavigationObserver {
     // Set some data when this view is displayed.
 
     // Top row widgets
-    usersH2.setText("745");
-    eventsH2.setText("54.6k");
+    usersH2.setText(String.valueOf(userService.countAll()));
+    tripsH2.setText(String.valueOf(tripService.countAll()));
     conversionH2.setText("18%");
 
     // First chart

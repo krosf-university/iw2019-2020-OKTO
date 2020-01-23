@@ -5,6 +5,7 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -44,6 +45,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     this.userDetailsService = userDetailsService;
   }
 
+  @Bean
+  @Override
+  public AuthenticationManager authenticationManagerBean() throws Exception {
+    return super.authenticationManagerBean();
+  }
+
   /**
    * The password encoder to use when encrypting passwords.
    */
@@ -61,7 +68,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   }
 
   /**
-   * Registers our UserDetailsService and the password encoder to be used on login attempts.
+   * Registers our UserDetailsService and the password encoder to be used on login
+   * attempts.
    */
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
