@@ -5,9 +5,9 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
-import es.uca.iw.okto.views.admin.AdminView;
+import es.uca.iw.okto.views.MainView;
 
-@Route(value = "manger/services", layout = AdminView.class)
+@Route(value = "admin/services", layout = MainView.class)
 @PageTitle("Services")
 @CssImport("styles/views/services/services-view.css")
 public class ServicesView extends Div {

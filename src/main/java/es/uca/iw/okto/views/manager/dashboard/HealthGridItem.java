@@ -1,4 +1,4 @@
-package es.uca.iw.okto.views.dashboard;
+package es.uca.iw.okto.views.manager.dashboard;
 
 import java.time.LocalDate;
 

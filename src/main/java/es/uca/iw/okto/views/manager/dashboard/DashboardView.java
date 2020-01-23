@@ -1,4 +1,4 @@
-package es.uca.iw.okto.views.dashboard;
+package es.uca.iw.okto.views.manager.dashboard;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -28,10 +28,10 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 
-import es.uca.iw.okto.views.admin.AdminView;
+import es.uca.iw.okto.views.MainView;
 
-@Route(value = "manager/dashboard", layout = AdminView.class)
-@RouteAlias(value = "", layout = AdminView.class)
+@Route(value = "manager/dashboard", layout = MainView.class)
+@RouteAlias(value = "manager", layout = MainView.class)
 @PageTitle("Dashboard")
 @CssImport(value = "styles/views/dashboard/dashboard-view.css", include = "lumo-badge")
 @JsModule("@vaadin/vaadin-lumo-styles/badge.js")

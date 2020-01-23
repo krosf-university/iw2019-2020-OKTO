@@ -6,7 +6,6 @@ import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.RouteAlias;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.vaadin.crudui.crud.CrudOperation;
@@ -15,11 +14,9 @@ import org.vaadin.crudui.form.impl.field.provider.ComboBoxProvider;
 
 import es.uca.iw.okto.backend.models.User;
 import es.uca.iw.okto.backend.services.UserService;
-import es.uca.iw.okto.views.admin.AdminView;
+import es.uca.iw.okto.views.MainView;
 
-
-@Route(value = "admin/users", layout = AdminView.class)
-@RouteAlias(value = "admin", layout = AdminView.class)
+@Route(value = "admin/users", layout = MainView.class)
 @PageTitle("Users")
 @CssImport("styles/views/users/users-view.css")
 public class UsersView extends VerticalLayout {

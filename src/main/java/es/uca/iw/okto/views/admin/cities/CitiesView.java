@@ -5,9 +5,9 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
-import es.uca.iw.okto.views.admin.AdminView;
+import es.uca.iw.okto.views.MainView;
 
-@Route(value = "admin/cities", layout = AdminView.class)
+@Route(value = "admin/cities", layout = MainView.class)
 @PageTitle("Cities")
 @CssImport("styles/views/cities/cities-view.css")
 public class CitiesView extends Div {
