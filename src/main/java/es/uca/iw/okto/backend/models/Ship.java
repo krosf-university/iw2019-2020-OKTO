@@ -13,6 +13,8 @@ public class Ship extends AbstractEntity {
   private static final long serialVersionUID = 6951752917350417687L;
 
   private String name;
+  private int capacity;
+  private long length;
 
   @OneToMany(mappedBy = "ship")
   private Collection<Room> rooms;
@@ -32,6 +34,22 @@ public class Ship extends AbstractEntity {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public int getCapacity() {
+    return capacity;
+  }
+
+  public void setCapacity(int capacity) {
+    this.capacity = capacity;
+  }
+
+  public long getLength() {
+    return length;
+  }
+
+  public void setLength(long length) {
+    this.length = length;
   }
 
   public Collection<Room> getRooms() {
