@@ -8,8 +8,10 @@ import com.vaadin.flow.router.Route;
 
 import org.vaadin.crudui.crud.CrudOperation;
 import org.vaadin.crudui.crud.impl.GridCrud;
+import org.vaadin.crudui.form.impl.field.provider.CheckBoxGroupProvider;
 import org.vaadin.crudui.form.impl.field.provider.ComboBoxProvider;
 
+import es.uca.iw.okto.backend.models.Scale;
 import es.uca.iw.okto.backend.models.Ship;
 import es.uca.iw.okto.backend.models.Trip;
 import es.uca.iw.okto.backend.services.ScaleService;
@@ -33,8 +35,8 @@ public class TripsView extends VerticalLayout {
     crud.getCrudFormFactory().setVisibleProperties(CrudOperation.ADD, "name","start","end","ship","scales");
     crud.getCrudFormFactory().setFieldProvider("ship",
         new ComboBoxProvider<Ship>("Cities", shipService.findAll(), new TextRenderer<>(Ship::getName), Ship::getName));
-    // crud.getCrudFormFactory().setFieldProvider("scales",                                                                               Para poner las escalas
-    //     new CheckBoxGroupProvider<Scale>("Scales", scaleService.findAll(), new TextRenderer<>(Scale::getCity), Scale::getCity));
+    crud.getCrudFormFactory().setFieldProvider("scales",                                                                            
+        new CheckBoxGroupProvider<Scale>("Scales", scaleService.findAll(), new TextRenderer<>(), Scale::getCity));
     
     setSizeFull();
     add(crud);
