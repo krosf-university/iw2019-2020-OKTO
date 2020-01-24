@@ -32,6 +32,7 @@ import es.uca.iw.okto.views.admin.trips.TripsView;
 import es.uca.iw.okto.views.admin.users.UsersView;
 import es.uca.iw.okto.views.login.LoginView;
 import es.uca.iw.okto.views.manager.dashboard.DashboardView;
+import es.uca.iw.okto.views.manager.dashboard.DataView;
 
 @JsModule("./styles/shared-styles.js")
 @PWA(name = "OKTO", shortName = "OKTO")
@@ -63,6 +64,7 @@ public class MainView extends AppLayout implements HasLogger {
     final List<Tab> tabs = new ArrayList<>();
     if (SecurityUtils.hasRole(User.Role.MANAGER)) {
       tabs.add(createTab("Dashboard", DashboardView.class));
+      tabs.add(createTab("Data", DataView.class));
     } else if (SecurityUtils.hasRole(User.Role.ADMIN)) {
       tabs.add(createTab("Users", UsersView.class));
       tabs.add(createTab("Services", ServicesView.class));
