@@ -221,31 +221,40 @@ public class Seeder implements ApplicationListener<ContextRefreshedEvent> {
     createServiceIfNotFound(ship5, 15.00, "Towel reservation",
         "Reserve a towel for the day at the ship's pool");
 
-    Scale scale1 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), shangai);
-    Scale scale2 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), singapore);
-    Scale scale3 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), busan);
-    Scale scale4 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), tokio);
-    Scale scale5 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), barcelona);
-    Scale scale6 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), valencia);
-    Scale scale7 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), jeddah);
-    Scale scale8 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), istambul);
-    Scale scale9 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), roterdam);
-    Scale scale10 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), amberes);
-    Scale scale11 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), hamburg);
-    Scale scale12 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), ny);
-    Scale scale13 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), santos);
-    Scale scale14 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), colon);
-    Scale scale15 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), la);
-    Scale scale16 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), la);
-    Scale scale17 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), tokio);
-    Scale scale18 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), busan);
-    Scale scale19 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), istambul);
-    Scale scale20 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), valencia);
-    Scale scale21 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), roterdam);
-    Scale scale22 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), hamburg);
-    Scale scale23 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), ny);
-    Scale scale24 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), santos);
-    Scale scale25 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), colon);
+    Trip trip1 = createTripIfNotFound(LocalDate.now(), LocalDate.now(), ship1, "Asia");
+    Trip trip2 =
+        createTripIfNotFound(LocalDate.now(), LocalDate.now(), ship2, "Mediterranean");
+    Trip trip3 =
+        createTripIfNotFound(LocalDate.now(), LocalDate.now(), ship3, "Northern Seas");
+    Trip trip4 = createTripIfNotFound(LocalDate.now(), LocalDate.now(), ship4, "Atlantic");
+    Trip trip5 =
+        createTripIfNotFound(LocalDate.now(), LocalDate.now(), ship5, "Around the World");
+
+    Scale scale1 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), shangai, trip1);
+    Scale scale2 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), singapore, trip1);
+    Scale scale3 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), busan, trip1);
+    Scale scale4 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), tokio, trip1);
+    Scale scale5 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), barcelona, trip2);
+    Scale scale6 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), valencia, trip2);
+    Scale scale7 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), jeddah, trip2);
+    Scale scale8 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), istambul, trip2);
+    Scale scale9 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), roterdam, trip3);
+    Scale scale10 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), amberes, trip3);
+    Scale scale11 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), hamburg, trip3);
+    Scale scale12 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), ny, trip4);
+    Scale scale13 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), santos, trip4);
+    Scale scale14 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), colon, trip4);
+    Scale scale15 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), la, trip4);
+    Scale scale16 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), la, trip4);
+    Scale scale17 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), tokio, trip5);
+    Scale scale18 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), busan, trip5);
+    Scale scale19 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), istambul, trip5);
+    Scale scale20 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), valencia, trip5);
+    Scale scale21 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), roterdam, trip5);
+    Scale scale22 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), hamburg, trip5);
+    Scale scale23 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), ny, trip5);
+    Scale scale24 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), santos, trip5);
+    Scale scale25 = createScaleIfNotFound(LocalDate.now(), LocalDate.now(), colon, trip5);
 
     Collection<Scale> scales1 = new ArrayList<>(4);
     scales1.add(scale1);
@@ -277,16 +286,6 @@ public class Seeder implements ApplicationListener<ContextRefreshedEvent> {
     scales1.add(scale23);
     scales1.add(scale24);
     scales1.add(scale25);
-
-
-    Trip trip1 = createTripIfNotFound(LocalDate.now(), LocalDate.now(), ship1, "Asia", scales1);
-    Trip trip2 =
-        createTripIfNotFound(LocalDate.now(), LocalDate.now(), ship2, "Mediterranean", scales2);
-    Trip trip3 =
-        createTripIfNotFound(LocalDate.now(), LocalDate.now(), ship3, "Northern Seas", scales3);
-    Trip trip4 = createTripIfNotFound(LocalDate.now(), LocalDate.now(), ship4, "Atlantic", scales4);
-    Trip trip5 =
-        createTripIfNotFound(LocalDate.now(), LocalDate.now(), ship5, "Around the World", scales5);
 
     createTourIfNotFound(LocalDate.now(), LocalDate.now(), shangai, "Shangai Tour",
         "Tour around Shangai", 10.00, ship1);
@@ -372,7 +371,7 @@ public class Seeder implements ApplicationListener<ContextRefreshedEvent> {
 
   @Transactional
   Trip createTripIfNotFound(final LocalDate start, final LocalDate end, final Ship ship,
-      final String name, final Collection<Scale> scales) {
+      final String name) {
     Trip trip = tripRepository.findByStartAfter(start);
     if (trip == null) {
       trip = new Trip();
@@ -380,7 +379,6 @@ public class Seeder implements ApplicationListener<ContextRefreshedEvent> {
       trip.setEnd(end);
       trip.setShip(ship);
       trip.setName(name);
-      trip.setScales(scales);
       tripRepository.save(trip);
     }
     return trip;
@@ -428,13 +426,14 @@ public class Seeder implements ApplicationListener<ContextRefreshedEvent> {
   }
 
   @Transactional
-  Scale createScaleIfNotFound(final LocalDate start, final LocalDate end, final City city) {
+  Scale createScaleIfNotFound(final LocalDate start, final LocalDate end, final City city, final Trip trip) {
     Scale scale = scaleRepository.findByStartAfter(start);
     if (scale == null) {
       scale = new Scale();
       scale.setStart(start);
       scale.setEnd(end);
       scale.setCity(city);
+      scale.setTrip(trip);
       scaleRepository.save(scale);
     }
     return scale;

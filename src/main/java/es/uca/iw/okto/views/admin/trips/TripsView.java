@@ -25,18 +25,14 @@ public class TripsView extends VerticalLayout {
 
   public TripsView(TripService tripService, ShipService shipService, ScaleService scaleService) {
     GridCrud<Trip> crud = new GridCrud<>(Trip.class);
-    crud.getGrid().setColumns("name","start","end");
+    crud.getGrid().setColumns("name", "start", "end");
     crud.getGrid().addColumn(trip -> trip.getShip().getName()).setHeader("Ship").setKey("ship");
     crud.getGrid().setColumnReorderingAllowed(true);
-    crud.getGrid().addColumn(trip -> trip.getShip().getName()).setHeader("Ship").setKey("ship");
     crud.getCrudFormFactory().setUseBeanValidation(true);
-    crud.getCrudFormFactory().setVisibleProperties("name","start","end","ship","scales");
-    crud.getCrudFormFactory().setVisibleProperties(CrudOperation.ADD, "name","start","end","ship","scales");
+    crud.getCrudFormFactory().setVisibleProperties("name", "start", "end", "ship", "scales");
+    crud.getCrudFormFactory().setVisibleProperties(CrudOperation.ADD, "name", "start", "end", "ship", "scales");
     crud.getCrudFormFactory().setFieldProvider("ship",
         new ComboBoxProvider<Ship>("Cities", shipService.findAll(), new TextRenderer<>(Ship::getName), Ship::getName));
-    // crud.getCrudFormFactory().setFieldProvider("scales",                                                                               Para poner las escalas
-    //     new CheckBoxGroupProvider<Scale>("Scales", scaleService.findAll(), new TextRenderer<>(Scale::getCity), Scale::getCity));
-    
     setSizeFull();
     add(crud);
     crud.setOperations(() -> tripService.findAll(), trip -> tripService.save(trip), trip -> tripService.save(trip),
