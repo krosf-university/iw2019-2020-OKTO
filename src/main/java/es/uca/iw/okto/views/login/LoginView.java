@@ -20,6 +20,7 @@ import es.uca.iw.okto.backend.models.User;
 import es.uca.iw.okto.backend.security.SecurityUtils;
 import es.uca.iw.okto.views.admin.users.UsersView;
 import es.uca.iw.okto.views.manager.dashboard.DashboardView;
+import es.uca.iw.okto.views.user.trips.UserTripsView;
 
 /**
  * LoginView
@@ -50,6 +51,8 @@ public class LoginView extends LoginOverlay implements AfterNavigationObserver, 
           UI.getCurrent().navigate(UsersView.class);
         } else if (SecurityUtils.hasRole(User.Role.MANAGER)) {
           UI.getCurrent().navigate(DashboardView.class);
+        } else if (SecurityUtils.hasRole(User.Role.USER)) {
+          UI.getCurrent().navigate(UserTripsView.class);
         }
       } catch (AuthenticationException exp) {
         setError(true);

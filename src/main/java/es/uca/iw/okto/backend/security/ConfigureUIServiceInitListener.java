@@ -10,6 +10,7 @@ import es.uca.iw.okto.backend.models.User;
 import es.uca.iw.okto.views.admin.users.UsersView;
 import es.uca.iw.okto.views.login.LoginView;
 import es.uca.iw.okto.views.manager.dashboard.DashboardView;
+import es.uca.iw.okto.views.user.trips.UserTripsView;
 
 @SpringComponent
 public class ConfigureUIServiceInitListener implements VaadinServiceInitListener {
@@ -37,6 +38,8 @@ public class ConfigureUIServiceInitListener implements VaadinServiceInitListener
           event.forwardTo(UsersView.class);
         } else if (SecurityUtils.hasRole(User.Role.MANAGER)) {
           event.forwardTo(DashboardView.class);
+        } else if (SecurityUtils.hasRole(User.Role.USER)) {
+          event.forwardTo(UserTripsView.class);
         } else {
           event.rerouteToError(AccessDeniedException.class);
         }

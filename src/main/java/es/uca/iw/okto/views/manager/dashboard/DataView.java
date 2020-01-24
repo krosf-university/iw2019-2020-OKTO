@@ -12,7 +12,7 @@ import es.uca.iw.okto.backend.models.Activity;
 import es.uca.iw.okto.backend.services.ActivityService;
 import es.uca.iw.okto.views.MainView;
 
-@Route(value = "manager/Data", layout = MainView.class)
+@Route(value = "manager/data", layout = MainView.class)
 @PageTitle("Data")
 @CssImport("styles/views/users/users-view.css")
 public class DataView extends VerticalLayout {
