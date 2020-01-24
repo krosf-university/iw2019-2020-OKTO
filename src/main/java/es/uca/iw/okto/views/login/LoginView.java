@@ -13,6 +13,7 @@ import com.vaadin.flow.router.Route;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import es.uca.iw.okto.backend.models.User;
@@ -41,13 +42,17 @@ public class LoginView extends LoginOverlay implements AfterNavigationObserver, 
     setI18n(i18n);
     setForgotPasswordButtonVisible(false);
     addLoginListener(e -> {
-      Authentication token = authenticationManager
-          .authenticate(new UsernamePasswordAuthenticationToken(e.getUsername(), e.getPassword()));
-      SecurityContextHolder.getContext().setAuthentication(token);
-      if (SecurityUtils.hasRole(User.Role.ADMIN)) {
-        UI.getCurrent().navigate(UsersView.class);
-      } else if (SecurityUtils.hasRole(User.Role.MANAGER)) {
-        UI.getCurrent().navigate(DashboardView.class);
+      try {
+        Authentication token = authenticationManager
+            .authenticate(new UsernamePasswordAuthenticationToken(e.getUsername(), e.getPassword()));
+        SecurityContextHolder.getContext().setAuthentication(token);
+        if (SecurityUtils.hasRole(User.Role.ADMIN)) {
+          UI.getCurrent().navigate(UsersView.class);
+        } else if (SecurityUtils.hasRole(User.Role.MANAGER)) {
+          UI.getCurrent().navigate(DashboardView.class);
+        }
+      } catch (AuthenticationException exp) {
+        setError(true);
       }
     });
   }
