@@ -21,7 +21,7 @@ import es.uca.iw.okto.views.MainView;
 
 @Route(value = "user/trips", layout = MainView.class)
 @PageTitle("Trips")
-@CssImport("styles/views/users/user-trips.css")
+@CssImport("./styles/views/users/user-trips.css")
 public class UserTripsView extends Div implements HasLogger, AfterNavigationObserver {
   private static final long serialVersionUID = 4405988136982821755L;
 

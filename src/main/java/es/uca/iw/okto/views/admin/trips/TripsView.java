@@ -19,7 +19,7 @@ import es.uca.iw.okto.views.MainView;
 
 @Route(value = "admin/trips", layout = MainView.class)
 @PageTitle("Trips")
-@CssImport("styles/views/trips/trips-view.css")
+@CssImport("./styles/views/trips/trips-view.css")
 public class TripsView extends VerticalLayout {
   private static final long serialVersionUID = -7085673506780715794L;
 

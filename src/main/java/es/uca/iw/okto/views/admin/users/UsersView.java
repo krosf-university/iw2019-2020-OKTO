@@ -18,7 +18,7 @@ import es.uca.iw.okto.views.MainView;
 
 @Route(value = "admin/users", layout = MainView.class)
 @PageTitle("Users")
-@CssImport("styles/views/users/users-view.css")
+@CssImport("./styles/views/users/users-view.css")
 public class UsersView extends VerticalLayout {
   private static final long serialVersionUID = -5006331655968812186L;
 

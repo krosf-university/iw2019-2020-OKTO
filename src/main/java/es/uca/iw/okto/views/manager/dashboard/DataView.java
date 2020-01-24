@@ -14,7 +14,7 @@ import es.uca.iw.okto.views.MainView;
 
 @Route(value = "manager/data", layout = MainView.class)
 @PageTitle("Data")
-@CssImport("styles/views/users/users-view.css")
+@CssImport("./styles/views/users/users-view.css")
 public class DataView extends VerticalLayout {
   private static final long serialVersionUID = -5006331655968812186L;
 

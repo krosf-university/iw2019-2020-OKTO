@@ -14,7 +14,7 @@ import es.uca.iw.okto.views.MainView;
 
 @Route(value = "admin/cities", layout = MainView.class)
 @PageTitle("Cities")
-@CssImport("styles/views/cities/cities-view.css")
+@CssImport("./styles/views/cities/cities-view.css")
 public class CitiesView extends VerticalLayout {
   private static final long serialVersionUID = 591404710284427431L;
 

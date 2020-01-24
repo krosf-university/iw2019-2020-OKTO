@@ -15,7 +15,7 @@ import es.uca.iw.okto.views.MainView;
 
 @Route(value = "admin/ships", layout = MainView.class)
 @PageTitle("Ships")
-@CssImport("styles/views/ships/ships-view.css")
+@CssImport("./styles/views/ships/ships-view.css")
 public class ShipsView extends VerticalLayout {
   private static final long serialVersionUID = -1523963772684047695L;
 

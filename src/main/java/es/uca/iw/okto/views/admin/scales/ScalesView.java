@@ -20,7 +20,7 @@ import es.uca.iw.okto.views.MainView;
 
 @Route(value = "admin/scales", layout = MainView.class)
 @PageTitle("Scales")
-@CssImport("styles/views/scales/scales-view.css")
+@CssImport("./styles/views/scales/scales-view.css")
 public class ScalesView extends VerticalLayout {
   private static final long serialVersionUID = -7085673506780715794L;
 
