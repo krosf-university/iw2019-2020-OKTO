@@ -26,11 +26,8 @@ public class Tour extends Service {
   @JoinColumn(name = "city_ids")
   private City city;
 
-  public Tour(LocalDate start, LocalDate end, Scale scale, City city) {
-    this.start=start;
-    this.end=end;
-    this.scale=scale;
-    this.city=city;
+   // empty due jpa
+  public Tour() {
   }
 
   @Override
