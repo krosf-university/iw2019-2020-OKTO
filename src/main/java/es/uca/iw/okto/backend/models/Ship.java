@@ -26,12 +26,8 @@ public class Ship extends AbstractEntity {
   @OneToMany(mappedBy = "ship")
   private Collection<Service> services;
 
-  public Ship(String name, int capacity, long length, Collection<Room> rooms, Collection<Service> services) {
-    this.name=name;
-    this.capacity=capacity;
-    this.length=length;
-    this.rooms=rooms;
-    this.services=services;
+   // empty due jpa
+  public Ship() {
   }
 
   public String getName() {
