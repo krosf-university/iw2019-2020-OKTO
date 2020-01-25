@@ -6,6 +6,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@Override
 public class Activity extends Service {
   private static final long serialVersionUID = 1793141522584474874L;
 
