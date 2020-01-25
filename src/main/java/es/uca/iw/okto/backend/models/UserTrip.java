@@ -30,11 +30,8 @@ public class UserTrip extends AbstractEntity {
   @OneToMany(mappedBy = "userTrip")
   private Collection<Purchase> purchases;
 
-  public UserTrip(User user, Trip trip, Room room, Collection<Purchase> purchases) {
-    this.user=user;
-    this.trip=trip;
-    this.room=room;
-    this.purchases=purchases;
+   // empty due jpa
+  public UserTrip() {
   }
 
   public User getUser() {
