@@ -24,11 +24,7 @@ public class ShopLine extends AbstractEntity {
   @JoinColumn(name = "shopline_id", nullable = false)
   private Purchase purchase;
 
-  public ShopLine(Integer amount, Double price, Service service, Purchase purchase) {
-    this.amount=amount;
-    this.price=price;
-    this.service=service;
-    this.purchase=purchase;
+  public ShopLine() {
   }
 
   public Integer getAmount() {
