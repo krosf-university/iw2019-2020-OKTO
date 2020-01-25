@@ -23,10 +23,8 @@ public class City extends AbstractEntity {
   @OneToMany(mappedBy = "city")
   private Collection<Scale> scales;
 
-  public City(String description, Collection<Tip> tips, Collection<Scale> scales) {
-    this.description=description;
-    this.tips=tips;
-    this.scales=scales;
+   // empty due jpa
+  public City() {
   }
 
   public String getName() {
