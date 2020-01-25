@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
  * Scale
  */
 @Entity
+@Override
 public class Scale extends AbstractEntity {
 
   private static final long serialVersionUID = -5873780733709877895L;
@@ -31,7 +32,12 @@ public class Scale extends AbstractEntity {
   @JoinColumn(name = "city_id", nullable = false)
   private City city;
 
-  public Scale() {
+  public Scale(Trip trip, LocalDate start, LocalDate end, Collection<Tour> tours, City city) {
+    this.trip=trip;
+    this.start=start;
+    this.end=end;
+    this.tours=tours;
+    this.city=city;
   }
 
   public Trip getTrip() {
