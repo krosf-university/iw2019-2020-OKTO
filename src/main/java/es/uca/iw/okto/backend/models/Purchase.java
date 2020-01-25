@@ -22,10 +22,8 @@ public class Purchase extends AbstractEntity {
   @JoinColumn(name = "usertrip_id")
   private UserTrip userTrip;
 
-  public Purchase(Double price, Collection<ShopLine> shopLines, Collection<UserTrip> userTrip) {
-    this.price=price;
-    this.shopLines=shopLines;
-    this.userTrip=userTrip;
+   // empty due jpa
+  public Purchase() {
   }
 
   public Date getPrice() {
