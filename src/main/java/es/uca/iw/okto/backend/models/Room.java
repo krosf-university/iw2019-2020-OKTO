@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
  * Room
  */
 @Entity
+@Override
 public class Room extends AbstractEntity {
   private static final long serialVersionUID = 8378060911859966240L;
 
@@ -23,7 +24,10 @@ public class Room extends AbstractEntity {
   @OneToMany(mappedBy = "room")
   private Collection<UserTrip> users;
 
-  public Room() {
+  public Room(Integer capacity, Ship ship, Collection<UserTrip> users) {
+    this.capacity=capacity;
+    this.ship=ship;
+    this.users=users;
   }
 
   public Integer getCapacity() {
