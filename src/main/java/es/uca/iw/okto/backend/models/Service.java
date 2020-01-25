@@ -35,12 +35,8 @@ public class Service extends AbstractEntity {
   @OneToMany(mappedBy = "service")
   private Collection<ShopLine> shopLine;
 
-  public Service(Ship ship, String name, String description, Double price, Collection<ShopLine> shopLine) {
-    this.ship=ship;
-    this.name=name;
-    this.description=description;
-    this.price=price;
-    this.shopLine=shopLine;
+   // empty due jpa
+  public Service() {
   }
 
   public Ship getShip() {
