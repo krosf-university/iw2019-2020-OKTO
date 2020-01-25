@@ -57,15 +57,15 @@ INSERT INTO scale(id,version,start,end,city_id,trip_id) VALUES
 (8,65645645555,'2020-04-17','2020-04-19',5,3),
 (9,76756766665,'2020-04-19','2020-04-21',2,3);
 INSERT INTO user(id,version,dni,email,enabled,first_name,last_name,password,phone,role) VALUES
-(1,23433333333,'11111111A',1,'admin@okto.com','OKTO','OKTO','okto','111111111','ADMIN'),
-(2,43523453444,'11111111B',1,'manager@okto.com','OKTO','OKTO','okto','111111112','MANAGER'),
-(3,56656565556,'11111111C',1,'user@okto.com','OKTO','OKTO','okto','111111113','USER'),
-(4,75757575757,'11111111D',1,'alvaro@okto.com','Alvaro','Braza','okto','111111114','USER'),
-(5,87878787787,'11111111E',1,'rodrigo@okto.com','Rodrigo','Sanabria','okto','111111115','USER'),
-(6,34333333333,'11111111F',1,'felix@okto.com','Felix','Periacho','okto','111111117','USER'),
-(7,56555555555,'11111111G',1,'borja@okto.com','Borja','OKTO','okto','111111118','USER'),
-(8,67676767676,'11111111H',1,'pedro@okto.com','Pedro','Manager','okto','111111119','MANAGER'),
-(9,89888997556,'11111111I',1,'admin2@okto.com','OKTO2','OKTO2','okto','111111120','ADMIN');
+(1,23433333333,'11111111A',1,'admin@okto.com','OKTO','OKTO','$2y$12$aaftVJZqjC.lpQksMHlkHePzGA92X1MBuudZXns.l9p9v4Yohr.Xm','111111111','ADMIN'),
+(2,43523453444,'11111111B',1,'manager@okto.com','OKTO','OKTO','$2y$12$aaftVJZqjC.lpQksMHlkHePzGA92X1MBuudZXns.l9p9v4Yohr.Xm','111111112','MANAGER'),
+(3,56656565556,'11111111C',1,'user@okto.com','OKTO','OKTO','$2y$12$aaftVJZqjC.lpQksMHlkHePzGA92X1MBuudZXns.l9p9v4Yohr.Xm','111111113','USER'),
+(4,75757575757,'11111111D',1,'alvaro@okto.com','Alvaro','Braza','$2y$12$aaftVJZqjC.lpQksMHlkHePzGA92X1MBuudZXns.l9p9v4Yohr.Xm','111111114','USER'),
+(5,87878787787,'11111111E',1,'rodrigo@okto.com','Rodrigo','Sanabria','$2y$12$aaftVJZqjC.lpQksMHlkHePzGA92X1MBuudZXns.l9p9v4Yohr.Xm','111111115','USER'),
+(6,34333333333,'11111111F',1,'felix@okto.com','Felix','Periacho','$2y$12$aaftVJZqjC.lpQksMHlkHePzGA92X1MBuudZXns.l9p9v4Yohr.Xm','111111117','USER'),
+(7,56555555555,'11111111G',1,'borja@okto.com','Borja','OKTO','$2y$12$aaftVJZqjC.lpQksMHlkHePzGA92X1MBuudZXns.l9p9v4Yohr.Xm','111111118','USER'),
+(8,67676767676,'11111111H',1,'pedro@okto.com','Pedro','Manager','$2y$12$aaftVJZqjC.lpQksMHlkHePzGA92X1MBuudZXns.l9p9v4Yohr.Xm','111111119','MANAGER'),
+(9,89888997556,'11111111I',1,'admin2@okto.com','OKTO2','OKTO2','$2y$12$aaftVJZqjC.lpQksMHlkHePzGA92X1MBuudZXns.l9p9v4Yohr.Xm','111111120','ADMIN');
 INSERT INTO user_trip(id,version,room_id,trip_id,user_id) VALUES
 (1,12341234222,1,1,4),
 (2,43544544444,1,1,5),
