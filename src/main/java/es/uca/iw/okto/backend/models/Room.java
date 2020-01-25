@@ -24,10 +24,8 @@ public class Room extends AbstractEntity {
   @OneToMany(mappedBy = "room")
   private Collection<UserTrip> users;
 
-  public Room(Integer capacity, Ship ship, Collection<UserTrip> users) {
-    this.capacity=capacity;
-    this.ship=ship;
-    this.users=users;
+   // empty due jpa
+  public Room() {
   }
 
   public Integer getCapacity() {
