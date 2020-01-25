@@ -23,24 +23,24 @@ import es.uca.iw.okto.views.MainView;
 @CssImport("./styles/views/users/users-view.css")
 public class UsersView extends VerticalLayout {
   private static final long serialVersionUID = -5006331655968812186L;
-  private static final String firstName = "firstName";
-  private static final String lastName = "lastName";
-  private static final String dni = "dni";
-  private static final String email = "email";
-  private static final String enabled = "enabled";
-  private static final String phone = "phone";
-  private static final String role = "role";
+  private static final String FIRSTNAME = "firstName";
+  private static final String LASTNAME = "lastName";
+  private static final String DNI = "dni";
+  private static final String EMAIL = "email";
+  private static final String ENABLED = "enabled";
+  private static final String PHONE = "phone";
+  private static final String ROLE = "role";
 
   @Autowired
   public UsersView(UserService userService) {
     GridCrud<User> crud = new GridCrud<>(User.class);
-    crud.getGrid().setColumns(firstName, lastName, dni, email, phone, enabled, role);
+    crud.getGrid().setColumns(FIRSTNAME, LASTNAME, DNI, EMAIL, PHONE, ENABLED, ROLE);
     crud.getGrid().setColumnReorderingAllowed(true);
     crud.getCrudFormFactory().setUseBeanValidation(true);
-    crud.getCrudFormFactory().setVisibleProperties(firstName, lastName, dni, email, phone, enabled, role);
-    crud.getCrudFormFactory().setVisibleProperties(CrudOperation.ADD, firstName, lastName, dni, email, phone, enabled,
-        role);
-    crud.getCrudFormFactory().setFieldProvider(role, new ComboBoxProvider<>(Arrays.asList(User.Role.getAllRoles())));
+    crud.getCrudFormFactory().setVisibleProperties(FIRSTNAME, LASTNAME, DNI, EMAIL, PHONE, ENABLED, ROLE);
+    crud.getCrudFormFactory().setVisibleProperties(CrudOperation.ADD, FIRSTNAME, LASTNAME, DNI, EMAIL, PHONE, ENABLED,
+        ROLE);
+    crud.getCrudFormFactory().setFieldProvider(ROLE, new ComboBoxProvider<>(Arrays.asList(User.Role.getAllRoles())));
     setSizeFull();
     add(crud);
     crud.setCrudListener(this.userCrudLister(userService));
