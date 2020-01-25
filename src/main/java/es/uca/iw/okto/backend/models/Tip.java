@@ -18,9 +18,8 @@ public class Tip extends AbstractEntity {
   @JoinColumn(name = "city_id", nullable = false)
   private City city;
 
-  public Tip(String description, City city) {
-    this.description=description;
-    this.city=city;
+   // empty due jpa
+  public Tip() {
   }
 
   public String getDescription() {
