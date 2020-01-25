@@ -13,6 +13,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
+@Override
 public class User extends AbstractEntity {
   private static final long serialVersionUID = 4220485624755494919L;
 
@@ -47,7 +48,15 @@ public class User extends AbstractEntity {
 
   private boolean enabled = false;
 
-  public User() {
+  public User(String firstName, String lastName, String dni, String email, String phone, String password, String role, Collection<UserTrip> trips) {
+    this.firstName=firstName;
+    this.lastName=lastName;
+    this.dni=dni;
+    this.email=email;
+    this.phone=phone;
+    this.password=password;
+    this.role=role;
+    this.trips=trips;
   }
 
   public String getFirstName() {
