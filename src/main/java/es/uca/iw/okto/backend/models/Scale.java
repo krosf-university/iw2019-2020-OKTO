@@ -32,12 +32,8 @@ public class Scale extends AbstractEntity {
   @JoinColumn(name = "city_id", nullable = false)
   private City city;
 
-  public Scale(Trip trip, LocalDate start, LocalDate end, Collection<Tour> tours, City city) {
-    this.trip=trip;
-    this.start=start;
-    this.end=end;
-    this.tours=tours;
-    this.city=city;
+   // empty due jpa
+  public Scale() {
   }
 
   public Trip getTrip() {
