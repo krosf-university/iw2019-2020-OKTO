@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
  * Trip
  */
 @Entity
+@Override
 public class Trip extends AbstractEntity {
   private static final long serialVersionUID = 2447199126332907173L;
 
@@ -31,7 +32,13 @@ public class Trip extends AbstractEntity {
   @OneToMany(mappedBy = "trip")
   private Collection<Scale> scales;
 
-  public Trip() {
+  public Trip(LocalDate start, LocalDate end, String name, Ship ship, Collection<UserTrip> users, Collection<Scale> scales) {
+    this.start=start;
+    this.end=end;
+    this.name=name;
+    this.ship=ship;
+    this.users=users;
+    this.scales=scales;
   }
 
   public String getName() {
