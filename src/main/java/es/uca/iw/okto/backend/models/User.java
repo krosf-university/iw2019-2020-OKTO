@@ -48,15 +48,8 @@ public class User extends AbstractEntity {
 
   private boolean enabled = false;
 
-  public User(String firstName, String lastName, String dni, String email, String phone, String password, String role, Collection<UserTrip> trips) {
-    this.firstName=firstName;
-    this.lastName=lastName;
-    this.dni=dni;
-    this.email=email;
-    this.phone=phone;
-    this.password=password;
-    this.role=role;
-    this.trips=trips;
+   // empty due jpa
+  public User() {
   }
 
   public String getFirstName() {
