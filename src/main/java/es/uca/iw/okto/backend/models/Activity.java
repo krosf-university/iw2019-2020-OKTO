@@ -16,9 +16,8 @@ public class Activity extends Service {
   @Temporal(TemporalType.DATE)
   private Date end;
 
-  public Activity(Date start, Date end) {
-    this.start=start;
-    this.end=end;
+  // empty due jpa
+  public Activity() {
   }
 
   public Date getStart() {
