@@ -67,3 +67,12 @@ INSERT INTO trip(id,version,start,end,name,ship_id) VALUES (6,0,'2020-01-26','20
 INSERT INTO trip(id,version,start,end,name,ship_id) VALUES (7,0,'2020-01-26','2020-02-17','Hahn',3);
 INSERT INTO trip(id,version,start,end,name,ship_id) VALUES (8,0,'2020-01-26','2020-02-17','Faulkner',1);
 INSERT INTO trip(id,version,start,end,name,ship_id) VALUES (9,0,'2020-01-26','2020-02-17','Lee',2);
+INSERT INTO service(id,version,dtype,description,name,price,ship_id) VALUES (1,12311234356,'ocio','disfruta de un spa relajante o de un,masaje','spavolution',14.99,1);
+INSERT INTO service(id,version,dtype,description,name,price,ship_id) VALUES (2,12311233356,'ocio','piscina al aire libre','piscina',0,1);
+INSERT INTO service(id,version,dtype,description,name,price,ship_id) VALUES (3,14311234356,'deporte','alquiler de pistas de padel y material deportivo','padelista',4.5,1);
+INSERT INTO service(id,version,dtype,description,name,price,ship_id) VALUES (4,14311234386,'comida','restaurante de comida china','gran muralla',19.95,2);
+INSERT INTO service(id,version,dtype,description,name,price,ship_id) VALUES (5,14391234356,'comida','restaurante de comida italiana','bella ciao',14.99,3);
+INSERT INTO service(id,version,dtype,description,name,price,ship_id) VALUES (6,64311234356,'comida','restaurante de comida rapida','fastService',7.99,2);
+INSERT INTO service(id,version,dtype,description,name,price,ship_id) VALUES (7,24311234356,'ocio','discoteca nocturna','MomartOcean',7.99,3);
+INSERT INTO service(id,version,dtype,description,name,price,ship_id) VALUES (8,14399234356,'regalos','tienda de souvenirs','giftShop',19.99,4);
+
