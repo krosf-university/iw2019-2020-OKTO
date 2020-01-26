@@ -1,5 +1,6 @@
 package es.uca.iw.okto.backend.services;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 import org.springframework.stereotype.Service;
@@ -9,7 +10,9 @@ import es.uca.iw.okto.backend.models.User;
 import es.uca.iw.okto.backend.repositories.TripRepository;
 
 @Service
-public class TripService {
+public class TripService implements Serializable {
+  private static final long serialVersionUID = -1653601070644039338L;
+
   private final TripRepository tripRepository;
 
   public TripService(TripRepository tripRepository) {

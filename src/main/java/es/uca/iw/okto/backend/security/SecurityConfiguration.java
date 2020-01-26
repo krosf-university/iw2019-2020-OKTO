@@ -37,9 +37,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   private final UserDetailsService userDetailsService;
 
-  // @Autowired
-  // private PasswordEncoder passwordEncoder;
-
   @Autowired
   public SecurityConfiguration(UserDetailsService userDetailsService) {
     this.userDetailsService = userDetailsService;
