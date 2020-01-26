@@ -85,4 +85,13 @@ INSERT INTO user_trip(id,version,room_id,user_id,trip_id) VALUES (7,12311234776,
 INSERT INTO user_trip(id,version,room_id,user_id,trip_id) VALUES (8,12311234306,6,8,8);
 INSERT INTO user_trip(id,version,room_id,user_id,trip_id) VALUES (9,10311234356,5,9,8);
 INSERT INTO user_trip(id,version,room_id,user_id,trip_id) VALUES (10,12310234356,4,10,8);
+INSERT INTO tip(id,version,description,city_id) VALUES (1,12311234356,'Lorem ipsum dolor sit amet,',1);
+INSERT INTO tip(id,version,description,city_id) VALUES (2,12301234356,'consectetur adipiscing elit',2);
+INSERT INTO tip(id,version,description,city_id) VALUES (3,12411234356,'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',3);
+INSERT INTO tip(id,version,description,city_id) VALUES (4,12111234356,'Ut enim ad minim veniam',4);
+INSERT INTO tip(id,version,description,city_id) VALUES (5,12322224356,'quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',5);
+INSERT INTO tip(id,version,description,city_id) VALUES (6,12355534356,'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur',6);
+INSERT INTO tip(id,version,description,city_id) VALUES (7,12311234776,'quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',7);
+INSERT INTO tip(id,version,description,city_id) VALUES (8,12311234306,'Excepteur sint occaecat cupidatat non proident',8);
+INSERT INTO tip(id,version,description,city_id) VALUES (9,10311234356,'sunt in culpa qui officia deserunt mollit anim id est laborum',9);
 
