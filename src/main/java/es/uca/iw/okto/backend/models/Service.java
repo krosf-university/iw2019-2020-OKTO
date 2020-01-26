@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
 @Entity
+@Override
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Service extends AbstractEntity {
   private static final long serialVersionUID = -8104609640892884129L;
@@ -34,6 +35,7 @@ public class Service extends AbstractEntity {
   @OneToMany(mappedBy = "service")
   private Collection<ShopLine> shopLine;
 
+   // empty due jpa
   public Service() {
   }
 

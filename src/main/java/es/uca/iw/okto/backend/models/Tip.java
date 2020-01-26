@@ -8,6 +8,7 @@ import javax.persistence.ManyToOne;
  * Tip
  */
 @Entity
+@Override
 public class Tip extends AbstractEntity {
   private static final long serialVersionUID = 4394291262804331237L;
 
@@ -17,6 +18,7 @@ public class Tip extends AbstractEntity {
   @JoinColumn(name = "city_id", nullable = false)
   private City city;
 
+   // empty due jpa
   public Tip() {
   }
 

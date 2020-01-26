@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
  * UserTrip
  */
 @Entity
+@Override
 public class UserTrip extends AbstractEntity {
   private static final long serialVersionUID = -1873290553852736669L;
 
@@ -29,6 +30,7 @@ public class UserTrip extends AbstractEntity {
   @OneToMany(mappedBy = "userTrip")
   private Collection<Purchase> purchases;
 
+   // empty due jpa
   public UserTrip() {
   }
 

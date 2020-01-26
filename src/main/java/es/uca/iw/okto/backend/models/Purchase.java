@@ -9,10 +9,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
+@Override
 public class Purchase extends AbstractEntity {
   private static final long serialVersionUID = 49272672233553808L;
 
-  private Date price;
+  private Double price;
 
   @OneToMany(mappedBy = "purchase")
   private Collection<ShopLine> shopLines;
@@ -21,6 +22,7 @@ public class Purchase extends AbstractEntity {
   @JoinColumn(name = "usertrip_id")
   private UserTrip userTrip;
 
+   // empty due jpa
   public Purchase() {
   }
 

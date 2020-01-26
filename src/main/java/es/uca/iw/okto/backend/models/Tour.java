@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
  * Tour
  */
 @Entity
+@Override
 public class Tour extends Service {
   private static final long serialVersionUID = -6774086899975203008L;
 
@@ -25,6 +26,7 @@ public class Tour extends Service {
   @JoinColumn(name = "city_ids")
   private City city;
 
+   // empty due jpa
   public Tour() {
   }
 
