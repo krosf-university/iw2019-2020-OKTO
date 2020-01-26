@@ -5,6 +5,7 @@ import java.util.Collection;
 import org.springframework.stereotype.Service;
 
 import es.uca.iw.okto.backend.models.Trip;
+import es.uca.iw.okto.backend.models.User;
 import es.uca.iw.okto.backend.repositories.TripRepository;
 
 @Service
@@ -29,5 +30,9 @@ public class TripService {
 
   public void delete(Trip trip) {
     tripRepository.delete(trip);
+  }
+
+  public Collection<Trip> findByUser(User user) {
+    return tripRepository.findByUserId(user.getId());
   }
 }

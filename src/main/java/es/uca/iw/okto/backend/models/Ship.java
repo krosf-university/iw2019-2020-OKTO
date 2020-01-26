@@ -76,4 +76,14 @@ public class Ship extends AbstractEntity {
   public void setServices(Collection<Service> services) {
     this.services = services;
   }
+
+  @Override
+  public boolean equals(Object obj) {
+    return super.equals(obj);
+  }
+
+  @Override
+  public int hashCode() {
+    return super.hashCode();
+  }
 }

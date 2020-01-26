@@ -41,4 +41,14 @@ public class Tip extends AbstractEntity {
   public String toString() {
     return "Tip [city=" + city.getId() + ", description=" + description + "]";
   }
+
+  @Override
+  public boolean equals(Object obj) {
+    return super.equals(obj);
+  }
+
+  @Override
+  public int hashCode() {
+    return super.hashCode();
+  }
 }

@@ -47,4 +47,14 @@ public class Purchase extends AbstractEntity {
   public void setUserTrip(UserTrip userTrip) {
     this.userTrip = userTrip;
   }
+
+  @Override
+  public boolean equals(Object obj) {
+    return super.equals(obj);
+  }
+
+  @Override
+  public int hashCode() {
+    return super.hashCode();
+  }
 }

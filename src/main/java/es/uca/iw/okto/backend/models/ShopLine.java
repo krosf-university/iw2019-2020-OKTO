@@ -58,4 +58,14 @@ public class ShopLine extends AbstractEntity {
   public void setPurchase(Purchase purchase) {
     this.purchase = purchase;
   }
+
+  @Override
+  public boolean equals(Object obj) {
+    return super.equals(obj);
+  }
+
+  @Override
+  public int hashCode() {
+    return super.hashCode();
+  }
 }

@@ -1,5 +1,7 @@
 package es.uca.iw.okto.views.user.trips;
 
+import java.io.Serializable;
+
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
@@ -15,19 +17,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import es.uca.iw.okto.backend.HasLogger;
 import es.uca.iw.okto.backend.models.Trip;
-import es.uca.iw.okto.backend.repositories.TripRepository;
 import es.uca.iw.okto.backend.security.CurrentUser;
+import es.uca.iw.okto.backend.services.TripService;
 import es.uca.iw.okto.views.MainView;
 
 @Route(value = "user/trips", layout = MainView.class)
 @PageTitle("Trips")
 @CssImport("./styles/views/users/user-trips.css")
-public class UserTripsView extends Div implements HasLogger, AfterNavigationObserver {
+public class UserTripsView extends Div implements HasLogger, AfterNavigationObserver, Serializable {
   private static final long serialVersionUID = 4405988136982821755L;
 
   private final Grid<Trip> grid;
   @Autowired
-  private TripRepository tripRepository;
+  private TripService tripService;
+
   @Autowired
   private CurrentUser currentUser;
 
@@ -48,6 +51,6 @@ public class UserTripsView extends Div implements HasLogger, AfterNavigationObse
 
   @Override
   public void afterNavigation(AfterNavigationEvent event) {
-    grid.setItems(tripRepository.findByUserId(currentUser.getUser().getId()));
+    grid.setItems(tripService.findByUser(currentUser.getUser()));
   }
 }

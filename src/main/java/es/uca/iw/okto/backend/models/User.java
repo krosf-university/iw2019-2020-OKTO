@@ -153,23 +153,14 @@ public class User extends AbstractEntity {
 
   @Override
   public boolean equals(Object obj) {
-    if (this == obj)
-      return true;
-    if (!super.equals(obj))
+    if (!super.equals(obj)) {
       return false;
-    if (getClass() != obj.getClass())
-      return false;
+    }
     User other = (User) obj;
-    if (dni == null) {
-      if (other.dni != null)
-        return false;
-    } else if (!dni.equals(other.dni))
-      return false;
     if (email == null) {
       if (other.email != null)
         return false;
-    } else if (!email.equals(other.email))
-      return false;
-    return true;
+    }
+    return email.equals(other.email);
   }
 }

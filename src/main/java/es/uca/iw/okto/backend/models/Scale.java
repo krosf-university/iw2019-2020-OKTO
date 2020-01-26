@@ -79,4 +79,14 @@ public class Scale extends AbstractEntity {
   public String toString() {
     return "Scale [city=" + city.getId() + ", end=" + end + ", start=" + start + ", trip=" + trip.getId() + "]";
   }
+
+  @Override
+  public boolean equals(Object obj) {
+    return super.equals(obj);
+  }
+
+  @Override
+  public int hashCode() {
+    return super.hashCode();
+  }
 }

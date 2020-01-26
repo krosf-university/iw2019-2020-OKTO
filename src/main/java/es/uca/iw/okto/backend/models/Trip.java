@@ -87,4 +87,14 @@ public class Trip extends AbstractEntity {
   public String toString() {
     return "Trip [end=" + end + ", ship=" + ship.getId() + ", start=" + start + "]";
   }
+
+  @Override
+  public boolean equals(Object obj) {
+    return super.equals(obj);
+  }
+
+  @Override
+  public int hashCode() {
+    return super.hashCode();
+  }
 }
