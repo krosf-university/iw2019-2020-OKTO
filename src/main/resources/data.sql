@@ -103,9 +103,9 @@ INSERT INTO scale(id,version,start,end,city_id,trip_id) VALUES(6,11111111119,'20
 INSERT INTO scale(id,version,start,end,city_id,trip_id) VALUES(7,23333453453,'2020-04-15','2020-04-17',6,3);
 INSERT INTO scale(id,version,start,end,city_id,trip_id) VALUES(8,65645645555,'2020-04-17','2020-04-19',5,3);
 INSERT INTO scale(id,version,start,end,city_id,trip_id) VALUES(9,76756766665,'2020-04-19','2020-04-21',2,3);
-INSERT INTO scale(id,version,start,end,city_id,trip_id) VALUES(10,33345345399,2020-04-15','2020-04-17',8,4);
-INSERT INTO scale(id,version,start,end,city_id,trip_id) VALUES(11,64564555522,2020-04-17','2020-04-19',5,4);
-INSERT INTO scale(id,version,start,end,city_id,trip_id) VALUES(12,56766665001,2020-04-19','2020-04-21',9,4);
+INSERT INTO scale(id,version,start,end,city_id,trip_id) VALUES(10,33345345399,'2020-04-15','2020-04-17',8,4);
+INSERT INTO scale(id,version,start,end,city_id,trip_id) VALUES(11,64564555522,'2020-04-17','2020-04-19',5,4);
+INSERT INTO scale(id,version,start,end,city_id,trip_id) VALUES(12,56766665001,'2020-04-19','2020-04-21',9,4);
 INSERT INTO shop_line(id,version,amount,price,shopline_id) VALUES(1,12334523344,2,3.99,1);
 INSERT INTO shop_line(id,version,amount,price,shopline_id) VALUES(2,23454323454,2,1.99,2);
 INSERT INTO shop_line(id,version,amount,price,shopline_id) VALUES(3,63456323456,4,0.5,3);
