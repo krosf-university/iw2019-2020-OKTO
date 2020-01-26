@@ -75,4 +75,14 @@ INSERT INTO service(id,version,dtype,description,name,price,ship_id) VALUES (5,1
 INSERT INTO service(id,version,dtype,description,name,price,ship_id) VALUES (6,64311234356,'comida','restaurante de comida rapida','fastService',7.99,2);
 INSERT INTO service(id,version,dtype,description,name,price,ship_id) VALUES (7,24311234356,'ocio','discoteca nocturna','MomartOcean',7.99,3);
 INSERT INTO service(id,version,dtype,description,name,price,ship_id) VALUES (8,14399234356,'regalos','tienda de souvenirs','giftShop',19.99,4);
+INSERT INTO user_trip(id,version,room_id,user_id,trip_id) VALUES (1,12311234356,11,1,8);
+INSERT INTO user_trip(id,version,room_id,user_id,trip_id) VALUES (2,12301234356,12,1,8);
+INSERT INTO user_trip(id,version,room_id,user_id,trip_id) VALUES (3,12411234356,11,3,8);
+INSERT INTO user_trip(id,version,room_id,user_id,trip_id) VALUES (4,12111234356,10,4,8);
+INSERT INTO user_trip(id,version,room_id,user_id,trip_id) VALUES (5,12322224356,9,5,8);
+INSERT INTO user_trip(id,version,room_id,user_id,trip_id) VALUES (6,12355534356,8,6,8);
+INSERT INTO user_trip(id,version,room_id,user_id,trip_id) VALUES (7,12311234776,7,7,1);
+INSERT INTO user_trip(id,version,room_id,user_id,trip_id) VALUES (8,12311234306,6,8,8);
+INSERT INTO user_trip(id,version,room_id,user_id,trip_id) VALUES (9,10311234356,5,9,8);
+INSERT INTO user_trip(id,version,room_id,user_id,trip_id) VALUES (10,12310234356,4,10,8);
 
