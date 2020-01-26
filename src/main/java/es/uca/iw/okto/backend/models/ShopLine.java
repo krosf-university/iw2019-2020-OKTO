@@ -6,7 +6,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-@Override
 public class ShopLine extends AbstractEntity {
   private static final long serialVersionUID = -4047702656737581607L;
 
@@ -25,6 +24,7 @@ public class ShopLine extends AbstractEntity {
   private Purchase purchase;
 
   public ShopLine() {
+    // Empty due to JPA use of getters and setters
   }
 
   public Integer getAmount() {

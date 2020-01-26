@@ -1,6 +1,5 @@
 package es.uca.iw.okto.backend.models;
 
-import java.sql.Date;
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -9,7 +8,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-@Override
 public class Purchase extends AbstractEntity {
   private static final long serialVersionUID = 49272672233553808L;
 
@@ -22,15 +20,15 @@ public class Purchase extends AbstractEntity {
   @JoinColumn(name = "usertrip_id")
   private UserTrip userTrip;
 
-   // empty due jpa
   public Purchase() {
+    // Empty due to JPA use of getters and setters
   }
 
-  public Date getPrice() {
+  public Double getPrice() {
     return price;
   }
 
-  public void setPrice(Date price) {
+  public void setPrice(Double price) {
     this.price = price;
   }
 

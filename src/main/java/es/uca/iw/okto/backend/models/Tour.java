@@ -10,7 +10,6 @@ import javax.persistence.ManyToOne;
  * Tour
  */
 @Entity
-@Override
 public class Tour extends Service {
   private static final long serialVersionUID = -6774086899975203008L;
 
@@ -26,14 +25,14 @@ public class Tour extends Service {
   @JoinColumn(name = "city_ids")
   private City city;
 
-   // empty due jpa
   public Tour() {
+    // Empty due to JPA use of getters and setters
   }
 
   @Override
   public String toString() {
-    return "Tour [description=" + getDescription() + ", end=" + end + ", scale=" + scale.getId()
-        + ", start=" + start + "]";
+    return "Tour [description=" + getDescription() + ", end=" + end + ", scale=" + scale.getId() + ", start=" + start
+        + "]";
   }
 
   public LocalDate getStart() {

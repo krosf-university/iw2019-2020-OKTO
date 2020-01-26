@@ -12,7 +12,6 @@ import javax.persistence.OneToMany;
  * Scale
  */
 @Entity
-@Override
 public class Scale extends AbstractEntity {
 
   private static final long serialVersionUID = -5873780733709877895L;
@@ -32,8 +31,8 @@ public class Scale extends AbstractEntity {
   @JoinColumn(name = "city_id", nullable = false)
   private City city;
 
-   // empty due jpa
   public Scale() {
+    // Empty due to JPA use of getters and setters
   }
 
   public Trip getTrip() {

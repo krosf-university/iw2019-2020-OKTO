@@ -9,7 +9,6 @@ import javax.persistence.OneToMany;
  * City
  */
 @Entity
-@Override
 public class City extends AbstractEntity {
   private static final long serialVersionUID = -6743878952544679659L;
 
@@ -23,8 +22,8 @@ public class City extends AbstractEntity {
   @OneToMany(mappedBy = "city")
   private Collection<Scale> scales;
 
-   // empty due jpa
   public City() {
+    // Empty due to JPA use of getters and setters
   }
 
   public String getName() {

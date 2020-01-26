@@ -9,7 +9,6 @@ import javax.persistence.OneToMany;
  * Ship
  */
 @Entity
-@Override
 public class Ship extends AbstractEntity {
   private static final long serialVersionUID = 6951752917350417687L;
 
@@ -26,8 +25,8 @@ public class Ship extends AbstractEntity {
   @OneToMany(mappedBy = "ship")
   private Collection<Service> services;
 
-   // empty due jpa
   public Ship() {
+    // Empty due to JPA use of getters and setters
   }
 
   public String getName() {

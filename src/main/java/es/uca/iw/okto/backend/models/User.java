@@ -13,7 +13,6 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
-@Override
 public class User extends AbstractEntity {
   private static final long serialVersionUID = 4220485624755494919L;
 
@@ -48,8 +47,8 @@ public class User extends AbstractEntity {
 
   private boolean enabled = false;
 
-   // empty due jpa
   public User() {
+    // Empty due to JPA use of getters and setters
   }
 
   public String getFirstName() {
