@@ -146,21 +146,24 @@ public class User extends AbstractEntity {
   public int hashCode() {
     final int prime = 31;
     int result = super.hashCode();
-    result = prime * result + ((dni == null) ? 0 : dni.hashCode());
     result = prime * result + ((email == null) ? 0 : email.hashCode());
     return result;
   }
 
   @Override
   public boolean equals(Object obj) {
-    if (!super.equals(obj)) {
+    if (this == obj)
+      return true;
+    if (!super.equals(obj))
       return false;
-    }
+    if (getClass() != obj.getClass())
+      return false;
     User other = (User) obj;
     if (email == null) {
       if (other.email != null)
         return false;
-    }
-    return email.equals(other.email);
+    } else if (!email.equals(other.email))
+      return false;
+    return true;
   }
 }
