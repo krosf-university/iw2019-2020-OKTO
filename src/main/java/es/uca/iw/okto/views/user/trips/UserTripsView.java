@@ -41,13 +41,7 @@ public class UserTripsView extends Div implements HasLogger, AfterNavigationObse
     grid.addThemeVariants(GridVariant.LUMO_NO_BORDER, GridVariant.LUMO_NO_ROW_BORDERS);
     grid.setHeightFull();
     grid.addColumn(new ComponentRenderer<>(trip -> {
-      H3 h3 = new H3(trip.getName());
-      Div div = new Div(h3);
-      div.addClassName("user-trip");
-      return div; 
-    }));
-    grid.addColumn(new ComponentRenderer<>(trip -> {
-      H3 h3 = new H3(trip.getStart().toString());
+      H3 h3 = new H3(trip.toString());
       Div div = new Div(h3);
       div.addClassName("user-trip");
       return div; 

@@ -19,4 +19,6 @@ public class UserTripsDetailsView {
             setText(String.format("Hello, %s!", parameter));
         }
     }
+
+    
 }
