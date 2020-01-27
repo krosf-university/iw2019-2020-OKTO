@@ -44,7 +44,13 @@ public class UserTripsView extends Div implements HasLogger, AfterNavigationObse
       H3 h3 = new H3(trip.getName());
       Div div = new Div(h3);
       div.addClassName("user-trip");
-      return div;
+      return div; 
+    }));
+    grid.addColumn(new ComponentRenderer<>(trip -> {
+      H3 h3 = new H3(trip.getStart().toString());
+      Div div = new Div(h3);
+      div.addClassName("user-trip");
+      return div; 
     }));
     add(grid);
   }
