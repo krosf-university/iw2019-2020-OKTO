@@ -1,6 +1,8 @@
 package es.uca.iw.okto.views.admin.ships;
 
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -21,6 +23,10 @@ public class ShipsView extends VerticalLayout {
 
     @Autowired
   public ShipsView(ShipService shipsService) {
+    H1 h1 = new H1("Manage Ships");
+    H3 h3 = new H3("Add, modify or delete ships from the system");
+    add(h1);
+    add(h3);
     GridCrud<Ship> crud = new GridCrud<>(Ship.class);
     crud.getGrid().setColumns("name", "capacity", "length");
     crud.getGrid().setColumnReorderingAllowed(true);

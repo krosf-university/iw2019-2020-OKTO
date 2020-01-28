@@ -1,6 +1,8 @@
 package es.uca.iw.okto.views.admin.scales;
 
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.renderer.TextRenderer;
 import com.vaadin.flow.router.PageTitle;
@@ -25,6 +27,10 @@ public class ScalesView extends VerticalLayout {
   private static final long serialVersionUID = -7085673506780715794L;
 
   public ScalesView(ScaleService scaleService, CityService cityService, TripService tripService) {
+    H1 h1 = new H1("Manage Scales");
+    H3 h3 = new H3("Add, modify or delete scales from the system");
+    add(h1);
+    add(h3);
     GridCrud<Scale> crud = new GridCrud<>(Scale.class);
     crud.getGrid().setColumns("start", "end");
     crud.getGrid().addColumn(scale -> scale.getCity().getName()).setHeader("City").setKey("city");

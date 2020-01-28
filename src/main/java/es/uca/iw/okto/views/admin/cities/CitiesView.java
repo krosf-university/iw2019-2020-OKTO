@@ -1,6 +1,8 @@
 package es.uca.iw.okto.views.admin.cities;
 
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -19,6 +21,10 @@ public class CitiesView extends VerticalLayout {
   private static final long serialVersionUID = 591404710284427431L;
 
   public CitiesView(CityService cityservice) {
+    H1 h1 = new H1("Manage Cities");
+    H3 h3 = new H3("Add, modify or delete cities from the system");
+    add(h1);
+    add(h3);
     GridCrud<City> crud = new GridCrud<>(City.class);
     crud.getGrid().setColumns("name", "description");
     crud.getGrid().setColumnReorderingAllowed(true);

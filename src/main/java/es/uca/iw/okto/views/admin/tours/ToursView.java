@@ -1,6 +1,8 @@
 package es.uca.iw.okto.views.admin.tours;
 
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.renderer.TextRenderer;
 import com.vaadin.flow.router.PageTitle;
@@ -23,6 +25,10 @@ public class ToursView extends VerticalLayout {
   private static final long serialVersionUID = -7149150251231753448L;
 
   public ToursView(TourService tourService, CityService cityService) {
+    H1 h1 = new H1("Manage Tours");
+    H3 h3 = new H3("Add, modify or delete tours from the system");
+    add(h1);
+    add(h3);
     GridCrud<Tour> crud = new GridCrud<>(Tour.class);
     crud.getGrid().setColumns("start","end");
     crud.getGrid().addColumn(tour -> tour.getCity().getName()).setHeader("City").setKey("city");

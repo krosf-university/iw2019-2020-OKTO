@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -33,6 +35,10 @@ public class UsersView extends VerticalLayout {
 
   @Autowired
   public UsersView(UserService userService) {
+    H1 h1 = new H1("Manage Users");
+    H3 h3 = new H3("Add, modify or delete users from the system");
+    add(h1);
+    add(h3);
     GridCrud<User> crud = new GridCrud<>(User.class);
     crud.getGrid().setColumns(FIRSTNAME, LASTNAME, DNI, EMAIL, PHONE, ENABLED, ROLE);
     crud.getGrid().setColumnReorderingAllowed(true);

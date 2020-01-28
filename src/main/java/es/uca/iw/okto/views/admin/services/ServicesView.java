@@ -1,6 +1,8 @@
 package es.uca.iw.okto.views.admin.services;
 
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -20,6 +22,10 @@ public class ServicesView extends VerticalLayout {
   private static final long serialVersionUID = -8663675772934702721L;
 
   public ServicesView(ServiceService serviceService) {
+    H1 h1 = new H1("Manage Services");
+    H3 h3 = new H3("Add, modify or delete services from the system");
+    add(h1);
+    add(h3);
     GridCrud<Service> crud = new GridCrud<>(Service.class);
     crud.getGrid().setColumns("name", "description","price");
     crud.getGrid().setColumnReorderingAllowed(true);
