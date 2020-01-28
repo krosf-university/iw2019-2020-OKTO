@@ -68,4 +68,9 @@ public class ShopLine extends AbstractEntity {
   public int hashCode() {
     return super.hashCode();
   }
+
+  @Override
+  public String toString() {
+    return "Service: " + service.getName() + " - " + price + " x" + amount;
+  }
 }
