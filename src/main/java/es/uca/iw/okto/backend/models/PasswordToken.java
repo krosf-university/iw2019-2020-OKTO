@@ -39,6 +39,30 @@ public class PasswordToken extends AbstractEntity {
     this.expiryDate = calculateExpiryDate(EXPIRATION);
   }
 
+  public String getToken() {
+    return token;
+  }
+
+  public void setToken(final String token) {
+    this.token = token;
+  }
+
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(final User user) {
+    this.user = user;
+  }
+
+  public Date getExpiryDate() {
+    return expiryDate;
+  }
+
+  public void setExpiryDate(final Date expiryDate) {
+    this.expiryDate = expiryDate;
+  }
+
   private Date calculateExpiryDate(final int expiryTimeInMinutes) {
     final Calendar cal = Calendar.getInstance();
     cal.setTimeInMillis(new Date().getTime());
