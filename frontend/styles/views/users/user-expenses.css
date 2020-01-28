@@ -1,4 +1,4 @@
-#user-trips-view {
+#user-expenses-view {
     display: block;
     height: 100%;
   }
@@ -8,13 +8,13 @@
     height: 100%;
   }
   
-  div.user-trip {
+  div.user-expenses {
     border-radius: var(--lumo-border-radius);
     box-shadow: var(--lumo-box-shadow-s);
     padding: var(--lumo-space-s);
   }
   
-  div.user-trip > h3 {
+  div.user-expenses > h3 {
     margin: 0;
   }
   
@@ -22,7 +22,7 @@
     height: 100%;
   }
   
-  .user-trip {
+  .user-expenses {
     border-radius: var(--lumo-border-radius);
     box-shadow: var(--lumo-box-shadow-s);
     padding: var(--lumo-space-s);

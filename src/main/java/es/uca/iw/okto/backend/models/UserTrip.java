@@ -76,6 +76,9 @@ public class UserTrip extends AbstractEntity {
 
   @Override
   public String toString() {
-    return "Trip: " + trip.getName() + " - " + purchase.getPrice() + "€";
+    if (purchase != null)
+      return "Trip: " + trip.getName() + " - " + purchase.total() + "€";
+    else
+      return "Trip: " + trip.getName() + " - No purchases in this trip";
   }
 }

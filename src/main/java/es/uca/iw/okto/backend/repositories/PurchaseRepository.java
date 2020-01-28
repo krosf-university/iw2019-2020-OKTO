@@ -10,6 +10,6 @@ import es.uca.iw.okto.backend.models.Purchase;
 import es.uca.iw.okto.backend.models.ShopLine;
 
 public interface PurchaseRepository extends JpaRepository<Purchase, Long> {  
-    @Query("SELECT shopLine FROM Purchase p WHERE p.id = :purchaseId")
-    Collection<ShopLine> findPurchaseLine(@Param("purchaseId")Long id);
+    @Query("SELECT shopLines FROM Purchase p WHERE p.id = :purchaseId")
+    Collection<ShopLine> findByPurchaseLine(@Param("purchaseId")Long id);
 }
