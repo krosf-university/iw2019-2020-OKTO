@@ -19,6 +19,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import es.uca.iw.okto.views.login.LoginView;
+import es.uca.iw.okto.views.user.password.PasswordView;
 
 /**
  * SecurityUtils takes care of all such static operations that have to do with
@@ -62,7 +63,7 @@ public final class SecurityUtils {
    * @return true if access is granted, false otherwise.
    */
   public static boolean isAccessGranted(Class<?> securedClass) {
-    final boolean publicView = LoginView.class.equals(securedClass);
+    final boolean publicView = LoginView.class.equals(securedClass) || PasswordView.class.equals(securedClass);
 
     // Always allow access to public views
     if (publicView) {

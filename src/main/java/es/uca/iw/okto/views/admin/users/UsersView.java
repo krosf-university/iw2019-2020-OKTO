@@ -63,7 +63,7 @@ public class UsersView extends VerticalLayout {
       
       @Override
       public User add(User user) {
-        return userService.save(user);
+        return userService.create(user);
       }
       
       @Override

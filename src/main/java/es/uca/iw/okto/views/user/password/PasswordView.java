@@ -1,32 +1,40 @@
 package es.uca.iw.okto.views.user.password;
 
-import com.vaadin.flow.component.dependency.CssImport;
+import java.util.List;
+import java.util.Map;
+
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.html.H3;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.PasswordField;
+import com.vaadin.flow.router.BeforeEvent;
+import com.vaadin.flow.router.HasUrlParameter;
+import com.vaadin.flow.router.Location;
+import com.vaadin.flow.router.OptionalParameter;
 import com.vaadin.flow.router.PageTitle;
+import com.vaadin.flow.router.QueryParameters;
 import com.vaadin.flow.router.Route;
 
-import es.uca.iw.okto.views.MainView;
+import es.uca.iw.okto.backend.HasLogger;
 
-@Route(value = "user/password", layout = MainView.class)
+@Route(value = "password")
 @PageTitle("Password")
-@CssImport("./styles/views/cities/cities-view.css")
-public class PasswordView extends VerticalLayout {
-    private static final long serialVersionUID = 591404710284427431L;
+public class PasswordView extends FormLayout implements HasUrlParameter<String>, HasLogger {
+  private static final long serialVersionUID = 591404710284427431L;
 
-    public PasswordView() {
-        H1 h1 = new H1("Set Password");
-        H3 h3 = new H3("Introduce a valid password and set it for your account");
-        add(h1);
-        add(h3);
-        FormLayout form = new FormLayout();
-        PasswordField pass1 = new PasswordField();
-        PasswordField pass2 = new PasswordField();
-        
-        form.add(pass1);
-        form.add(pass2);
-    }
+  public PasswordView() {
+    H1 title = new H1("Create New Password");
+    PasswordField password = new PasswordField();
+    PasswordField confirmPassword = new PasswordField();
+    add(title);
+    add(password);
+    add(confirmPassword);
+  }
+
+  @Override
+  public void setParameter(BeforeEvent event, @OptionalParameter String parameter) {
+    Location location = event.getLocation();
+    QueryParameters queryParameters = location.getQueryParameters();
+    Map<String, List<String>> parametersMap = queryParameters.getParameters();
+    getLogger().warn(parametersMap.toString());
+  }
 }
