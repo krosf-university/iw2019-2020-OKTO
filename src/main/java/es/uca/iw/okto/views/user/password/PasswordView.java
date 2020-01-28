@@ -35,6 +35,7 @@ public class PasswordView extends FormLayout implements HasUrlParameter<String>,
     Div div = new Div(title , title2, confirmPassword);
     Button button = new Button("Confirm");
     Div div2 = new Div(div, title3, password);
+    
     //button.addClickListener();
     Div div3 = new Div(div2, button);
 
