@@ -60,6 +60,6 @@ public class ExpensesDetailsView extends Div implements RouterLayout, HasUrlPara
 
   @Override
   public void afterNavigation(AfterNavigationEvent event) {
-    grid.setItems(purchaseRepository.findPurchaseLine(purchaseId));
+    grid.setItems(purchaseRepository.findByPurchaseLine(purchaseId));
   }
 }

@@ -29,8 +29,8 @@ public class CitiesView extends VerticalLayout {
     crud.getGrid().setColumns("name", "description");
     crud.getGrid().setColumnReorderingAllowed(true);
     crud.getCrudFormFactory().setUseBeanValidation(true);
-    crud.getCrudFormFactory().setVisibleProperties("name", "description");
-    crud.getCrudFormFactory().setVisibleProperties(CrudOperation.ADD, "name", "description");
+    crud.getCrudFormFactory().setVisibleProperties("name", "description","country");
+    crud.getCrudFormFactory().setVisibleProperties(CrudOperation.ADD, "name", "description","country");
     setSizeFull();
     add(crud);
     crud.setOperations(() -> cityservice.findAll(), city -> cityservice.save(city), city -> cityservice.save(city),

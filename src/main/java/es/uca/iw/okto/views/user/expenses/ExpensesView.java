@@ -43,15 +43,15 @@ public class ExpensesView extends Div implements HasLogger, AfterNavigationObser
     grid.setHeightFull();
     
     grid.addColumn(new ComponentRenderer<>(userTrips -> {
+      getLogger().warn(userTrips.toString());
       H3 h3 = new H3(userTrips.toString());
       Div div = new Div(h3);
       div.addClickListener(e -> {
         getUI().ifPresent(ui -> ui.navigate(ExpensesDetailsView.class, userTrips.getPurchase().getId()));
       });
-      div.addClassName("trip");
+      div.addClassName("user-expenses");
       return div; 
     }));
-
     add(grid);
   }
 
