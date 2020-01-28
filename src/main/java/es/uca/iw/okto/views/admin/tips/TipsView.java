@@ -12,6 +12,7 @@ import org.vaadin.crudui.crud.CrudOperation;
 import org.vaadin.crudui.crud.impl.GridCrud;
 
 import es.uca.iw.okto.backend.models.Tip;
+import es.uca.iw.okto.backend.services.CityService;
 import es.uca.iw.okto.backend.services.TipService;
 import es.uca.iw.okto.views.MainView;
 
@@ -21,7 +22,7 @@ import es.uca.iw.okto.views.MainView;
 public class TipsView extends VerticalLayout {
     private static final long serialVersionUID = 1L;
 
-    public TipsView(TipService tipservice) {
+    public TipsView(TipService tipservice, CityService cityservice) {
         H1 h1 = new H1("Manage Tips");
         H3 h3 = new H3("Add, modify or delete tips from the system");
         add(h1);
@@ -34,6 +35,7 @@ public class TipsView extends VerticalLayout {
         crud.getCrudFormFactory().setUseBeanValidation(true);
         crud.getCrudFormFactory().setVisibleProperties("city", "description");
         crud.getCrudFormFactory().setVisibleProperties(CrudOperation.ADD, "city", "description");
+        
         setSizeFull();
         add(crud);
         crud.setOperations(() -> tipservice.findAll(), tip -> tipservice.save(tip), tip -> tipservice.save(tip),

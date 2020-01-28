@@ -3,8 +3,6 @@ package es.uca.iw.okto.backend.models;
 import java.util.Collection;
 
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -13,12 +11,11 @@ public class Purchase extends AbstractEntity {
 
   private Double price;
 
+  private UserTrip userTrip;
+
   @OneToMany(mappedBy = "purchase")
   private Collection<ShopLine> shopLines;
 
-  @ManyToOne
-  @JoinColumn(name = "usertrip_id")
-  private UserTrip userTrip;
 
   public Purchase() {
     // Empty due to JPA use of getters and setters
