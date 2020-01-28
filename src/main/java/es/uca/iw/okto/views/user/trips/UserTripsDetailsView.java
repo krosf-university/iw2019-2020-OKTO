@@ -34,7 +34,6 @@ public class UserTripsDetailsView extends Div implements RouterLayout, HasUrlPar
   private static final long serialVersionUID = -8186351175360737959L;
 
   private final Grid<Scale> grid;
-  private final WeatherService weatherService;
 
   @Autowired
   private TripService tripService;
@@ -49,7 +48,6 @@ public class UserTripsDetailsView extends Div implements RouterLayout, HasUrlPar
 
 
   public UserTripsDetailsView(WeatherService weatherService) {
-    this.weatherService = weatherService;
     setId("user-trips-view");
     grid = new Grid<>();
     grid.setId("list");

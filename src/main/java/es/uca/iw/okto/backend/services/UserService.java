@@ -36,10 +36,12 @@ public class UserService {
   }
 
   public User create(User user) {
+    user = userRepository.save(user);
     final PasswordToken token = new PasswordToken(UUID.randomUUID().toString(), user);
     passwordTokenRepository.save(token);
-    mailService.sendEmail(user.getEmail(), "OKTO TOKEN", token.toString());
-    return userRepository.save(user);
+    mailService.sendEmail(user.getEmail(), "OKTO TOKEN",
+        String.format("http://localhost:8080/password?id=%s&token=%s", user.getId(), token.getToken()));
+    return user;
   }
 
   public void delete(User user) {

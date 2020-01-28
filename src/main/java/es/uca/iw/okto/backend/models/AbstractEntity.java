@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
@@ -14,7 +15,7 @@ public abstract class AbstractEntity implements Serializable {
   private static final long serialVersionUID = -1115518235197563932L;
 
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   @Version
