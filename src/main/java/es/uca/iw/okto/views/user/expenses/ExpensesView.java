@@ -6,8 +6,6 @@ import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.H3;
-import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.router.AfterNavigationEvent;
 import com.vaadin.flow.router.AfterNavigationObserver;
 import com.vaadin.flow.router.PageTitle;
@@ -42,18 +40,18 @@ public class ExpensesView extends Div implements HasLogger, AfterNavigationObser
     grid.addThemeVariants(GridVariant.LUMO_NO_BORDER, GridVariant.LUMO_NO_ROW_BORDERS);
     grid.setHeightFull();
     
-    grid.addColumn(new ComponentRenderer<>(userTrips -> {
-      H3 h3 = new H3(userTrips.toString());
-      Div div = new Div(h3);
-      div.addClassName("trip");
-      return div; 
-    }));
+    // grid.addColumn(new ComponentRenderer<>(userTrips -> {
+    //   H3 h3 = new H3(userTrips.toString());
+    //   Div div = new Div(h3);
+    //   div.addClassName("trip");
+    //   return div; 
+    // }));
 
     add(grid);
   }
 
   @Override
   public void afterNavigation(AfterNavigationEvent event) {
-    grid.setItems(tripService.findUserTrip(currentUser.getUser()));
+    // grid.setItems(tripService.findUserTrip(currentUser.getUser()));
   }
 }

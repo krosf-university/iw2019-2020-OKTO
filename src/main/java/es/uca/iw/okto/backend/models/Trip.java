@@ -85,7 +85,7 @@ public class Trip extends AbstractEntity {
 
   @Override
   public String toString() {
-    return "Trip: " + getName() + ", start at: " + start + ", in ship: " + ship.getName() + " and end at " + end;
+    return "Trip [end=" + end + ", ship=" + ship.getId() + ", start=" + start + "]";
   }
 
   @Override

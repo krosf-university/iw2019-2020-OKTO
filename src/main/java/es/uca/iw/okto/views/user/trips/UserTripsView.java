@@ -31,6 +31,7 @@ public class UserTripsView extends FlexLayout implements HasLogger, AfterNavigat
   private static final long serialVersionUID = 4405988136982821755L;
 
   private final Grid<Trip> grid;
+  
   @Autowired
   private TripService tripService;
 

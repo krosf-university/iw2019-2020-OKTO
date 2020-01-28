@@ -1,8 +1,11 @@
 package es.uca.iw.okto.backend.models;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  * UserTrip
@@ -23,9 +26,8 @@ public class UserTrip extends AbstractEntity {
   @JoinColumn(name = "room_id", nullable = false)
   private Room room;
 
-  @ManyToOne
-  @JoinColumn(name = "userTrip")
-  private Purchase purchases;
+  @OneToMany(mappedBy = "userTrip")
+  private Collection<Purchase> purchases;
 
   public UserTrip() {
     // Empty due to JPA use of getters and setters
@@ -55,11 +57,11 @@ public class UserTrip extends AbstractEntity {
     this.room = room;
   }
 
-  public Purchase getPurchases() {
+  public Collection<Purchase> getPurchases() {
     return purchases;
   }
 
-  public void setPurchases(Purchase purchases) {
+  public void setPurchases(Collection<Purchase> purchases) {
     this.purchases = purchases;
   }
 
@@ -71,10 +73,5 @@ public class UserTrip extends AbstractEntity {
   @Override
   public int hashCode() {
     return super.hashCode();
-  }
-
-  @Override
-  public String toString() {
-    return "Trip " + trip.getName() + " - " + purchases.getPrice() + "€";
   }
 }
