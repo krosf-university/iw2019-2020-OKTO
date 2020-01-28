@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Purchase extends AbstractEntity {
@@ -11,11 +12,11 @@ public class Purchase extends AbstractEntity {
 
   private Double price;
 
+  @OneToOne(mappedBy = "purchase")
   private UserTrip userTrip;
 
   @OneToMany(mappedBy = "purchase")
   private Collection<ShopLine> shopLines;
-
 
   public Purchase() {
     // Empty due to JPA use of getters and setters

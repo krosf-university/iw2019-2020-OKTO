@@ -16,11 +16,11 @@ public class ShopLine extends AbstractEntity {
   private Double price;
 
   @ManyToOne
-  @JoinColumn(name = "shopline_id", insertable = false, updatable = false, nullable = false)
+  @JoinColumn
   private Service service;
 
   @ManyToOne
-  @JoinColumn(name = "shopline_id", nullable = false)
+  @JoinColumn
   private Purchase purchase;
 
   public ShopLine() {

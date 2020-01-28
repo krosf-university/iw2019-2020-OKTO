@@ -3,6 +3,7 @@ package es.uca.iw.okto.backend.models;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  * UserTrip
@@ -23,6 +24,8 @@ public class UserTrip extends AbstractEntity {
   @JoinColumn(name = "room_id", nullable = false)
   private Room room;
 
+  @OneToOne
+  @JoinColumn(name = "purchase_id", referencedColumnName = "id", nullable = true)
   private Purchase purchase;
 
   public UserTrip() {
