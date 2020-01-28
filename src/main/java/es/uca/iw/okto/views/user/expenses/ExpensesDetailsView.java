@@ -25,7 +25,7 @@ import es.uca.iw.okto.views.MainView;
 /**
  * UserTripsDetailsView
  */
-@Route(value = "user/trips", layout = MainView.class)
+@Route(value = "user/expenses", layout = MainView.class)
 @PageTitle("Trip Detail")
 public class ExpensesDetailsView extends Div implements RouterLayout, HasUrlParameter<Long>, HasLogger, AfterNavigationObserver, Serializable {
   private static final long serialVersionUID = -8186351175360737959L;
