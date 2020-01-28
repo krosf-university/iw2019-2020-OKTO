@@ -25,7 +25,7 @@ public class PasswordTokenService {
 
   public String validateTokenAndCreatePassword(Long id, String token, String password) {
     final PasswordToken passToken = passwordTokenRepository.findByToken(token);
-    if ((passToken == null) || (passToken.getUser().getId() != id)) {
+    if ((passToken == null) || (!passToken.getUser().getId().equals(id))) {
       return "invalid";
     }
 
