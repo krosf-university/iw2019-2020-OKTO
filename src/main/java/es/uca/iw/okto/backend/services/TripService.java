@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import es.uca.iw.okto.backend.models.Trip;
 import es.uca.iw.okto.backend.models.User;
+import es.uca.iw.okto.backend.models.UserTrip;
 import es.uca.iw.okto.backend.repositories.TripRepository;
 
 @Service
@@ -37,5 +38,9 @@ public class TripService implements Serializable {
 
   public Collection<Trip> findByUser(User user) {
     return tripRepository.findByUserId(user.getId());
+  }
+
+  public Collection<UserTrip> findUserTrip(User user) {
+    return tripRepository.findUserTrip(user.getId());
   }
 }

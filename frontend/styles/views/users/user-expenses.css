@@ -1,0 +1,34 @@
+#user-trips-view {
+    display: block;
+    height: 100%;
+  }
+  
+  :host {
+    display: block;
+    height: 100%;
+  }
+  
+  div.user-trip {
+    border-radius: var(--lumo-border-radius);
+    box-shadow: var(--lumo-box-shadow-s);
+    padding: var(--lumo-space-s);
+  }
+  
+  div.user-trip > h3 {
+    margin: 0;
+  }
+  
+  #list {
+    height: 100%;
+  }
+  
+  .user-trip {
+    border-radius: var(--lumo-border-radius);
+    box-shadow: var(--lumo-box-shadow-s);
+    padding: var(--lumo-space-s);
+  }
+  
+  #order {
+    margin: 0;
+  }
+  
