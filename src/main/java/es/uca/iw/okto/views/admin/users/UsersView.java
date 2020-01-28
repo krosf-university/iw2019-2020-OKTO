@@ -44,8 +44,7 @@ public class UsersView extends VerticalLayout {
     crud.getGrid().setColumnReorderingAllowed(true);
     crud.getCrudFormFactory().setUseBeanValidation(true);
     crud.getCrudFormFactory().setVisibleProperties(FIRSTNAME, LASTNAME, DNI, EMAIL, PHONE, ENABLED, ROLE);
-    crud.getCrudFormFactory().setVisibleProperties(CrudOperation.ADD, FIRSTNAME, LASTNAME, DNI, EMAIL, PHONE, ENABLED,
-        ROLE);
+    crud.getCrudFormFactory().setVisibleProperties(CrudOperation.ADD, FIRSTNAME, LASTNAME, DNI, EMAIL, PHONE, ROLE);
     crud.getCrudFormFactory().setFieldProvider(ROLE, new ComboBoxProvider<>(Arrays.asList(User.Role.getAllRoles())));
     setSizeFull();
     add(crud);
@@ -55,22 +54,22 @@ public class UsersView extends VerticalLayout {
   CrudListener<User> userCrudLister(UserService userService) {
     return new CrudListener<User>() {
       private static final long serialVersionUID = 5006331655968812186L;
-      
+
       @Override
       public Collection<User> findAll() {
         return userService.findAll();
       }
-      
+
       @Override
       public User add(User user) {
         return userService.create(user);
       }
-      
+
       @Override
       public User update(User user) {
         return userService.save(user);
       }
-      
+
       @Override
       public void delete(User user) {
         userService.delete(user);
