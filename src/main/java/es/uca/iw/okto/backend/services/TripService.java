@@ -43,8 +43,4 @@ public class TripService implements Serializable {
   public Collection<Scale> findScales(Long tripId) {
     return tripRepository.findScales(tripId);
   }
-
-  // public Collection<UserTrip> findUserTrip(User user) {
-  //   return tripRepository.findUserTrip(user.getId());
-  // }
 }
