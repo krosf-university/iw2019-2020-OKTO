@@ -2,7 +2,6 @@ package es.uca.iw.okto.views;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
@@ -13,7 +12,6 @@ import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.TabVariant;
 import com.vaadin.flow.component.tabs.Tabs;
-import com.vaadin.flow.router.RouteConfiguration;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.server.VaadinSession;
@@ -102,20 +100,5 @@ public class MainView extends AppLayout implements HasLogger {
   private static <T extends HasComponents> T populateLink(T a, String title) {
     a.add(title);
     return a;
-  }
-
-  @Override
-  protected void afterNavigation() {
-    super.afterNavigation();
-    selectTab();
-  }
-
-  private void selectTab() {
-    String target = RouteConfiguration.forSessionScope().getUrl(getContent().getClass());
-    Optional<Component> tabToSelect = menu.getChildren().filter(tab -> {
-      Component child = tab.getChildren().findFirst().get();
-      return child instanceof RouterLink && ((RouterLink) child).getHref().equals(target);
-    }).findFirst();
-    tabToSelect.ifPresent(tab -> menu.setSelectedTab((Tab) tab));
   }
 }
