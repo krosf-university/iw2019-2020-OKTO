@@ -21,7 +21,4 @@ public interface TripRepository extends JpaRepository<Trip, Long> {
 
   @Query("SELECT scales FROM Trip t WHERE t.id = :tripId")
   Collection<Scale> findScales(@Param("tripId")Long id);
-  
-  // @Query("SELECT * FROM UserTrip ut WHERE ut.user.id = :userId")
-  // Collection<UserTrip> findUserTrip(@Param("userId")Long id);
 }
