@@ -33,12 +33,11 @@ public class UsersView extends VerticalLayout {
   private static final String PHONE = "phone";
   private static final String ROLE = "role";
 
+  private final H1 h1 = new H1("Manage Users");
+  private final H3 h3 = new H3("Add, modify or delete users from the system");
+
   @Autowired
   public UsersView(UserService userService) {
-    H1 h1 = new H1("Manage Users");
-    H3 h3 = new H3("Add, modify or delete users from the system");
-    add(h1);
-    add(h3);
     GridCrud<User> crud = new GridCrud<>(User.class);
     crud.getGrid().setColumns(FIRSTNAME, LASTNAME, DNI, EMAIL, PHONE, ENABLED, ROLE);
     crud.getGrid().setColumnReorderingAllowed(true);
@@ -47,7 +46,7 @@ public class UsersView extends VerticalLayout {
     crud.getCrudFormFactory().setVisibleProperties(CrudOperation.ADD, FIRSTNAME, LASTNAME, DNI, EMAIL, PHONE, ROLE);
     crud.getCrudFormFactory().setFieldProvider(ROLE, new ComboBoxProvider<>(Arrays.asList(User.Role.getAllRoles())));
     setSizeFull();
-    add(crud);
+    add(h1, h3, crud);
     crud.setCrudListener(this.userCrudLister(userService));
   }
 

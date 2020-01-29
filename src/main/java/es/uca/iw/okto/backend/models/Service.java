@@ -88,4 +88,9 @@ public class Service extends AbstractEntity {
     return super.hashCode();
   }
 
+  @Override
+  public String toString() {
+    return "Service: " + getName() + ", description: " + getDescription() + ", in ship: " + ship.getName()
+        + " and price: " + getPrice();
+  }
 }

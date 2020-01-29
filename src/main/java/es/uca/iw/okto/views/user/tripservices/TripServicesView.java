@@ -20,7 +20,7 @@ import es.uca.iw.okto.backend.repositories.ServiceRepository;
 import es.uca.iw.okto.backend.security.CurrentUser;
 import es.uca.iw.okto.views.MainView;
 
-@Route(value = "user/services", layout = MainView.class)
+@Route(value = "user/tripservices", layout = MainView.class)
 @PageTitle("Trips")
 @CssImport("./styles/views/users/user-services.css")
 public class TripServicesView extends Div implements HasLogger, AfterNavigationObserver, Serializable {
