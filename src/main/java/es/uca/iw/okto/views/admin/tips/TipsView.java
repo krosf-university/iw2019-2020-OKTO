@@ -1,6 +1,9 @@
 
 package es.uca.iw.okto.views.admin.tips;
 
+import java.util.Arrays;
+import java.util.Collection;
+
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H3;
@@ -8,6 +11,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
+import org.vaadin.crudui.crud.CrudListener;
 import org.vaadin.crudui.crud.CrudOperation;
 import org.vaadin.crudui.crud.impl.GridCrud;
 
@@ -22,23 +26,46 @@ import es.uca.iw.okto.views.MainView;
 public class TipsView extends VerticalLayout {
     private static final long serialVersionUID = 1L;
 
-    public TipsView(TipService tipservice, CityService cityservice) {
-        H1 h1 = new H1("Manage Tips");
-        H3 h3 = new H3("Add, modify or delete tips from the system");
-        add(h1);
-        add(h3);
+    private static final String[] COLUMNS = { "description", "city" };
+
+    private final H1 h1 = new H1("Manage Tips");
+    private final H3 h3 = new H3("Add, modify or delete tips from the system");
+
+    public TipsView(TipService tipService, CityService cityservice) {
         GridCrud<Tip> crud = new GridCrud<>(Tip.class);
-        crud.getGrid().setColumns("description");
-        crud.getGrid().getColumnByKey("description").setHeader("Tip");
-        crud.getGrid().addColumn(tip -> tip.getCity().getName()).setHeader("City").setKey("city");
+        crud.getGrid().setColumns(Arrays.copyOfRange(COLUMNS, 0, 1));
         crud.getGrid().setColumnReorderingAllowed(true);
         crud.getCrudFormFactory().setUseBeanValidation(true);
-        crud.getCrudFormFactory().setVisibleProperties("city", "description");
-        crud.getCrudFormFactory().setVisibleProperties(CrudOperation.ADD, "city", "description");
-        
+        crud.getCrudFormFactory().setVisibleProperties(COLUMNS);
+        crud.getCrudFormFactory().setVisibleProperties(CrudOperation.ADD, COLUMNS);
+        crud.setCrudListener(this.crudListener(tipService));
         setSizeFull();
-        add(crud);
-        crud.setOperations(() -> tipservice.findAll(), tip -> tipservice.save(tip), tip -> tipservice.save(tip),
-                tip -> tipservice.delete(tip));
+        add(h1, h3, crud);
+    }
+
+    CrudListener<Tip> crudListener(TipService tipService) {
+        return new CrudListener<Tip>() {
+            private static final long serialVersionUID = 174653454765L;
+
+            @Override
+            public Collection<Tip> findAll() {
+                return tipService.findAll();
+            }
+
+            @Override
+            public Tip add(Tip tip) {
+                return tipService.save(tip);
+            }
+
+            @Override
+            public Tip update(Tip tip) {
+                return tipService.save(tip);
+            }
+
+            @Override
+            public void delete(Tip tip) {
+                tipService.delete(tip);
+            }
+        };
     }
 }
