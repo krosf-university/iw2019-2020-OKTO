@@ -3,7 +3,6 @@ package es.uca.iw.okto.backend.services;
 import java.util.Collection;
 
 import es.uca.iw.okto.backend.models.Service;
-import es.uca.iw.okto.backend.models.User;
 import es.uca.iw.okto.backend.repositories.ServiceRepository;
 
 @org.springframework.stereotype.Service
@@ -28,9 +27,5 @@ public class ServiceService {
 
   public void delete(Service service) {
     serviceRepository.delete(service);
-  }
-
-  public Collection<Service> findByUser(User user) {
-    return serviceRepository.findByUserId(user.getId());
   }
 }
