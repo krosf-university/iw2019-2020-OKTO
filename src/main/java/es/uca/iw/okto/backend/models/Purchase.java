@@ -3,33 +3,25 @@ package es.uca.iw.okto.backend.models;
 import java.util.Collection;
 
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 @Entity
 public class Purchase extends AbstractEntity {
   private static final long serialVersionUID = 49272672233553808L;
 
-  private Double price;
+  private UserTrip userTrip;
 
-  @OneToMany(mappedBy = "purchase")
+  @OneToMany(mappedBy = "purchase", fetch = FetchType.EAGER)
   private Collection<ShopLine> shopLines;
 
-  @ManyToOne
-  @JoinColumn(name = "usertrip_id")
-  private UserTrip userTrip;
 
   public Purchase() {
     // Empty due to JPA use of getters and setters
   }
 
-  public Double getPrice() {
-    return price;
-  }
-
-  public void setPrice(Double price) {
-    this.price = price;
+  public Double total() {
+    return shopLines.stream().map(shopLine -> shopLine.getAmount() * shopLine.getPrice()).mapToDouble(Double::new).sum();
   }
 
   public Collection<ShopLine> getShopLines() {

@@ -1,0 +1,34 @@
+#user-expenses-view {
+    display: block;
+    height: 100%;
+  }
+  
+  :host {
+    display: block;
+    height: 100%;
+  }
+  
+  div.user-expenses {
+    border-radius: var(--lumo-border-radius);
+    box-shadow: var(--lumo-box-shadow-s);
+    padding: var(--lumo-space-s);
+  }
+  
+  div.user-expenses > h3 {
+    margin: 0;
+  }
+  
+  #list {
+    height: 100%;
+  }
+  
+  .user-expenses {
+    border-radius: var(--lumo-border-radius);
+    box-shadow: var(--lumo-box-shadow-s);
+    padding: var(--lumo-space-s);
+  }
+  
+  #order {
+    margin: 0;
+  }
+  

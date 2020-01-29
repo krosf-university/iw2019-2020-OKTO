@@ -25,13 +25,17 @@ import es.uca.iw.okto.views.admin.cities.CitiesView;
 import es.uca.iw.okto.views.admin.scales.ScalesView;
 import es.uca.iw.okto.views.admin.services.ServicesView;
 import es.uca.iw.okto.views.admin.ships.ShipsView;
+import es.uca.iw.okto.views.admin.tips.TipsView;
 import es.uca.iw.okto.views.admin.tours.ToursView;
 import es.uca.iw.okto.views.admin.trips.TripsView;
 import es.uca.iw.okto.views.admin.users.UsersView;
 import es.uca.iw.okto.views.login.LoginView;
 import es.uca.iw.okto.views.manager.dashboard.DashboardView;
 import es.uca.iw.okto.views.manager.dashboard.DataView;
+import es.uca.iw.okto.views.user.expenses.ExpensesView;
+import es.uca.iw.okto.views.user.reservations.ReservationView;
 import es.uca.iw.okto.views.user.trips.UserTripsView;
+import es.uca.iw.okto.views.user.tripservices.TripServicesView;
 
 @JsModule("./styles/shared-styles.js")
 @PWA(name = "OKTO", shortName = "OKTO")
@@ -72,8 +76,13 @@ public class MainView extends AppLayout implements HasLogger {
       tabs.add(createTab("Cities", CitiesView.class));
       tabs.add(createTab("Tours", ToursView.class));
       tabs.add(createTab("Scales", ScalesView.class));
+      tabs.add(createTab("Tips", TipsView.class));
     } else if (SecurityUtils.hasRole(User.Role.USER)) {
       tabs.add(createTab("Trips", UserTripsView.class));
+      tabs.add(createTab("Services", TripServicesView.class));
+      tabs.add(createTab("Reservations", ReservationView.class));
+      tabs.add(createTab("Expenses", ExpensesView.class));
+      
     }
 
     return tabs.toArray(new Tab[tabs.size()]);

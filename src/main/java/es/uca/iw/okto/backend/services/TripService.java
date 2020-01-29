@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import org.springframework.stereotype.Service;
 
+import es.uca.iw.okto.backend.models.Scale;
 import es.uca.iw.okto.backend.models.Trip;
 import es.uca.iw.okto.backend.models.User;
 import es.uca.iw.okto.backend.repositories.TripRepository;
@@ -37,5 +38,9 @@ public class TripService implements Serializable {
 
   public Collection<Trip> findByUser(User user) {
     return tripRepository.findByUserId(user.getId());
+  }
+
+  public Collection<Scale> findScales(Long tripId) {
+    return tripRepository.findScales(tripId);
   }
 }

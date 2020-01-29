@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -33,13 +35,16 @@ public class UsersView extends VerticalLayout {
 
   @Autowired
   public UsersView(UserService userService) {
+    H1 h1 = new H1("Manage Users");
+    H3 h3 = new H3("Add, modify or delete users from the system");
+    add(h1);
+    add(h3);
     GridCrud<User> crud = new GridCrud<>(User.class);
     crud.getGrid().setColumns(FIRSTNAME, LASTNAME, DNI, EMAIL, PHONE, ENABLED, ROLE);
     crud.getGrid().setColumnReorderingAllowed(true);
     crud.getCrudFormFactory().setUseBeanValidation(true);
     crud.getCrudFormFactory().setVisibleProperties(FIRSTNAME, LASTNAME, DNI, EMAIL, PHONE, ENABLED, ROLE);
-    crud.getCrudFormFactory().setVisibleProperties(CrudOperation.ADD, FIRSTNAME, LASTNAME, DNI, EMAIL, PHONE, ENABLED,
-        ROLE);
+    crud.getCrudFormFactory().setVisibleProperties(CrudOperation.ADD, FIRSTNAME, LASTNAME, DNI, EMAIL, PHONE, ROLE);
     crud.getCrudFormFactory().setFieldProvider(ROLE, new ComboBoxProvider<>(Arrays.asList(User.Role.getAllRoles())));
     setSizeFull();
     add(crud);
@@ -49,22 +54,22 @@ public class UsersView extends VerticalLayout {
   CrudListener<User> userCrudLister(UserService userService) {
     return new CrudListener<User>() {
       private static final long serialVersionUID = 5006331655968812186L;
-      
+
       @Override
       public Collection<User> findAll() {
         return userService.findAll();
       }
-      
+
       @Override
       public User add(User user) {
-        return userService.save(user);
+        return userService.create(user);
       }
-      
+
       @Override
       public User update(User user) {
         return userService.save(user);
       }
-      
+
       @Override
       public void delete(User user) {
         userService.delete(user);

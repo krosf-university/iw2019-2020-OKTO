@@ -1,6 +1,8 @@
 package es.uca.iw.okto.views.admin.trips;
 
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.renderer.TextRenderer;
 import com.vaadin.flow.router.PageTitle;
@@ -24,6 +26,10 @@ public class TripsView extends VerticalLayout {
   private static final long serialVersionUID = -7085673506780715794L;
 
   public TripsView(TripService tripService, ShipService shipService, ScaleService scaleService) {
+    H1 h1 = new H1("Manage Trips");
+    H3 h3 = new H3("Add, modify or delete trips from the system");
+    add(h1);
+    add(h3);
     GridCrud<Trip> crud = new GridCrud<>(Trip.class);
     crud.getGrid().setColumns("name", "start", "end");
     crud.getGrid().addColumn(trip -> trip.getShip().getName()).setHeader("Ship").setKey("ship");

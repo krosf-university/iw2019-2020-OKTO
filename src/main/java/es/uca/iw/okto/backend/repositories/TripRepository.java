@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import es.uca.iw.okto.backend.models.Scale;
 import es.uca.iw.okto.backend.models.Trip;
 
 /**
@@ -17,4 +18,7 @@ public interface TripRepository extends JpaRepository<Trip, Long> {
 
   @Query("SELECT trip FROM UserTrip ut WHERE ut.user.id = :userId")
   Collection<Trip> findByUserId(@Param("userId")Long id);
+
+  @Query("SELECT scales FROM Trip t WHERE t.id = :tripId")
+  Collection<Scale> findScales(@Param("tripId")Long id);
 }
