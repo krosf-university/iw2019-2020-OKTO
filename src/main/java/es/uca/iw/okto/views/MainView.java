@@ -33,7 +33,6 @@ import es.uca.iw.okto.views.login.LoginView;
 import es.uca.iw.okto.views.manager.dashboard.DashboardView;
 import es.uca.iw.okto.views.manager.dashboard.DataView;
 import es.uca.iw.okto.views.user.expenses.ExpensesView;
-import es.uca.iw.okto.views.user.reservations.ReservationView;
 import es.uca.iw.okto.views.user.trips.UserTripsView;
 import es.uca.iw.okto.views.user.tripservices.TripServicesView;
 
@@ -80,7 +79,6 @@ public class MainView extends AppLayout implements HasLogger {
     } else if (SecurityUtils.hasRole(User.Role.USER)) {
       tabs.add(createTab("Trips", UserTripsView.class));
       tabs.add(createTab("Services", TripServicesView.class));
-      tabs.add(createTab("Reservations", ReservationView.class));
       tabs.add(createTab("Expenses", ExpensesView.class));
       
     }

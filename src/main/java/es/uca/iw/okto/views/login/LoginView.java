@@ -1,7 +1,6 @@
 package es.uca.iw.okto.views.login;
 
 import com.vaadin.flow.component.UI;
-import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.login.LoginI18n;
 import com.vaadin.flow.component.login.LoginOverlay;
 import com.vaadin.flow.router.AfterNavigationEvent;
@@ -28,7 +27,6 @@ import es.uca.iw.okto.views.user.trips.UserTripsView;
  */
 @Route(value = "login")
 @PageTitle("Login")
-@CssImport("./styles/views/login/login.css")
 public class LoginView extends LoginOverlay implements AfterNavigationObserver, BeforeEnterObserver {
   private static final long serialVersionUID = 7623973319220884828L;
 
